@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+import "@fontsource-variable/inter";
+import "@fontsource-variable/bricolage-grotesque";
+import { ViewTransitions } from "astro:transitions";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <style>
+      html.lenis {
+        height: auto;
+      }
+      .lenis.lenis-smooth {
+        scroll-behavior: auto;
+      }
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+      .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+      }
+    </style>
+    <title>{title} - Yagnik Patel</title>
+    <ViewTransitions />
+  </head>
+  <body class="font-sans">
+    <slot />
+    <script>
+      import gsap from "gsap/dist/gsap";
+      import ScrollTrigger from "gsap/dist/ScrollTrigger";
+      import Lenis from "@studio-freight/lenis";
+      gsap.registerPlugin(ScrollTrigger);
+      const lenis = new Lenis();
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    </script>
+  </body>
+</html>

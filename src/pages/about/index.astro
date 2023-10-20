@@ -1,0 +1,96 @@
+---
+import RootLayout from "@/layouts/Root.astro";
+import Nav from "@/components/Nav.astro";
+---
+
+<RootLayout title="About">
+  <Nav />
+  <main class="px-8 md:px-20 lg:px-32 2xl:px-60 py-12">
+    <h1 class="text-3xl font-serif font-semibold">
+      A little story about myself
+    </h1>
+    <p class="mt-8 lg:text-lg max-w-[100ch]">
+      I'm <strong>Yagnik Patel</strong> and I'm a <strong
+        >front-end developer</strong
+      > based in <strong>Gujarat, India</strong> who is actively working towards
+      becoming a fully-fledged full-stack developer. I am a <strong
+        >first-year</strong
+      > college student. I plan to try <strong>freelancing</strong> or remote
+      jobs to gain practical experience in the industry.
+    </p>
+    <p class="mt-4 lg:text-lg max-w-[100ch]">
+      I had some extra time during the Covid-19 pandemic, so I started learning
+      web development. I mainly focus on front-end development, but I also like
+      to explore back-end topics to learn more. Because of my schoolwork, I can
+      only spend a little time learning. I built this website to share my work,
+      and you can reach me through Twitter or email.
+    </p>
+    <div class="flex gap-8">
+      <a
+        class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit"
+        href="/projects"
+      >
+        <span class="group-hover:italic">Projects</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6 origin-left group-hover:scale-x-150 transition"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+        </svg>
+      </a>
+      <a
+        class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit"
+        href="/blog"
+      >
+        <span class="group-hover:italic">Blogs</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6 origin-left group-hover:scale-x-150 transition"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+        </svg>
+      </a>
+    </div>
+    <div class="flex gap-2 items-center mt-12 flex-wrap">
+      <h1 class="text-3xl font-serif font-semibold">My prefered stacks</h1>
+      <p>
+        (* I have experience with other technologies too, but I like working
+        with these tech stacks. *)
+      </p>
+    </div>
+    <div class="space-y-4 mt-6">
+      <div class="space-y-3">
+        <h2 class="text-xl font-medium">Fullstack App</h2>
+        <p class="lg:text-lg">
+          Nextjs &bull; Auth.js(NextAuth) &bull; Tailwind CSS w. shadcn/ui
+          &bull; Database with ORM (Supabase, Prisma, Drizzle)
+        </p>
+        <p class="lg:text-lg">
+          SvelteKit &bull; Auth.js &bull; Tailwind CSS w. shadcn-svelte &bull;
+          Database with ORM (Supabase, Prisma, Drizzle)
+        </p>
+      </div>
+      <div class="space-y-3">
+        <h2 class="text-xl font-medium">Static Site</h2>
+        <p class="lg:text-lg">Astro &bull; Tailwind CSS</p>
+        <p class="lg:text-lg">
+          Vite &bull; HTML &bull; CSS or Tailwind CSS &bull; Javascript
+        </p>
+      </div>
+    </div>
+  </main>
+</RootLayout>
