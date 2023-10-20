@@ -1,1 +1,0 @@
-import{g as r}from"./hoisted.3c5d3993.js";r.from(".project",{scrollTrigger:".project",yPercent:10,opacity:0,delay:.1,stagger:.1,duration:.5});r.from(".blog",{scrollTrigger:".blog",yPercent:10,opacity:0,delay:.1,duration:.5});
