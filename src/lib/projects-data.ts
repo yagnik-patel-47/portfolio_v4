@@ -5,6 +5,7 @@ import TodoImage from "@/assets/projects/todo.webp"
 import GalaryImage from "@/assets/projects/galary.webp"
 import LegoImage from "@/assets/projects/lego.webp"
 import SMAImage from "@/assets/projects/sma.webp"
+import MangaReader from "@/assets/projects/mangareader.webp"
 
 export const projects = [
   {
@@ -64,8 +65,18 @@ export const projects = [
     category: "static",
   },
   {
+    name: "Mangasss",
+    discription: "A manga reader app where you'll find whatever manga you wanna read.",
+    image: MangaReader,
+    tech: ["SvelteKit", "TailWind CSS"],
+    links: {
+      site: "https://mangasss.vercel.app",
+    },
+    category: "app",
+  },
+  {
     name: "Todo Web App",
-    discription: "A Todo App made using vanilla javascript with animejs animations.",
+    discription: "A Todo app made using vanilla javascript with animejs animations.",
     image: TodoImage,
     tech: ["Javascript", "Anime.js"],
     links: {
