@@ -78,19 +78,6 @@ const links = [
             stroke-linejoin="round"
             d="M3.75 9h16.5m-16.5 6.75h16.5"></path>
         </svg>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-8 h-8 hidden"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
       </button>
     </div>
   </nav>
@@ -297,7 +284,6 @@ const links = [
 
   function setOpenState() {
     header.setAttribute("data-state", "open");
-    toggleMenuIcon();
     gsap.to(navCollapseSection, {
       height: navContentHeight,
       duration: 0.3,
@@ -309,7 +295,6 @@ const links = [
   }
   function setCloseState(animate = true) {
     header.setAttribute("data-state", "closed");
-    toggleMenuIcon();
     !animate
       ? gsap.set(navCollapseSection, {
           height: 0,
@@ -326,10 +311,5 @@ const links = [
           yPercent: 0,
           duration: 0.3,
         });
-  }
-  function toggleMenuIcon() {
-    [...hamBtn.children].forEach((node) => {
-      if (node.nodeName === "svg") node.classList.toggle("hidden");
-    });
   }
 </script>
