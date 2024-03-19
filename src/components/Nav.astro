@@ -26,7 +26,7 @@ const links = [
 >
   <div id="nav-background" class="inset-0 absolute bg-white"></div>
   <nav
-    class="flex justify-between items-center px-8 md:px-20 lg:px-32 2xl:px-60 py-8 lg:py-14 transition-[padding] relative before:absolute before:inset-0 before:bg-neutral-950 before:z-[-1]"
+    class="flex justify-between items-center px-8 md:px-20 lg:px-32 2xl:px-60 py-8 lg:py-14 transition-[padding] motion-reduce:transition-none relative before:absolute before:inset-0 before:bg-neutral-950 before:z-[-1]"
   >
     <a
       class="text-2xl lg:text-3xl flex items-center space-x-2 font-semibold font-serif group-data-[state=open]:text-neutral-100"
@@ -250,8 +250,10 @@ const links = [
   const header = document.getElementById("header")!;
   const navLinks = document.querySelectorAll(".nav-links");
 
+  const mm = gsap.matchMedia();
+
   window.addEventListener("resize", () => {
-    navContentHeight = navCollapseSection?.scrollHeight ?? 0;
+    navContentHeight = navCollapseSection.scrollHeight ?? 0;
   });
   hamBtn.addEventListener("click", () => {
     if (header.dataset.state === "open") setCloseState();
@@ -274,42 +276,52 @@ const links = [
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 100) {
-      navElement?.classList.remove("lg:py-14");
-      navElement?.classList.add("lg:py-8");
+      navElement.classList.remove("lg:py-14");
+      navElement.classList.add("lg:py-8");
     } else {
-      navElement?.classList.add("lg:py-14");
-      navElement?.classList.remove("lg:py-8");
+      navElement.classList.add("lg:py-14");
+      navElement.classList.remove("lg:py-8");
     }
   });
 
   function setOpenState() {
     header.setAttribute("data-state", "open");
-    gsap.to(navCollapseSection, {
-      height: navContentHeight,
-      duration: 0.3,
-    });
-    gsap.to(navBackground, {
-      yPercent: 100,
-      duration: 0.3,
-    });
+    mm.add(
+      {
+        reduceMotion: "(prefers-reduced-motion: reduce)",
+      },
+      (context) => {
+        const { reduceMotion } = context.conditions;
+
+        gsap.to(navCollapseSection, {
+          height: navContentHeight,
+          duration: reduceMotion ? 0 : 0.3,
+        });
+        gsap.to(navBackground, {
+          yPercent: 100,
+          duration: reduceMotion ? 0 : 0.3,
+        });
+      },
+    );
   }
   function setCloseState(animate = true) {
     header.setAttribute("data-state", "closed");
-    !animate
-      ? gsap.set(navCollapseSection, {
+    mm.add(
+      {
+        reduceMotion: "(prefers-reduced-motion: reduce)",
+      },
+      (context) => {
+        const { reduceMotion } = context.conditions;
+
+        gsap.to(navCollapseSection, {
           height: 0,
-        })
-      : gsap.to(navCollapseSection, {
-          height: 0,
-          duration: 0.3,
+          duration: reduceMotion || !animate ? 0 : 0.3,
         });
-    !animate
-      ? gsap.set(navBackground, {
+        gsap.to(navBackground, {
           yPercent: 0,
-        })
-      : gsap.to(navBackground, {
-          yPercent: 0,
-          duration: 0.3,
+          duration: reduceMotion || !animate ? 0 : 0.3,
         });
+      },
+    );
   }
 </script>

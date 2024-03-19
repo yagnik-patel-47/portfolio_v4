@@ -133,6 +133,7 @@ import { Picture } from "astro:assets";
                 src={blog.image}
                 alt={blog.title}
                 formats={["avif"]}
+                loading="eager"
               />
               <h2 class="text-2xl lg:text-3xl font-medium">{blog.title}</h2>
               <p class="text-neutral-200">{blog.date}</p>
@@ -146,19 +147,31 @@ import { Picture } from "astro:assets";
 
 <script>
   import gsap from "gsap/dist/gsap";
-  gsap.from(".project", {
-    scrollTrigger: ".project",
-    yPercent: 10,
-    opacity: 0,
-    delay: 0.1,
-    stagger: 0.1,
-    duration: 0.5,
-  });
-  gsap.from(".blog", {
-    scrollTrigger: ".blog",
-    yPercent: 10,
-    opacity: 0,
-    delay: 0.1,
-    duration: 0.5,
-  });
+
+  const mm = gsap.matchMedia();
+
+  mm.add(
+    {
+      reduceMotion: "(prefers-reduced-motion: reduce)",
+    },
+    (context) => {
+      const { reduceMotion } = context.conditions;
+
+      gsap.from(".project", {
+        scrollTrigger: ".project",
+        yPercent: 10,
+        opacity: 0,
+        delay: 0.1,
+        stagger: 0.1,
+        duration: reduceMotion ? 0 : 0.5,
+      });
+      gsap.from(".blog", {
+        scrollTrigger: ".blog",
+        yPercent: 10,
+        opacity: 0,
+        delay: 0.1,
+        duration: reduceMotion ? 0 : 0.5,
+      });
+    },
+  );
 </script>
