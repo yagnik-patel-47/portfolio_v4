@@ -146,32 +146,25 @@ import { Picture } from "astro:assets";
 </RootLayout>
 
 <script>
-  import gsap from "gsap/dist/gsap";
+  import gsap from "gsap";
 
-  const mm = gsap.matchMedia();
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
 
-  mm.add(
-    {
-      reduceMotion: "(prefers-reduced-motion: reduce)",
-    },
-    (context) => {
-      const { reduceMotion } = context.conditions;
-
-      gsap.from(".project", {
-        scrollTrigger: ".project",
-        yPercent: 10,
-        opacity: 0,
-        delay: 0.1,
-        stagger: 0.1,
-        duration: reduceMotion ? 0 : 0.5,
-      });
-      gsap.from(".blog", {
-        scrollTrigger: ".blog",
-        yPercent: 10,
-        opacity: 0,
-        delay: 0.1,
-        duration: reduceMotion ? 0 : 0.5,
-      });
-    },
-  );
+  gsap.from(".project", {
+    scrollTrigger: ".project",
+    yPercent: 10,
+    opacity: 0,
+    delay: 0.1,
+    stagger: 0.1,
+    duration: prefersReducedMotion ? 0 : 0.5,
+  });
+  gsap.from(".blog", {
+    scrollTrigger: ".blog",
+    yPercent: 10,
+    opacity: 0,
+    delay: 0.1,
+    duration: prefersReducedMotion ? 0 : 0.5,
+  });
 </script>
