@@ -15,7 +15,10 @@ import SpeedInsights from "@vercel/speed-insights/astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="A personal portfolio website of Yagnik Patel." />
+    <meta
+      name="description"
+      content="A personal portfolio website of Yagnik Patel."
+    />
     <style>
       html.lenis {
         height: auto;
@@ -38,10 +41,9 @@ import SpeedInsights from "@vercel/speed-insights/astro";
     <SpeedInsights />
   </head>
   <body class="font-sans">
-    <slot />
     <script>
-      import gsap from "gsap/dist/gsap";
-      import ScrollTrigger from "gsap/dist/ScrollTrigger";
+      import gsap from "gsap";
+      import ScrollTrigger from "gsap/ScrollTrigger";
       import Lenis from "@studio-freight/lenis";
       gsap.registerPlugin(ScrollTrigger);
       const lenis = new Lenis();
@@ -51,5 +53,6 @@ import SpeedInsights from "@vercel/speed-insights/astro";
       });
       gsap.ticker.lagSmoothing(0);
     </script>
+    <slot />
   </body>
 </html>

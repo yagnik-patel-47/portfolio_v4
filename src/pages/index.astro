@@ -6,25 +6,30 @@ import { blogs } from "@/lib/blogs-data";
 import { Picture } from "astro:assets";
 ---
 
-<RootLayout title="Home">
+<RootLayout title="⭕">
   <Nav />
   <main class="bg-white">
     <section id="hero" class="px-8 md:px-20 lg:px-32 2xl:px-60 py-12 lg:py-20">
-      <p class="text-xl md:text-2xl xl:text-3xl lg:font-medium">
+      <p id="intro" class="text-xl md:text-2xl xl:text-3xl lg:font-medium">
         Hi <span class="animate-wavehand">👋</span>, I'm Yagnik Patel.
       </p>
       <h1
         class="text-5xl sm:text-6xl md:text-7xl leading-[1.25] md:leading-[1.1] 2xl:text-8xl font-light mt-4 lg:mt-8"
       >
-        I <span class="italic">develop</span>
-        <span class="font-normal block">
+        <span class="block headline h-fit overflow-hidden"
+          >I <span class="italic">develop</span></span
+        >
+        <span class="font-normal block headline h-fit overflow-hidden">
           <span class="font-serif">apps</span> and <span class="font-serif"
             >websites</span
           ></span
         >
-        <span class="font-normal block">from scratch</span>
+        <span class="font-normal block headline h-fit overflow-hidden"
+          >from scratch</span
+        >
       </h1>
       <a
+        id="about-link"
         class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit"
         href="/about"
       >
@@ -48,9 +53,12 @@ import { Picture } from "astro:assets";
       id="projects"
       class="bg-neutral-950 text-neutral-100 px-8 md:px-20 lg:px-32 2xl:px-60 py-20 lg:py-32 rounded-t-3xl md:rounded-t-[3rem] mt-8"
     >
-      <h1 class="text-3xl md:text-4xl lg:text-7xl">
-        <span>Featured</span>
-        <span class="italic font-light">Projects</span>
+      <h1
+        id="projects-headline"
+        class="text-3xl md:text-4xl lg:text-7xl overflow-hidden py-1"
+      >
+        <span class="inline-block">Featured</span>
+        <span class="italic font-light inline-block">Projects</span>
       </h1>
       <div class="grid lg:grid-cols-2 gap-10 lg:gap-32 mt-10 lg:mt-20">
         {
@@ -118,9 +126,12 @@ import { Picture } from "astro:assets";
           ))
         }
       </div>
-      <h1 class="text-3xl md:text-4xl lg:text-7xl mt-20">
-        <span>Featured</span>
-        <span class="italic font-light">Blogs</span>
+      <h1
+        id="blogs-healine"
+        class="text-3xl md:text-4xl lg:text-7xl mt-20 overflow-hidden py-1"
+      >
+        <span class="inline-block">Featured</span>
+        <span class="italic font-light inline-block">Blogs</span>
       </h1>
       <div class="grid lg:grid-cols-2 gap-10 lg:gap-32 mt-10 lg:mt-20">
         {
@@ -147,16 +158,20 @@ import { Picture } from "astro:assets";
 
 <script>
   import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
 
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
   gsap.from(".project", {
-    scrollTrigger: ".project",
+    scrollTrigger: {
+      trigger: ".project",
+      start: "top 80%",
+    },
     yPercent: 10,
     opacity: 0,
-    delay: 0.1,
     stagger: 0.1,
     duration: prefersReducedMotion ? 0 : 0.5,
   });

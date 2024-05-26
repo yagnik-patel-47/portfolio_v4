@@ -22,11 +22,12 @@ const links = [
 <header
   transition:persist
   id="header"
-  class="group sticky top-0 overflow-hidden z-20 transition"
+  class="group sticky top-0 overflow-hidden z-20 has-[nav[data-nav-padding=true]]:shadow"
 >
   <div id="nav-background" class="inset-0 absolute bg-white"></div>
   <nav
-    class="flex justify-between items-center px-8 md:px-20 lg:px-32 2xl:px-60 py-8 lg:py-14 transition-[padding] motion-reduce:transition-none relative before:absolute before:inset-0 before:bg-neutral-950 before:z-[-1]"
+    class="flex justify-between items-center px-8 md:px-20 lg:px-32 2xl:px-60 py-8 data-[nav-padding=false]:lg:py-14 transition-[padding] motion-reduce:transition-none relative before:absolute before:inset-0 before:bg-neutral-950 before:z-[-1]"
+    data-nav-padding="false"
   >
     <a
       class="text-2xl lg:text-3xl flex items-center space-x-2 font-semibold font-serif group-data-[state=open]:text-neutral-100"
@@ -96,7 +97,7 @@ const links = [
         ))
       }
     </div>
-    <div class="py-8 2xl:py-12 space-y-8 px-8 md:px-20 lg:px-32 2xl:px-60">
+    <div class="py-4 2xl:py-8 space-y-6 px-8 md:px-20 lg:px-32 2xl:px-60">
       <h3 class="text-xl font-medium">Socials</h3>
       <div class="flex gap-8 flex-wrap">
         <a href="https://x.com/yagnik_pt" class="block" aria-label="Twitter">
@@ -277,14 +278,9 @@ const links = [
     });
   });
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 100) {
-      navElement.classList.remove("lg:py-14");
-      navElement.classList.add("lg:py-8");
-    } else {
-      navElement.classList.add("lg:py-14");
-      navElement.classList.remove("lg:py-8");
-    }
+  document.addEventListener("scroll", () => {
+    if (window.scrollY > 0) navElement.dataset.navPadding = `true`;
+    else navElement.dataset.navPadding = `false`;
   });
 
   function setOpenState(reducedMotion: boolean) {
