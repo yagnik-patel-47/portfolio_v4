@@ -1,12 +1,12 @@
 ---
 interface Props {
-  title: string;
+  title: string
 }
-const { title } = Astro.props;
-import "@fontsource-variable/inter";
-import "@fontsource-variable/bricolage-grotesque";
-import { ViewTransitions } from "astro:transitions";
-import SpeedInsights from "@vercel/speed-insights/astro";
+const { title } = Astro.props
+import '@fontsource-variable/inter'
+import '@fontsource-variable/bricolage-grotesque'
+import { ViewTransitions } from 'astro:transitions'
+import SpeedInsights from '@vercel/speed-insights/astro'
 ---
 
 <html lang="en">
@@ -42,16 +42,16 @@ import SpeedInsights from "@vercel/speed-insights/astro";
   </head>
   <body class="font-sans">
     <script>
-      import gsap from "gsap";
-      import ScrollTrigger from "gsap/ScrollTrigger";
-      import Lenis from "@studio-freight/lenis";
-      gsap.registerPlugin(ScrollTrigger);
-      const lenis = new Lenis();
-      lenis.on("scroll", ScrollTrigger.update);
+      import gsap from 'gsap'
+      import ScrollTrigger from 'gsap/ScrollTrigger'
+      import Lenis from '@studio-freight/lenis'
+      gsap.registerPlugin(ScrollTrigger)
+      const lenis = new Lenis()
+      lenis.on('scroll', ScrollTrigger.update)
       gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
-      gsap.ticker.lagSmoothing(0);
+        lenis.raf(time * 1000)
+      })
+      gsap.ticker.lagSmoothing(0)
     </script>
     <slot />
   </body>

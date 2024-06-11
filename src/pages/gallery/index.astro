@@ -1,0 +1,97 @@
+---
+import RootLayout from '@/layouts/Root.astro'
+import Nav from '@/components/Nav.astro'
+import ClearSkyImage from '@/assets/gallery/clear_sky.webp'
+import DayTreeImage from '@/assets/gallery/day_tree.webp'
+import BlueEveningImage from '@/assets/gallery/blue_evening.webp'
+import CoconutTreesImage from '@/assets/gallery/coconut_trees.webp'
+import FlowersImage from '@/assets/gallery/flowers.webp'
+import LakeImage from '@/assets/gallery/lake.webp'
+import MountainLakeImage from '@/assets/gallery/lake_mountain.webp'
+import GloomyDayImage from '@/assets/gallery/gloomy_day.webp'
+import EveningCloudImage from '@/assets/gallery/evening_cloud.webp'
+import { Image } from 'astro:assets'
+---
+
+<RootLayout title="Galary">
+  <Nav />
+  <section class="px-8 md:px-20 lg:px-32 2xl:px-60 py-12 lg:py-20">
+    <div class="flex max-lg:flex-col gap-8">
+      <div class="basis-1/2 space-y-10">
+        <h1 class="font max-lg:text-3xl text-4xl font-bold">
+          Some random clicks I'm putting here just to feel i'm a photographer :)
+        </h1>
+        <div class="space-y-2">
+          <p>(chatgpt generated)</p>
+          <p>
+            Photography is more than just a hobby for me; it’s a way to capture
+            the world’s fleeting moments and transform them into timeless pieces
+            of art. Here, you’ll find a diverse collection of random clicks,
+            each telling its own unique story.
+          </p>
+          <p>
+            From the serene beauty of nature to the dynamic energy of urban
+            life, I aim to capture the essence of each subject through my lens.
+            I hope these images inspire, evoke emotions, and offer a glimpse
+            into how I perceive the world around us.
+          </p>
+          <p>
+            Feel free to explore, enjoy, and connect with the visual narratives
+            I’ve created. Each photograph is a piece of my journey, and I’m
+            excited to share it with you.
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-fit basis-1/2 gap-2 lg:gap-4 place-content-center">
+        <Image
+          class="w-auto h-max translate-y-1/2"
+          src={ClearSkyImage}
+          alt="Clear Sky"
+          loading="eager"
+        />
+        <Image
+          class="w-auto h-max"
+          loading="eager"
+          src={DayTreeImage}
+          alt="Day Tree"
+        />
+        <Image
+          class="w-auto h-max translate-y-1/2"
+          src={EveningCloudImage}
+          alt="Evening Cloud"
+          loading="eager"
+        />
+        <Image
+          class="w-auto h-max translate-y-1/2"
+          src={FlowersImage}
+          alt="Yellow Flowers"
+          loading="eager"
+        />
+        <Image
+          loading="eager"
+          class="w-auto h-max"
+          src={MountainLakeImage}
+          alt="Lake and Sky"
+        />
+        <Image
+          class="w-auto h-max translate-y-1/2"
+          src={CoconutTreesImage}
+          alt="Coconut Trees"
+          loading="eager"
+        />
+        <Image
+          class="w-auto h-max col-start-2"
+          src={LakeImage}
+          alt="Lake"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </section>
+</RootLayout>
+
+<style>
+  .grid-fit {
+    grid-template-columns: repeat(3, fit-content(1000px));
+  }
+</style>

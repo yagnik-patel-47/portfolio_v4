@@ -1,22 +1,22 @@
 ---
 const links = [
   {
-    name: "Projects",
-    path: "/projects",
+    name: 'Projects',
+    path: '/projects',
   },
   {
-    name: "About Me",
-    path: "/about",
+    name: 'About Me',
+    path: '/about',
   },
   {
-    name: "Blog",
-    path: "/blog",
+    name: 'Clicks',
+    path: '/gallery',
   },
   {
-    name: "Codebits",
-    path: "/codebits",
+    name: 'Codebits',
+    path: '/codebits',
   },
-];
+]
 ---
 
 <header
@@ -242,67 +242,67 @@ const links = [
 </style>
 
 <script>
-  import gsap from "gsap";
-  const navElement = document.querySelector("nav");
-  const navCollapseSection = document.getElementById("nav-content")!;
-  const navBackground = document.getElementById("nav-background")!;
-  let navContentHeight = navCollapseSection?.scrollHeight ?? 0;
-  const hamBtn = document.getElementById("ham-btn")!;
-  const header = document.getElementById("header")!;
-  const navLinks = document.querySelectorAll(".nav-links");
+  import gsap from 'gsap'
+  const navElement = document.querySelector('nav')
+  const navCollapseSection = document.getElementById('nav-content')!
+  const navBackground = document.getElementById('nav-background')!
+  let navContentHeight = navCollapseSection?.scrollHeight ?? 0
+  const hamBtn = document.getElementById('ham-btn')!
+  const header = document.getElementById('header')!
+  const navLinks = document.querySelectorAll('.nav-links')
 
   const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
+    '(prefers-reduced-motion: reduce)',
+  ).matches
 
-  window.addEventListener("resize", () => {
-    navContentHeight = navCollapseSection?.scrollHeight ?? 0;
-  });
-  hamBtn.addEventListener("click", () => {
-    if (header.dataset.state === "open") setCloseState(prefersReducedMotion);
-    else setOpenState(prefersReducedMotion);
-  });
+  window.addEventListener('resize', () => {
+    navContentHeight = navCollapseSection?.scrollHeight ?? 0
+  })
+  hamBtn.addEventListener('click', () => {
+    if (header.dataset.state === 'open') setCloseState(prefersReducedMotion)
+    else setOpenState(prefersReducedMotion)
+  })
 
-  document.addEventListener("click", (event) => {
+  document.addEventListener('click', (event) => {
     // @ts-ignore
-    const isClickInside = header.contains(event.target);
-    if (!isClickInside && header.dataset.state === "open")
-      setCloseState(prefersReducedMotion);
-  });
+    const isClickInside = header.contains(event.target)
+    if (!isClickInside && header.dataset.state === 'open')
+      setCloseState(prefersReducedMotion)
+  })
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      document.addEventListener("astro:after-swap", () => {
-        setCloseState(prefersReducedMotion, false);
-      });
-    });
-  });
+    link.addEventListener('click', () => {
+      document.addEventListener('astro:after-swap', () => {
+        setCloseState(prefersReducedMotion, false)
+      })
+    })
+  })
 
-  document.addEventListener("scroll", () => {
-    if (window.scrollY > 0) navElement.dataset.navPadding = `true`;
-    else navElement.dataset.navPadding = `false`;
-  });
+  document.addEventListener('scroll', () => {
+    if (window.scrollY > 0) navElement.dataset.navPadding = `true`
+    else navElement.dataset.navPadding = `false`
+  })
 
   function setOpenState(reducedMotion: boolean) {
-    header.setAttribute("data-state", "open");
+    header.setAttribute('data-state', 'open')
     gsap.to(navCollapseSection, {
       height: navContentHeight,
       duration: reducedMotion ? 0 : 0.3,
-    });
+    })
     gsap.to(navBackground, {
       yPercent: 100,
       duration: reducedMotion ? 0 : 0.3,
-    });
+    })
   }
   function setCloseState(reducedMotion: boolean, animate = true) {
-    header.setAttribute("data-state", "closed");
+    header.setAttribute('data-state', 'closed')
     gsap.to(navCollapseSection, {
       height: 0,
       duration: reducedMotion || !animate ? 0 : 0.3,
-    });
+    })
     gsap.to(navBackground, {
       yPercent: 0,
       duration: reducedMotion || !animate ? 0 : 0.3,
-    });
+    })
   }
 </script>
