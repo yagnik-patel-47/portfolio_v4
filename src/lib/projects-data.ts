@@ -5,7 +5,8 @@ import TodoImage from "@/assets/projects/todo.webp"
 import GalaryImage from "@/assets/projects/galary.webp"
 import LegoImage from "@/assets/projects/lego.webp"
 import SMAImage from "@/assets/projects/sma.webp"
-import MangaReader from "@/assets/projects/mangareader.webp"
+import MangaReaderImage from "@/assets/projects/mangareader.webp"
+import PS5Image from "@/assets/projects/ps5.webp"
 
 export const projects = [
   {
@@ -32,6 +33,28 @@ export const projects = [
     category: "fullstack",
   },
   {
+    name: "PS5 Home Screen",
+    discription: "A clone of PS5 home screen with same layout animations.",
+    image: PS5Image,
+    tech: ["React", "Framer Motion"],
+    links: {
+      site: "https://ps5-home-screen.vercel.app",
+      repo: "https://github.com/yagnik-patel-47/ps5-home-screen",
+    },
+    category: "static",
+  },
+  {
+    name: "Animation Galary",
+    discription: "A single page image gallery site with awesome animations.",
+    image: GalaryImage,
+    tech: ["React", "Framer Motion"],
+    links: {
+      site: "https://animated0casestudy.vercel.app",
+      repo: "https://github.com/yagnik-patel-47/animated_casestudy",
+    },
+    category: "static",
+  },
+  {
     name: "Japanese Art",
     discription: "A static page website with awesome animations.",
     image: JpDisplayImage,
@@ -53,38 +76,28 @@ export const projects = [
     },
     category: "static",
   },
-  {
-    name: "Animation Galary",
-    discription: "A single page image gallery site with awesome animations.",
-    image: GalaryImage,
-    tech: ["React", "Framer Motion"],
-    links: {
-      site: "https://animated0casestudy.vercel.app",
-      repo: "https://github.com/yagnik-patel-47/animated_casestudy",
-    },
-    category: "static",
-  },
+ 
   {
     name: "Mangasss",
     discription: "A manga reader app where you'll find whatever manga you wanna read.",
-    image: MangaReader,
+    image: MangaReaderImage,
     tech: ["SvelteKit", "TailWind CSS"],
     links: {
       site: "https://mangasss.vercel.app",
     },
     category: "app",
   },
-  {
-    name: "Todo Web App",
-    discription: "A Todo app made using vanilla javascript with animejs animations.",
-    image: TodoImage,
-    tech: ["Javascript", "Anime.js"],
-    links: {
-      site: "https://todoapp-ca.netlify.app",
-      repo: "https://github.com/Yagnik-Patel-47/vanilla-js-to-do",
-    },
-    category: "app",
-  },
+  // {
+  //   name: "Todo Web App",
+  //   discription: "A Todo app made using vanilla javascript with animejs animations.",
+  //   image: TodoImage,
+  //   tech: ["Javascript", "Anime.js"],
+  //   links: {
+  //     site: "https://todoapp-ca.netlify.app",
+  //     repo: "https://github.com/Yagnik-Patel-47/vanilla-js-to-do",
+  //   },
+  //   category: "app",
+  // },
   {
     name: "Social Media App",
     discription: "A social media app clone having basic features similar to Instagram.",
@@ -95,7 +108,7 @@ export const projects = [
       repo: "https://github.com/Yagnik-Patel-47/social-media-app",
     },
     category: "fullstack",
-  },
+  }
 ];
 
 export const featuredProjects = [projects[0], projects[1]];

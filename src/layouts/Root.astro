@@ -19,23 +19,6 @@ import SpeedInsights from '@vercel/speed-insights/astro'
       name="description"
       content="A personal portfolio website of Yagnik Patel."
     />
-    <style>
-      html.lenis {
-        height: auto;
-      }
-      .lenis.lenis-smooth {
-        scroll-behavior: auto;
-      }
-      .lenis.lenis-smooth [data-lenis-prevent] {
-        overscroll-behavior: contain;
-      }
-      .lenis.lenis-stopped {
-        overflow: hidden;
-      }
-      .lenis.lenis-scrolling iframe {
-        pointer-events: none;
-      }
-    </style>
     <title>{title} - Yagnik Patel</title>
     <ViewTransitions />
     <SpeedInsights />
@@ -44,14 +27,7 @@ import SpeedInsights from '@vercel/speed-insights/astro'
     <script>
       import gsap from 'gsap'
       import ScrollTrigger from 'gsap/ScrollTrigger'
-      import Lenis from '@studio-freight/lenis'
       gsap.registerPlugin(ScrollTrigger)
-      const lenis = new Lenis()
-      lenis.on('scroll', ScrollTrigger.update)
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000)
-      })
-      gsap.ticker.lagSmoothing(0)
     </script>
     <slot />
   </body>
