@@ -17,9 +17,6 @@ importers:
       '@astrojs/vercel':
         specifier: ^7.7.2
         version: 7.7.2(astro@4.11.3)(react@18.3.1)
-      '@fontsource-variable/bricolage-grotesque':
-        specifier: ^5.0.6
-        version: 5.0.6
       '@fontsource-variable/inter':
         specifier: ^5.0.18
         version: 5.0.18
@@ -32,9 +29,6 @@ importers:
       '@radix-ui/react-toggle-group':
         specifier: ^1.1.0
         version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@studio-freight/lenis':
-        specifier: ^1.0.42
-        version: 1.0.42
       '@types/react':
         specifier: ^18.3.3
         version: 18.3.3
@@ -70,8 +64,8 @@ importers:
         version: 3.4.4
     devDependencies:
       '@biomejs/biome':
-        specifier: 1.8.2
-        version: 1.8.2
+        specifier: 1.8.3
+        version: 1.8.3
       sharp:
         specifier: ^0.33.4
         version: 0.33.4
@@ -246,55 +240,55 @@ packages:
     resolution: {integrity: sha512-XEFXSlxiG5td2EJRe8vOmRbaXVgfcBlszKujvVmWIK/UpywWljQCfzAv3RQCGujWQ1RD4YYWEAqDXfuJiy8f5Q==}
     engines: {node: '>=6.9.0'}
 
-  '@biomejs/biome@1.8.2':
-    resolution: {integrity: sha512-XafCzLgs0xbH0bCjYKxQ63ig2V86fZQMq1jiy5pyLToWk9aHxA8GAUxyBtklPHtPYZPGEPOYglQHj4jyfUp+Iw==}
+  '@biomejs/biome@1.8.3':
+    resolution: {integrity: sha512-/uUV3MV+vyAczO+vKrPdOW0Iaet7UnJMU4bNMinggGJTAnBPjCoLEYcyYtYHNnUNYlv4xZMH6hVIQCAozq8d5w==}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@1.8.2':
-    resolution: {integrity: sha512-l9msLsTcSIAPqMsPIhodQmb50sEfaXPLQ0YW4cdj6INmd8iaOh/V9NceQb2366vACTJgcWDQ2RzlvURek1T68g==}
+  '@biomejs/cli-darwin-arm64@1.8.3':
+    resolution: {integrity: sha512-9DYOjclFpKrH/m1Oz75SSExR8VKvNSSsLnVIqdnKexj6NwmiMlKk94Wa1kZEdv6MCOHGHgyyoV57Cw8WzL5n3A==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@1.8.2':
-    resolution: {integrity: sha512-Fc4y/FuIxRSiB3TJ+y27vFDE/HJt4QgBuymktsIKEcBZvnKfsRjxvzVDunccRn4xbKgepnp+fn6BoS+ZIg/I3Q==}
+  '@biomejs/cli-darwin-x64@1.8.3':
+    resolution: {integrity: sha512-UeW44L/AtbmOF7KXLCoM+9PSgPo0IDcyEUfIoOXYeANaNXXf9mLUwV1GeF2OWjyic5zj6CnAJ9uzk2LT3v/wAw==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@1.8.2':
-    resolution: {integrity: sha512-WpT41QJJvkZa1eZq0WmD513zkC6AYaMI39HJKmKeiUeX2NZirG+bxv1YRDhqkns1NbBqo3+qrJqBkPmOW+xAVA==}
+  '@biomejs/cli-linux-arm64-musl@1.8.3':
+    resolution: {integrity: sha512-9yjUfOFN7wrYsXt/T/gEWfvVxKlnh3yBpnScw98IF+oOeCYb5/b/+K7YNqKROV2i1DlMjg9g/EcN9wvj+NkMuQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-arm64@1.8.2':
-    resolution: {integrity: sha512-Q99qwP0qibkZxm2kfnt37OxeIlliDYf5ogi3zX9ij2DULzc+KtPA9Uj0wCljcJofOBsBYaHc7597Q+Bf/251ww==}
+  '@biomejs/cli-linux-arm64@1.8.3':
+    resolution: {integrity: sha512-fed2ji8s+I/m8upWpTJGanqiJ0rnlHOK3DdxsyVLZQ8ClY6qLuPc9uehCREBifRJLl/iJyQpHIRufLDeotsPtw==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64-musl@1.8.2':
-    resolution: {integrity: sha512-rk1Wj4d3LIlAlIAS1m2jlyfOjkNbuY1lfwKvWIAeZC51yDMzwhRD7cReE5PE+jqLDtq60PX38hDPeKd7nA1S6A==}
+  '@biomejs/cli-linux-x64-musl@1.8.3':
+    resolution: {integrity: sha512-UHrGJX7PrKMKzPGoEsooKC9jXJMa28TUSMjcIlbDnIO4EAavCoVmNQaIuUSH0Ls2mpGMwUIf+aZJv657zfWWjA==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64@1.8.2':
-    resolution: {integrity: sha512-bjhhUVFchFid2gOjrvBe4fg8BShcpyFQTHuB/QQnfGxs1ddrGP30yq3fHfc6S6MoCcz9Tjd3Zzq1EfWfyy5iHA==}
+  '@biomejs/cli-linux-x64@1.8.3':
+    resolution: {integrity: sha512-I8G2QmuE1teISyT8ie1HXsjFRz9L1m5n83U1O6m30Kw+kPMPSKjag6QGUn+sXT8V+XWIZxFFBoTDEDZW2KPDDw==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-win32-arm64@1.8.2':
-    resolution: {integrity: sha512-EUbqmCmNWT5xhnxHrCAEBzJB1AnLqxTYoRjlxiCMzGvsy5jQzhCanJ8CT9kNsApW3pfPWBWkoTa7qrwWmwnEGA==}
+  '@biomejs/cli-win32-arm64@1.8.3':
+    resolution: {integrity: sha512-J+Hu9WvrBevfy06eU1Na0lpc7uR9tibm9maHynLIoAjLZpQU3IW+OKHUtyL8p6/3pT2Ju5t5emReeIS2SAxhkQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@1.8.2':
-    resolution: {integrity: sha512-n9H5oRUCk1uNezMgyJh9+hZdtfD8PXLLeq8DUzTycIhl0I1BulIoZ/uxWgRVDFDwAR1JHu1AykISCRFNGnc4iA==}
+  '@biomejs/cli-win32-x64@1.8.3':
+    resolution: {integrity: sha512-/PJ59vA1pnQeKahemaQf4Nyj7IKUvGQSc3Ze1uIGi+Wvr1xF7rGobSrAAG01T/gUDG21vkDsZYM03NAmPiVkqg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
@@ -454,9 +448,6 @@ packages:
 
   '@floating-ui/utils@0.2.2':
     resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
-
-  '@fontsource-variable/bricolage-grotesque@5.0.6':
-    resolution: {integrity: sha512-vA/FxigkyVJ5s1La0iseED268UPdDfvb9HcCn+pivWsrVcZoPtyNvu3/IGB+l6NvgZP4YuwCEtB7ViyKgc3isg==}
 
   '@fontsource-variable/inter@5.0.18':
     resolution: {integrity: sha512-rJzSrtJ3b7djiGFvRuTe6stDfbYJGhdQSfn2SI2WfXviee7Er0yKAHE5u7FU7OWVQQQ1x3+cxdmx9NdiAkcrcA==}
@@ -900,9 +891,6 @@ packages:
 
   '@shikijs/core@1.9.1':
     resolution: {integrity: sha512-EmUful2MQtY8KgCF1OkBtOuMcvaZEvmdubhW0UHCGXi21O9dRLeADVCj+k6ZS+de7Mz9d2qixOXJ+GLhcK3pXg==}
-
-  '@studio-freight/lenis@1.0.42':
-    resolution: {integrity: sha512-HJAGf2DeM+BTvKzHv752z6Z7zy6bA643nZM7W88Ft9tnw2GsJSp6iJ+3cekjyMIWH+cloL2U9X82dKXgdU8kPg==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -2781,39 +2769,39 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  '@biomejs/biome@1.8.2':
+  '@biomejs/biome@1.8.3':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 1.8.2
-      '@biomejs/cli-darwin-x64': 1.8.2
-      '@biomejs/cli-linux-arm64': 1.8.2
-      '@biomejs/cli-linux-arm64-musl': 1.8.2
-      '@biomejs/cli-linux-x64': 1.8.2
-      '@biomejs/cli-linux-x64-musl': 1.8.2
-      '@biomejs/cli-win32-arm64': 1.8.2
-      '@biomejs/cli-win32-x64': 1.8.2
+      '@biomejs/cli-darwin-arm64': 1.8.3
+      '@biomejs/cli-darwin-x64': 1.8.3
+      '@biomejs/cli-linux-arm64': 1.8.3
+      '@biomejs/cli-linux-arm64-musl': 1.8.3
+      '@biomejs/cli-linux-x64': 1.8.3
+      '@biomejs/cli-linux-x64-musl': 1.8.3
+      '@biomejs/cli-win32-arm64': 1.8.3
+      '@biomejs/cli-win32-x64': 1.8.3
 
-  '@biomejs/cli-darwin-arm64@1.8.2':
+  '@biomejs/cli-darwin-arm64@1.8.3':
     optional: true
 
-  '@biomejs/cli-darwin-x64@1.8.2':
+  '@biomejs/cli-darwin-x64@1.8.3':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@1.8.2':
+  '@biomejs/cli-linux-arm64-musl@1.8.3':
     optional: true
 
-  '@biomejs/cli-linux-arm64@1.8.2':
+  '@biomejs/cli-linux-arm64@1.8.3':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@1.8.2':
+  '@biomejs/cli-linux-x64-musl@1.8.3':
     optional: true
 
-  '@biomejs/cli-linux-x64@1.8.2':
+  '@biomejs/cli-linux-x64@1.8.3':
     optional: true
 
-  '@biomejs/cli-win32-arm64@1.8.2':
+  '@biomejs/cli-win32-arm64@1.8.3':
     optional: true
 
-  '@biomejs/cli-win32-x64@1.8.2':
+  '@biomejs/cli-win32-x64@1.8.3':
     optional: true
 
   '@emnapi/runtime@1.2.0':
@@ -2906,8 +2894,6 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
 
   '@floating-ui/utils@0.2.2': {}
-
-  '@fontsource-variable/bricolage-grotesque@5.0.6': {}
 
   '@fontsource-variable/inter@5.0.18': {}
 
@@ -3265,8 +3251,6 @@ snapshots:
     optional: true
 
   '@shikijs/core@1.9.1': {}
-
-  '@studio-freight/lenis@1.0.42': {}
 
   '@types/babel__core@7.20.5':
     dependencies:

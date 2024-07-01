@@ -1,27 +1,27 @@
 ---
-import RootLayout from "@/layouts/Root.astro";
-import Nav from "@/components/Nav.astro";
-import { featuredProjects } from "@/lib/projects-data";
-import { blogs } from "@/lib/blogs-data";
-import { Picture } from "astro:assets";
+import RootLayout from '@/layouts/Root.astro'
+import Nav from '@/components/Nav.astro'
+import { featuredProjects } from '@/lib/projects-data'
+import { blogs } from '@/lib/blogs-data'
+import { Picture } from 'astro:assets'
 ---
 
 <RootLayout title="⭕">
   <Nav />
   <main class="bg-white">
-    <section id="hero" class="px-8 md:px-20 lg:px-32 2xl:px-60 py-12 lg:py-20">
+    <section id="hero" class="px-8 md:px-20 lg:px-32 2xl:px-72 py-12 lg:py-20">
       <p id="intro" class="text-xl md:text-2xl xl:text-3xl lg:font-medium">
         Hi <span class="animate-wavehand">👋</span>, I'm Yagnik Patel.
       </p>
       <h1
-        class="text-5xl sm:text-6xl md:text-7xl leading-[1.25] md:leading-[1.1] 2xl:text-8xl font-light mt-4 lg:mt-8"
+        class="text-5xl sm:text-6xl md:text-7xl leading-[1.25] md:leading-[1.1] 2xl:text-8xl font-light mt-4 lg:mt-8 tracking-tighter"
       >
         <span class="block headline h-fit overflow-hidden"
           >I <span class="italic">develop</span></span
         >
         <span class="font-normal block headline h-fit overflow-hidden">
-          <span class="font-serif">apps</span> and <span class="font-serif"
-            >websites</span
+          <span class="font-semibold">apps</span> and <span
+            class="font-semibold">websites</span
           ></span
         >
         <span class="font-normal block headline h-fit overflow-hidden"
@@ -51,7 +51,7 @@ import { Picture } from "astro:assets";
     </section>
     <section
       id="projects"
-      class="bg-neutral-950 text-neutral-100 px-8 md:px-20 lg:px-32 2xl:px-60 py-20 lg:py-32 rounded-t-3xl md:rounded-t-[3rem] mt-8"
+      class="bg-neutral-950 text-neutral-100 px-8 md:px-20 lg:px-32 2xl:px-72 py-20 lg:py-32 rounded-t-3xl md:rounded-t-[3rem] mt-8"
     >
       <h1
         id="projects-headline"
@@ -70,7 +70,7 @@ import { Picture } from "astro:assets";
                 height={500}
                 src={project.image}
                 alt={project.name}
-                formats={["avif"]}
+                formats={['avif']}
                 loading="eager"
               />
               <div class="flex justify-between items-center">
@@ -143,7 +143,7 @@ import { Picture } from "astro:assets";
                 height={500}
                 src={blog.image}
                 alt={blog.title}
-                formats={["avif"]}
+                formats={['avif']}
                 loading="eager"
               />
               <h2 class="text-2xl lg:text-3xl font-medium">{blog.title}</h2>
@@ -157,29 +157,29 @@ import { Picture } from "astro:assets";
 </RootLayout>
 
 <script>
-  import gsap from "gsap";
-  import ScrollTrigger from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
+  import gsap from 'gsap'
+  import ScrollTrigger from 'gsap/ScrollTrigger'
+  gsap.registerPlugin(ScrollTrigger)
 
   const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
+    '(prefers-reduced-motion: reduce)',
+  ).matches
 
-  gsap.from(".project", {
+  gsap.from('.project', {
     scrollTrigger: {
-      trigger: ".project",
-      start: "top 80%",
+      trigger: '.project',
+      start: 'top 80%',
     },
     yPercent: 10,
     opacity: 0,
     stagger: 0.1,
     duration: prefersReducedMotion ? 0 : 0.5,
-  });
-  gsap.from(".blog", {
-    scrollTrigger: ".blog",
+  })
+  gsap.from('.blog', {
+    scrollTrigger: '.blog',
     yPercent: 10,
     opacity: 0,
     delay: 0.1,
     duration: prefersReducedMotion ? 0 : 0.5,
-  });
+  })
 </script>
