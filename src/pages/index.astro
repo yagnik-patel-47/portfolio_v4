@@ -63,7 +63,7 @@ import { Picture } from 'astro:assets'
       <div class="grid lg:grid-cols-2 gap-10 lg:gap-32 mt-10 lg:mt-20">
         {
           featuredProjects.map((project) => (
-            <div class="space-y-4 project">
+            <div class="space-y-4 project opacity-0">
               <Picture
                 class="rounded-lg"
                 width={750}
@@ -136,7 +136,11 @@ import { Picture } from 'astro:assets'
       <div class="grid lg:grid-cols-2 gap-10 lg:gap-32 mt-10 lg:mt-20">
         {
           blogs.map((blog) => (
-            <a target="_blank" href={blog.link} class="space-y-4 block blog">
+            <a
+              target="_blank"
+              href={blog.link}
+              class="space-y-4 block blog opacity-0"
+            >
               <Picture
                 class="rounded-lg"
                 width={750}
@@ -157,29 +161,39 @@ import { Picture } from 'astro:assets'
 </RootLayout>
 
 <script>
-  import gsap from 'gsap'
-  import ScrollTrigger from 'gsap/ScrollTrigger'
-  gsap.registerPlugin(ScrollTrigger)
+  import { inView, animate, stagger } from 'motion'
 
   const prefersReducedMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)',
   ).matches
 
-  gsap.from('.project', {
-    scrollTrigger: {
-      trigger: '.project',
-      start: 'top 80%',
+  inView(
+    '.project',
+    (info) => {
+      animate(
+        info.target,
+        {
+          y: ['10%', 0],
+          opacity: [0, 1],
+        },
+        { duration: prefersReducedMotion ? 0 : 0.5, delay: stagger(0.1) },
+      )
     },
-    yPercent: 10,
-    opacity: 0,
-    stagger: 0.1,
-    duration: prefersReducedMotion ? 0 : 0.5,
-  })
-  gsap.from('.blog', {
-    scrollTrigger: '.blog',
-    yPercent: 10,
-    opacity: 0,
-    delay: 0.1,
-    duration: prefersReducedMotion ? 0 : 0.5,
-  })
+    { margin: '-100px' },
+  )
+
+  inView(
+    '.blog',
+    (info) => {
+      animate(
+        info.target,
+        {
+          y: ['10%', 0],
+          opacity: [0, 1],
+        },
+        { duration: prefersReducedMotion ? 0 : 0.5, delay: stagger(0.1) },
+      )
+    },
+    { margin: '-100px' },
+  )
 </script>

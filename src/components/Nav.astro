@@ -176,7 +176,7 @@ const socials = [
 </style>
 
 <script>
-  import gsap from 'gsap'
+  import { animate } from 'motion'
   const navElement = document.querySelector('nav')
   const navCollapseSection = document.getElementById('nav-content')!
   const navBackground = document.getElementById('nav-background')!
@@ -220,28 +220,40 @@ const socials = [
   function setOpenState(reducedMotion: boolean) {
     document.body.style.overflow = 'hidden'
     header.setAttribute('data-state', 'open')
-    gsap.to(navCollapseSection, {
-      height: navContentHeight,
-      duration: reducedMotion ? 0 : 0.3,
-    })
-    gsap.to(navBackground, {
-      yPercent: 100,
-      duration: reducedMotion ? 0 : 0.3,
-    })
+    animate(
+      navCollapseSection,
+      {
+        height: `${navContentHeight}px`,
+      },
+      { duration: reducedMotion ? 0 : 0.3 },
+    )
+    animate(
+      navBackground,
+      {
+        y: '100%',
+      },
+      { duration: reducedMotion ? 0 : 0.3 },
+    )
   }
-  function setCloseState(reducedMotion: boolean, animate = true) {
+  async function setCloseState(reducedMotion: boolean, animation = true) {
     header.setAttribute('data-state', 'closed')
-    gsap
-      .to(navCollapseSection, {
+    const navClosed = animate(
+      navCollapseSection,
+      {
         height: 0,
-        duration: reducedMotion || !animate ? 0 : 0.3,
-      })
-      .then(() => {
-        document.body.style.overflow = 'visible'
-      })
-    gsap.to(navBackground, {
-      yPercent: 0,
-      duration: reducedMotion || !animate ? 0 : 0.3,
-    })
+      },
+      { duration: reducedMotion || !animation ? 0 : 0.3 },
+    )
+
+    animate(
+      navBackground,
+      {
+        y: 0,
+      },
+      { duration: reducedMotion || !animation ? 0 : 0.3 },
+    )
+
+    await navClosed.finished
+    document.body.style.overflow = 'visible'
   }
 </script>
