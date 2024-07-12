@@ -1,0 +1,242 @@
+---
+import { Image } from 'astro:assets'
+import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
+---
+
+<section id="contact">
+  <Image
+    src={PurpleAbstractThingImage}
+    alt="Purple abstract thing"
+    loading="eager"
+  />
+  <div class="contact-overlay"></div>
+  <div class="inner-form">
+    <div>
+      <h1 class="text-xl lg:text-2xl font-semibold">Let's work together</h1>
+      <p>Contact me regarding any concerns or inquiries.</p>
+    </div>
+    <div class="input-con">
+      <label for="name">Name</label>
+      <input name="name" id="name" placeholder="Eg. John Doe" type="text" />
+    </div>
+    <div class="input-con">
+      <label for="mail">Email</label>
+      <input name="mail" id="mail" placeholder="Eg. xyz@abc.com" type="text" />
+    </div>
+    <div class="input-con">
+      <label for="msg">Message</label>
+      <textarea
+        name="msg"
+        id="msg"
+        rows="5"
+        placeholder="Type your message here..."></textarea>
+    </div>
+    <button>Submit</button>
+  </div>
+</section>
+
+<style>
+  :root {
+    --primary-color: #a855f7;
+    --primary-color-dark: #4f46e5;
+    --primary-color-rgb: 168, 85, 247;
+    --primary-color-dark-rgb: 79, 70, 229;
+    --extra-light: #faf5ff;
+    --border: #3f403c;
+  }
+
+  #contact {
+    background: #020202;
+    position: relative;
+    padding: 1rem;
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    min-height: 100%;
+    width: 100%;
+  }
+
+  #contact img {
+    width: 100%;
+    aspect-ratio: 2.5;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    filter: saturate(1.25);
+  }
+
+  .contact-overlay {
+    position: absolute;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    aspect-ratio: 2.5;
+    background: linear-gradient(to bottom, transparent 75%, #020202);
+    background: linear-gradient(to bottom in oklch, transparent 75%, #020202);
+  }
+
+  @property --angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 135deg;
+  }
+
+  @property --color {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: rgba(79, 70, 229, 0.6);
+  }
+
+  .inner-form {
+    --angle: 135deg;
+    display: flex;
+    padding: 4rem 3rem;
+    color: white;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    gap: 2rem;
+    max-width: 500px;
+    margin: auto;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5))
+        padding-box,
+      linear-gradient(var(--angle), var(--color), transparent 25%) border-box;
+    backdrop-filter: blur(25px);
+    animation: rotate-border 10s linear infinite;
+  }
+
+  @keyframes rotate-border {
+    0% {
+      --angle: -225deg;
+      --color: rgba(79, 70, 229, 0.7);
+    }
+
+    25% {
+      --angle: -135deg;
+      --color: rgba(79, 70, 229, 0.7);
+    }
+
+    35% {
+      --color: rgba(79, 70, 229, 0.3);
+    }
+
+    45% {
+      --color: rgba(79, 70, 229, 0.3);
+    }
+
+    50% {
+      --angle: -45deg;
+      --color: rgba(79, 70, 229, 0.4);
+    }
+
+    75% {
+      --angle: 45deg;
+      --color: rgba(79, 70, 229, 0.4);
+    }
+
+    90% {
+      --color: rgba(79, 70, 229, 0.3);
+    }
+
+    100% {
+      --angle: 135deg;
+      --color: rgba(79, 70, 229, 0.7);
+    }
+  }
+
+  .inner-form p {
+    font-size: 14px;
+    margin-top: 0.5rem;
+  }
+
+  .input-con {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .input-con label {
+    font-size: 14px;
+    color: var(--extra-light);
+  }
+
+  .inner-form input,
+  .inner-form textarea {
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: white;
+    width: 100%;
+    outline: none;
+    border: 2px solid var(--border);
+    transition: 0.2s;
+  }
+
+  .inner-form input:focus,
+  .inner-form textarea:focus {
+    border: 2px solid var(--extra-light);
+  }
+
+  .inner-form textarea {
+    padding: 0.75rem 1rem;
+  }
+
+  .inner-form input::placeholder,
+  .inner-form textarea::placeholder {
+    color: #bbb;
+  }
+
+  .inner-form button {
+    margin-top: 2rem;
+    align-self: center;
+    /* font-size: 14px; */
+    padding: 0.75rem 1.8rem;
+    background: var(--primary-color-dark);
+    color: var(--extra-light);
+    font-weight: 600;
+    border-radius: 3px;
+    border: none;
+    box-shadow:
+      0 10px 15px -3px rgba(var(--primary-color-dark-rgb), 0.5),
+      0 4px 6px -4px rgba(var(--primary-color-dark-rgb), 0.5);
+    transition: all 0.2s;
+  }
+
+  .inner-form button:hover {
+    box-shadow:
+      0 15px 25px -5px rgba(var(--primary-color-rgb), 0.5),
+      0 6px 10px -6px rgba(var(--primary-color-rgb), 0.5);
+    background: var(--primary-color);
+  }
+
+  .inner-form button:active {
+    transform: scale(0.95);
+    transition: all 0.1s;
+  }
+
+  @media screen and (max-width: 764px) {
+    #contact img {
+      aspect-ratio: 0.7;
+    }
+
+    .contact-overlay {
+      aspect-ratio: 0.7;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      font-size: 14px;
+    }
+
+    #contact {
+      padding-top: 15rem;
+    }
+
+    .inner-form {
+      padding: 4rem 2rem;
+    }
+  }
+</style>

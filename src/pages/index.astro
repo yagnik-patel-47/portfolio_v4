@@ -63,7 +63,7 @@ import { Picture } from 'astro:assets'
       <div class="grid lg:grid-cols-2 gap-10 lg:gap-32 mt-10 lg:mt-20">
         {
           featuredProjects.map((project) => (
-            <div class="space-y-4 project opacity-0">
+            <div class="space-y-4 featured-project opacity-0">
               <Picture
                 class="rounded-lg"
                 width={750}
@@ -161,39 +161,41 @@ import { Picture } from 'astro:assets'
 </RootLayout>
 
 <script>
-  import { inView, animate, stagger } from 'motion'
+  import { animate, inView, stagger } from 'motion'
 
-  const prefersReducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)',
-  ).matches
+  document.addEventListener('astro:page-load', () => {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches
 
-  inView(
-    '.project',
-    (info) => {
-      animate(
-        info.target,
-        {
-          y: ['10%', 0],
-          opacity: [0, 1],
-        },
-        { duration: prefersReducedMotion ? 0 : 0.5, delay: stagger(0.1) },
-      )
-    },
-    { margin: '-100px' },
-  )
+    inView(
+      '.featured-project',
+      (info) => {
+        animate(
+          info.target,
+          {
+            y: ['10%', 0],
+            opacity: [0, 1],
+          },
+          { duration: prefersReducedMotion ? 0 : 0.5, delay: stagger(0.1) },
+        )
+      },
+      { margin: '-100px' },
+    )
 
-  inView(
-    '.blog',
-    (info) => {
-      animate(
-        info.target,
-        {
-          y: ['10%', 0],
-          opacity: [0, 1],
-        },
-        { duration: prefersReducedMotion ? 0 : 0.5, delay: stagger(0.1) },
-      )
-    },
-    { margin: '-100px' },
-  )
+    inView(
+      '.blog',
+      (info) => {
+        animate(
+          info.target,
+          {
+            y: ['10%', 0],
+            opacity: [0, 1],
+          },
+          { duration: prefersReducedMotion ? 0 : 0.5, delay: stagger(0.1) },
+        )
+      },
+      { margin: '-100px' },
+    )
+  })
 </script>
