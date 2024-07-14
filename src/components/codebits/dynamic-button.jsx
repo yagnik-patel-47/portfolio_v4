@@ -9,9 +9,16 @@ export default function DynamicButton() {
 	const [state, setState] = useState(false);
 	const [activeTab, setActiveTab] = useState(1);
 
+	const [dimensionValues, setDimensionValues] = useState([50, 50, 50]);
+	const [aspect, setAspect] = useState("");
+	const [prompt, setPrompt] = useState("");
+
 	function closeBtn() {
 		setState(false);
 		setActiveTab(1);
+		setDimensionValues([50, 50, 50]);
+		setAspect("");
+		setPrompt("");
 	}
 
 	const tabs = ["Dimensions", "Aspect Ratio", "Prompt"];
@@ -88,9 +95,27 @@ export default function DynamicButton() {
 						</m.div>
 						{state && (
 							<AnimatePresence>
-								{activeTab === 1 && <DimensionsTab setState={closeBtn} />}
-								{activeTab === 2 && <TooglesTab setState={closeBtn} />}
-								{activeTab === 3 && <PromptTab setState={closeBtn} />}
+								{activeTab === 1 && (
+									<DimensionsTab
+										setState={closeBtn}
+										dimensionValues={dimensionValues}
+										setDimensionValues={setDimensionValues}
+									/>
+								)}
+								{activeTab === 2 && (
+									<TooglesTab
+										setState={closeBtn}
+										aspect={aspect}
+										setAspect={setAspect}
+									/>
+								)}
+								{activeTab === 3 && (
+									<PromptTab
+										setState={closeBtn}
+										prompt={prompt}
+										setPrompt={setPrompt}
+									/>
+								)}
 							</AnimatePresence>
 						)}
 					</div>
@@ -100,7 +125,7 @@ export default function DynamicButton() {
 	);
 }
 
-function PromptTab({ setState }) {
+function PromptTab({ setState, prompt, setPrompt }) {
 	return (
 		<m.form
 			layout="preserve-aspect"
@@ -113,6 +138,8 @@ function PromptTab({ setState }) {
 				autoFocus
 				className="w-full h-32 p-2 bg-transparent rounded-lg text-sm outline-indigo-800"
 				placeholder="Add a new prompt"
+				value={prompt}
+				onChange={(e) => setPrompt(e.target.value)}
 			></textarea>
 			<button
 				onClick={setState}
@@ -124,7 +151,7 @@ function PromptTab({ setState }) {
 	);
 }
 
-function TooglesTab({ setState }) {
+function TooglesTab({ setState, aspect, setAspect }) {
 	const toggleGroupItemClasses =
 		"flex gap-1 items-center hover:bg-indigo-500/10 data-[state=on]:bg-indigo-500/20 data-[state=on]:text-indigo-900 data-[state=on]:font-medium text-neutral-700 justify-center leading-4 focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-indigo-800 focus:outline-none px-2 rounded-md h-9";
 
@@ -138,7 +165,8 @@ function TooglesTab({ setState }) {
 			<ToggleGroup.Root
 				className="mt-6 grid grid-cols-3 gap-2"
 				type="single"
-				defaultValue="center"
+				value={aspect}
+				onValueChange={(value) => setAspect(value)}
 				aria-label="Text alignment"
 			>
 				<ToggleGroup.Item
@@ -233,9 +261,9 @@ function TooglesTab({ setState }) {
 	);
 }
 
-function DimensionsTab({ setState }) {
+function DimensionsTab({ setState, dimensionValues, setDimensionValues }) {
 	const fields = ["Vertical", "Horizontal", "Upscale"];
-	const [values, setValues] = useState([50, 50, 50]);
+
 	return (
 		<m.form
 			initial={{ opacity: 0 }}
@@ -251,16 +279,16 @@ function DimensionsTab({ setState }) {
 					</label>
 					<div className="flex gap-3 items-center">
 						<div className="bg-indigo-800/20 py-1 px-2 text-[12px] md:text-sm rounded-lg">
-							{values[index]}
+							{dimensionValues[index]}
 						</div>
 						<Slider.Root
 							className="relative flex items-center select-none touch-none  w-[120px] md:w-[150px] h-6 cursor-grab active:cursor-grabbing"
 							defaultValue={[50]}
-							value={[values[index]]}
+							value={[dimensionValues[index]]}
 							onValueChange={(number) => {
-								let temp = [...values];
+								let temp = [...dimensionValues];
 								temp[index] = number[0];
-								setValues(temp);
+								setDimensionValues(temp);
 							}}
 							max={100}
 							step={1}

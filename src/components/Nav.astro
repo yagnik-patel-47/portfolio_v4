@@ -198,6 +198,8 @@ const socials = [
   window.addEventListener('keydown', (e) => {
     if (header.dataset.state === 'open' && e.code.startsWith('Digit'))
       navLinks[parseInt(e.key) - 1]?.click()
+    if (header.dataset.state === 'open' && e.key === 'Escape')
+      setCloseState(prefersReducedMotion)
   })
 
   hamBtn.addEventListener('click', () => {

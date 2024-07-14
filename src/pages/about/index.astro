@@ -1,73 +1,130 @@
 ---
 import RootLayout from '@/layouts/Root.astro'
 import Nav from '@/components/Nav.astro'
+import profileImage from '@/assets/profile.webp'
+import { Image } from 'astro:assets'
 ---
 
 <RootLayout title="About">
   <Nav />
   <main class="px-8 md:px-20 lg:px-32 2xl:px-72 py-12 pb-20">
-    <h1 class="text-3xl font-bold">A little story about myself</h1>
-    <p class="mt-8 lg:text-lg max-w-[65ch]">
-      I'm <strong>Yagnik Patel</strong>, a <strong>second-year</strong> college student
-      and a self-taught web developer based in <strong>Gujarat, India</strong>.
-      I am very curious about web development and always pumped to try and learn
-      new technologies. Currently, I am deeply interested in creating UI and UI
-      animations using the Web Animations API (WAAPI).
-    </p>
-    <p class="mt-4 lg:text-lg max-w-[65ch]">
-      I'm eager to gain more exposure and experience, especially in freelance
-      work, where I can apply my skills and creativity to real-world projects.
-      My capabilities extend beyond just creating beautiful websites; I am also
-      equipped to build robust Software as a Service (SaaS) products.
-    </p>
-    <p class="mt-4 lg:text-lg max-w-[65ch]">
-      My goal is to blend my technical skills with my creative vision to deliver
-      exceptional digital experiences. If you're looking for a dedicated and
-      innovative web developer to bring your ideas to life, I'm excited to
-      collaborate and make a significant impact together.
-    </p>
-    <div class="flex gap-8">
-      <a
-        class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit"
-        href="/projects"
-      >
-        <span class="group-hover:italic">Projects</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6 origin-left group-hover:scale-x-150 transition"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-        </svg>
-      </a>
-      <a
-        class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit"
-        href="/codebits"
-      >
-        <span class="group-hover:italic">Codebits</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6 origin-left group-hover:scale-x-150 transition"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-        </svg>
-      </a>
+    <div class="grid xl:grid-cols-2 items-center gap-8">
+      <Image
+        class="rounded-full w-40 md:w-48 lg:w-96 aspect-square"
+        src={profileImage}
+        alt="oh it's me"
+      />
+      <div>
+        <h1 class="text-2xl lg:text-3xl font-bold">
+          A little story about myself
+        </h1>
+        <p class="mt-4 lg:mt-8 lg:text-lg max-w-[65ch]">
+          I'm <strong>Yagnik Patel</strong>, a <strong>second-year</strong> college
+          student and a self-taught web developer based in <strong
+            >Gujarat, India</strong
+          >. I am very curious about web development and always pumped to try
+          and learn new technologies. Currently, I am deeply interested in
+          creating UI and UI animations using the Web Animations API (WAAPI).
+        </p>
+        <p class="mt-4 lg:text-lg max-w-[65ch]">
+          I'm eager to gain more exposure and experience, especially in
+          freelance work, where I can apply my skills and creativity to
+          real-world projects. My capabilities extend beyond just creating
+          beautiful websites; I am also equipped to build robust Software as a
+          Service (SaaS) products.
+        </p>
+        <div class="flex gap-8">
+          <a
+            class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit"
+            href="/projects"
+          >
+            <span class="group-hover:italic">Projects</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 origin-left group-hover:scale-x-150 transition"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+            </svg>
+          </a>
+          <a
+            class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit"
+            href="/codebits"
+          >
+            <span class="group-hover:italic">Codebits</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 origin-left group-hover:scale-x-150 transition"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="flex gap-2 items-center mt-12 flex-wrap">
-      <h1 class="text-3xl font-bold">My prefered stacks</h1>
+    <div
+      class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-40 gap-5 card-container"
+    >
+      <div
+        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md"
+      >
+        <h4 class="text-3xl">My services</h4>
+        <button
+          id="randomColor"
+          class="px-8 py-4 text-sm bg-black text-white h-fit w-fit rounded-full font-light tracking-wide"
+          >Randomize</button
+        >
+      </div>
+      <div
+        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md card"
+      >
+        <span class="max-sm:text-sm"
+          >Code | UX | Animations | Responsive UI | Modern Pratices & Frameworks</span
+        >
+        <h5 class="text-2xl">Web Frontend</h5>
+      </div>
+      <div
+        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md card"
+      >
+        <span class="max-sm:text-sm"
+          >Code | Architecture | Design Pattern | Rapid MVP Development</span
+        >
+        <h5 class="text-2xl">Web Fullstack</h5>
+      </div>
+      <div
+        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md card"
+      >
+        <span class="max-sm:text-sm">To make randomize for lively</span>
+        <h5 class="text-2xl">Placeholder</h5>
+      </div>
+      <div
+        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md card"
+      >
+        <span class="max-sm:text-sm">To make randomize for lively</span>
+        <h5 class="text-2xl">Placeholder</h5>
+      </div>
+      <div
+        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md card"
+      >
+        <span class="max-sm:text-sm">To make randomize for lively</span>
+        <h5 class="text-2xl">Placeholder</h5>
+      </div>
+    </div>
+    <div class="flex gap-2 items-center mt-20 flex-wrap">
+      <h1 class="text-2xl lg:text-3xl font-bold">My prefered stacks</h1>
       <p>
         (* I have experience with other technologies too, but I like working
         with these tech stacks. *)
@@ -95,3 +152,43 @@ import Nav from '@/components/Nav.astro'
     </div>
   </main>
 </RootLayout>
+
+<style>
+  .card-container > :nth-child(8n + 3) {
+    grid-column: span 2;
+    aspect-ratio: auto;
+  }
+
+  .card-container > :nth-child(8n + 4) {
+    grid-column: span 2;
+    aspect-ratio: auto;
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const randomColorBtn = document.getElementById('randomColor')
+
+    randomColorBtn?.addEventListener('click', () => {
+      changeColor()
+    })
+
+    function changeColor() {
+      document.querySelectorAll('.card').forEach((card: HTMLDivElement) => {
+        card.style.transition = 'all 0.3s ease-in-out'
+        card.style.backgroundColor = getRandomLightColor()
+      })
+    }
+
+    function getRandomLightColor() {
+      let r, g, b
+      do {
+        r = Math.floor(Math.random() * 46) + 210
+        g = Math.floor(Math.random() * 46) + 210
+        b = Math.floor(Math.random() * 46) + 210
+      } while ((r > g && r > b) || (r === g && r > b)) // Avoid red, yellow, and orange shades
+
+      return `rgb(${r}, ${g}, ${b})`
+    }
+  })
+</script>
