@@ -85,12 +85,12 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
   @property --color {
     syntax: '<color>';
     inherits: false;
-    initial-value: rgba(79, 70, 229, 1);
+    initial-value: rgba(79, 70, 229, 0.8);
   }
 
   .inner-form {
     --angle: 135deg;
-    --color: rgba(79, 70, 229, 1);
+    --color: rgba(79, 70, 229, 0.8);
     position: relative;
     display: flex;
     padding: 4rem 3rem;
@@ -102,7 +102,7 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
     max-width: 500px;
     margin: auto;
     background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5))
+      linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4))
         padding-box,
       linear-gradient(var(--angle), var(--color), transparent 25%) border-box;
     backdrop-filter: blur(25px);
@@ -112,12 +112,12 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
   @keyframes rotate-border {
     0% {
       --angle: -225deg;
-      --color: rgba(79, 70, 229, 1);
+      --color: rgba(79, 70, 229, 0.8);
     }
 
     25% {
       --angle: -135deg;
-      --color: rgba(79, 70, 229, 1);
+      --color: rgba(79, 70, 229, 0.8);
     }
 
     35% {
@@ -134,12 +134,12 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
     }
 
     60% {
-      --color: rgba(79, 70, 229, 0.7);
+      --color: rgba(79, 70, 229, 0.6);
     }
 
     75% {
       --angle: 45deg;
-      --color: rgba(79, 70, 229, 0.7);
+      --color: rgba(79, 70, 229, 0.6);
     }
 
     90% {
@@ -148,7 +148,7 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
 
     100% {
       --angle: 135deg;
-      --color: rgba(79, 70, 229, 1);
+      --color: rgba(79, 70, 229, 0.8);
     }
   }
 

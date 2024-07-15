@@ -76,12 +76,12 @@ import { Image } from 'astro:assets'
       </div>
     </div>
     <div
-      class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-40 gap-5 card-container"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-40 gap-5 card-container"
     >
       <div
-        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md"
+        class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md gap-6"
       >
-        <h4 class="text-3xl">My services</h4>
+        <h4 class="text-2xl lg:text-3xl">My services</h4>
         <button
           id="randomColor"
           class="px-8 py-4 text-sm bg-black text-white h-fit w-fit rounded-full font-light tracking-wide"
@@ -89,7 +89,7 @@ import { Image } from 'astro:assets'
         >
       </div>
       <div
-        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md card"
+        class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card gap-6"
       >
         <span class="max-sm:text-sm"
           >Code | UX | Animations | Responsive UI | Modern Pratices & Frameworks</span
@@ -97,7 +97,7 @@ import { Image } from 'astro:assets'
         <h5 class="text-2xl">Web Frontend</h5>
       </div>
       <div
-        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md card"
+        class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card gap-6"
       >
         <span class="max-sm:text-sm"
           >Code | Architecture | Design Pattern | Rapid MVP Development</span
@@ -105,21 +105,21 @@ import { Image } from 'astro:assets'
         <h5 class="text-2xl">Web Fullstack</h5>
       </div>
       <div
-        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md card"
+        class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card max-lg:hidden"
       >
-        <span class="max-sm:text-sm">To make randomize for lively</span>
+        <span class="max-sm:text-sm">To make randomize more lively</span>
         <h5 class="text-2xl">Placeholder</h5>
       </div>
       <div
-        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md card"
+        class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card max-lg:hidden"
       >
-        <span class="max-sm:text-sm">To make randomize for lively</span>
+        <span class="max-sm:text-sm">To make randomize more lively</span>
         <h5 class="text-2xl">Placeholder</h5>
       </div>
       <div
-        class="flex flex-col justify-between w-full aspect-square bg-slate-200 p-6 rounded-md card"
+        class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card max-lg:hidden"
       >
-        <span class="max-sm:text-sm">To make randomize for lively</span>
+        <span class="max-sm:text-sm">To make randomize more lively</span>
         <h5 class="text-2xl">Placeholder</h5>
       </div>
     </div>
@@ -152,18 +152,6 @@ import { Image } from 'astro:assets'
     </div>
   </main>
 </RootLayout>
-
-<style>
-  .card-container > :nth-child(8n + 3) {
-    grid-column: span 2;
-    aspect-ratio: auto;
-  }
-
-  .card-container > :nth-child(8n + 4) {
-    grid-column: span 2;
-    aspect-ratio: auto;
-  }
-</style>
 
 <script>
   document.addEventListener('astro:page-load', () => {

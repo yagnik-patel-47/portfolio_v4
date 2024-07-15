@@ -6,7 +6,10 @@ const TABS = ['Fortnite', 'Asphalt 9', 'FIFA 24']
   <div class="flex items-center">
     {
       TABS.map((game) => (
-        <button class="tab-btn px-6 py-2 rounded-full" data-value={game}>
+        <button
+          class="tab-btn text-sm md:text-base font-medium px-6 py-2 rounded-full"
+          data-value={game}
+        >
           {game}
         </button>
       ))
@@ -15,10 +18,14 @@ const TABS = ['Fortnite', 'Asphalt 9', 'FIFA 24']
   <div
     class="bg-teal-800 text-neutral-100 flex items-center absolute inset-0 transition-all duration-[250ms] ease-[ease] pointer-events-none"
     id="cliped"
+    aria-hidden
   >
     {
       TABS.map((game) => (
-        <button data-value={game} class="px-6 py-2 rounded-md">
+        <button
+          data-value={game}
+          class="font-medium text-sm md:text-base px-6 py-2 rounded-md"
+        >
           {game}
         </button>
       ))
@@ -26,21 +33,29 @@ const TABS = ['Fortnite', 'Asphalt 9', 'FIFA 24']
   </div>
 </section>
 
+<style>
+  #cliped {
+    clip-path: inset(0px 68% 0px 0% round 69px);
+  }
+</style>
+
 <script>
-  const cliped = document.getElementById('cliped')
-  const buttons = document.querySelectorAll(
-    '.tab-btn',
-  ) as NodeListOf<HTMLButtonElement>
+  document.addEventListener('astro:page-load', () => {
+    const cliped = document.getElementById('cliped')
+    const buttons = document.querySelectorAll(
+      '.tab-btn',
+    ) as NodeListOf<HTMLButtonElement>
 
-  const clipLeft = buttons[0].offsetLeft
-  const clipRight = buttons[0].offsetLeft + buttons[0].offsetWidth
-  cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
+    const clipLeft = buttons[0].offsetLeft
+    const clipRight = buttons[0].offsetLeft + buttons[0].offsetWidth
+    cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
 
-  buttons.forEach((btn) =>
-    btn.addEventListener('click', () => {
-      const clipLeft = btn.offsetLeft
-      const clipRight = btn.offsetLeft + btn.offsetWidth
-      cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
-    }),
-  )
+    buttons.forEach((btn) =>
+      btn.addEventListener('click', () => {
+        const clipLeft = btn.offsetLeft
+        const clipRight = btn.offsetLeft + btn.offsetWidth
+        cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
+      }),
+    )
+  })
 </script>
