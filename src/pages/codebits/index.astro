@@ -1,9 +1,10 @@
 ---
 import RootLayout from '@/layouts/Root.astro'
 import Nav from '@/components/Nav.astro'
-import DynamicButton from '@/components/codebits/dynamic-button.jsx'
+import DynamicButton from '@/components/codebits/dynamic-button.tsx'
 import GlassForm from '@/components/codebits/glass-form.astro'
 import AnimatedTabs from '@/components/codebits/animated-tabs.astro'
+import VoiceChatDisclosure from '@/components/codebits/voice-chat-disclosure.tsx'
 ---
 
 <RootLayout title="Codebits">
@@ -14,12 +15,12 @@ import AnimatedTabs from '@/components/codebits/animated-tabs.astro'
     </h1>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-12">
       <div
-        class="h-96 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center"
+        class="min-h-[30rem] p-10 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center"
       >
-        <DynamicButton client:load />
+        <VoiceChatDisclosure client:load />
       </div>
       <div
-        class="h-96 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center"
+        class="min-h-96 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center"
       >
         <AnimatedTabs />
       </div>
@@ -27,6 +28,12 @@ import AnimatedTabs from '@/components/codebits/animated-tabs.astro'
         class="min-h-dvh overflow-hidden bg-[#020202] rounded-xl border-2 border-neutral-600 grid place-items-center lg:col-span-2"
       >
         <GlassForm />
+        <!-- <Dialog client:load /> -->
+      </div>
+      <div
+        class="min-h-[30rem] p-10 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center"
+      >
+        <DynamicButton client:load />
       </div>
     </section>
   </main>

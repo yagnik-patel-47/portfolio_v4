@@ -1,14 +1,26 @@
 import HigrowImage from "@/assets/projects/higrow.webp";
 import RPSImage from "@/assets/projects/rps.webp";
 import JpDisplayImage from "@/assets/projects/jp.webp";
-import TodoImage from "@/assets/projects/todo.webp"
 import GalaryImage from "@/assets/projects/galary.webp"
 import LegoImage from "@/assets/projects/lego.webp"
 import SMAImage from "@/assets/projects/sma.webp"
 import MangaReaderImage from "@/assets/projects/mangareader.webp"
 import PS5Image from "@/assets/projects/ps5.webp"
+import KeyboardShopImage from "@/assets/projects/keyboard-shop.webp"
 
 export const projects = [
+  {
+    name: "Keyboard Shop",
+    discription:
+      "A keyboard and accessories store built with SvelteKit. It simulates real-world features such as product ordering and cart management. On the admin level, it offers functionalities like product catalog management integrated with Stripe and order management.",
+    image: KeyboardShopImage,
+    tech: ["Sveltekit", "Drizzle", "Stripe"],
+    links: {
+      site: "https://keyboard-ecommerce-one.vercel.app",
+      repo: "https://github.com/yagnik-patel-47/keyboard-ecommerce"
+    },
+    category: "real-world",
+  },
   {
     name: "HiGrow",
     discription:
@@ -87,17 +99,6 @@ export const projects = [
     },
     category: "app",
   },
-  // {
-  //   name: "Todo Web App",
-  //   discription: "A Todo app made using vanilla javascript with animejs animations.",
-  //   image: TodoImage,
-  //   tech: ["Javascript", "Anime.js"],
-  //   links: {
-  //     site: "https://todoapp-ca.netlify.app",
-  //     repo: "https://github.com/Yagnik-Patel-47/vanilla-js-to-do",
-  //   },
-  //   category: "app",
-  // },
   {
     name: "Social Media App",
     discription: "A social media app clone having basic features similar to Instagram.",

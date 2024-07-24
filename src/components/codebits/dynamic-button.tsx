@@ -1,13 +1,14 @@
 import { AnimatePresence, MotionConfig, motion as m } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import * as Slider from "@radix-ui/react-slider";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { cn } from "@/lib/utils";
-import { ClickAwayListener } from "@mui/base/ClickAwayListener";
+import { useOnClickOutside } from "usehooks-ts";
 
 export default function DynamicButton() {
 	const [state, setState] = useState(false);
 	const [activeTab, setActiveTab] = useState(1);
+	const containerRef = useRef(null);
 
 	const [dimensionValues, setDimensionValues] = useState([50, 50, 50]);
 	const [aspect, setAspect] = useState("");
@@ -21,106 +22,107 @@ export default function DynamicButton() {
 		setPrompt("");
 	}
 
+	useOnClickOutside(containerRef, closeBtn);
+
 	const tabs = ["Dimensions", "Aspect Ratio", "Prompt"];
 
 	return (
 		<MotionConfig transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}>
-			<ClickAwayListener onClickAway={closeBtn}>
-				<m.div
-					layout
-					className={cn(
-						"border border-black/40 bg-white shadow-lg rounded-lg p-3 overflow-hidden",
-						state && "w-[300px] lg:w-[350px]",
-					)}
-					role="presentation"
-					onKeyDown={(e) => {
-						if (!e.metaKey && e.key === "Escape" && state) closeBtn();
-					}}
-				>
-					<div>
-						<m.div layout className="flex items-center gap-2 justify-between">
-							{!state && (
-								<m.button
-									layout="position"
-									onClick={() => setState(true)}
-									className="py-1 ml-2"
-								>
-									Add Style
-								</m.button>
-							)}
-							{state && (
-								<m.nav
-									layout="position"
-									className="flex gap-1 text-[12px] lg:text-sm font-medium"
-								>
-									{tabs.map((tab, i) => (
-										<button
-											className="relative p-1 rounded-md"
-											onClick={() => setActiveTab(i + 1)}
-											key={tab}
-										>
-											{tab}
-											{activeTab === i + 1 && (
-												<m.div
-													layoutId="active"
-													className="absolute inset-0 bg-indigo-900/20 rounded-md"
-												></m.div>
-											)}
-										</button>
-									))}
-								</m.nav>
-							)}
+			<m.div
+				layout
+				className={cn(
+					"border border-black/40 bg-white shadow-lg rounded-lg p-3 overflow-hidden",
+					state && "w-[300px] lg:w-[350px]",
+				)}
+				role="presentation"
+				onKeyDown={(e) => {
+					if (!e.metaKey && e.key === "Escape" && state) closeBtn();
+				}}
+				ref={containerRef}
+			>
+				<div>
+					<m.div layout className="flex items-center gap-2 justify-between">
+						{!state && (
 							<m.button
-								layout
-								onClick={() => setState(!state)}
-								className="align-middle size-6"
+								layout="position"
+								onClick={() => setState(true)}
+								className="py-1 ml-2"
 							>
-								<m.svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									className="text-neutral-800 size-6"
-									animate={{
-										rotateZ: state ? 45 : 0,
-									}}
-								>
-									<path d="M5 12h14" />
-									<path d="M12 5v14" />
-								</m.svg>
+								Add Style
 							</m.button>
-						</m.div>
-						{state && (
-							<AnimatePresence>
-								{activeTab === 1 && (
-									<DimensionsTab
-										setState={closeBtn}
-										dimensionValues={dimensionValues}
-										setDimensionValues={setDimensionValues}
-									/>
-								)}
-								{activeTab === 2 && (
-									<TooglesTab
-										setState={closeBtn}
-										aspect={aspect}
-										setAspect={setAspect}
-									/>
-								)}
-								{activeTab === 3 && (
-									<PromptTab
-										setState={closeBtn}
-										prompt={prompt}
-										setPrompt={setPrompt}
-									/>
-								)}
-							</AnimatePresence>
 						)}
-					</div>
-				</m.div>
-			</ClickAwayListener>
+						{state && (
+							<m.nav
+								layout="position"
+								className="flex gap-1 text-[12px] lg:text-sm font-medium"
+							>
+								{tabs.map((tab, i) => (
+									<button
+										className="relative p-1 rounded-md"
+										onClick={() => setActiveTab(i + 1)}
+										key={tab}
+									>
+										{tab}
+										{activeTab === i + 1 && (
+											<m.div
+												layoutId="active"
+												className="absolute inset-0 bg-indigo-900/20 rounded-md"
+											></m.div>
+										)}
+									</button>
+								))}
+							</m.nav>
+						)}
+						<m.button
+							layout
+							onClick={() => setState(!state)}
+							className="align-middle size-6"
+						>
+							<m.svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								className="text-neutral-800 size-6"
+								animate={{
+									rotateZ: state ? 45 : 0,
+								}}
+							>
+								<path d="M5 12h14" />
+								<path d="M12 5v14" />
+							</m.svg>
+						</m.button>
+					</m.div>
+					{state && (
+						<AnimatePresence>
+							{activeTab === 1 && (
+								<DimensionsTab
+									setState={closeBtn}
+									dimensionValues={dimensionValues}
+									setDimensionValues={setDimensionValues}
+								/>
+							)}
+							{activeTab === 2 && (
+								<TooglesTab
+									setState={closeBtn}
+									aspect={aspect}
+									setAspect={setAspect}
+								/>
+							)}
+							{activeTab === 3 && (
+								<PromptTab
+									setState={closeBtn}
+									prompt={prompt}
+									setPrompt={setPrompt}
+								/>
+							)}
+						</AnimatePresence>
+					)}
+				</div>
+			</m.div>
 		</MotionConfig>
 	);
 }
