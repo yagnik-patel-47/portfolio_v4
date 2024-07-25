@@ -16,24 +16,40 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
       <p>Contact me regarding any concerns or inquiries.</p>
     </div>
     <div class="input-con">
-      <label for="name">Name</label>
       <input name="name" id="name" placeholder="Eg. John Doe" type="text" />
+      <label for="name">Name</label>
     </div>
     <div class="input-con">
-      <label for="mail">Email</label>
       <input name="mail" id="mail" placeholder="Eg. xyz@abc.com" type="text" />
+      <label for="mail">Email</label>
     </div>
     <div class="input-con">
-      <label for="msg">Message</label>
       <textarea
         name="msg"
         id="msg"
-        rows="5"
+        rows="3"
         placeholder="Type your message here..."></textarea>
+      <label for="msg">Message</label>
     </div>
     <button>Submit</button>
   </div>
 </section>
+
+<script>
+  const inputs = document.querySelectorAll('input')
+
+  inputs.forEach((input) => {
+    input.addEventListener('focus', () => {
+      input.animate(
+        {
+          background: 'transparent',
+          color: 'white',
+        },
+        { duration: 0, fill: 'forwards' },
+      )
+    })
+  })
+</script>
 
 <style>
   :root {
@@ -98,7 +114,7 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
     flex-direction: column;
     border-radius: 10px;
     border: 2px solid transparent;
-    gap: 2rem;
+    gap: 3rem;
     max-width: 500px;
     margin: auto;
     background:
@@ -162,38 +178,63 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
+    position: relative;
   }
 
   .input-con label {
-    font-size: 14px;
+    position: absolute;
+    font-size: 1rem;
+    padding: 0 0.5rem;
     color: var(--extra-light);
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    transform: translateY(0.5rem);
+    transition: 0.25s ease;
+  }
+
+  .input-con input:not(:placeholder-shown) + label,
+  .input-con textarea:not(:placeholder-shown) + label {
+    transform: translateY(-100%);
+    font-size: 0.85rem;
+  }
+
+  .input-con:focus-within label {
+    transform: translateY(-100%);
+    font-size: 0.85rem;
   }
 
   .inner-form input,
   .inner-form textarea {
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
+    /* border-radius: 6px; */
+    padding: 0.5rem;
     background: transparent;
     color: white;
     width: 100%;
     outline: none;
-    border: 2px solid var(--border);
+    border-bottom: 2px solid var(--border);
     transition: 0.2s;
   }
 
   .inner-form input:focus,
   .inner-form textarea:focus {
-    border: 2px solid var(--extra-light);
+    border-color: var(--extra-light);
   }
 
   .inner-form textarea {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0.5rem;
     scroll-padding-bottom: 0.75rem;
   }
 
   .inner-form input::placeholder,
   .inner-form textarea::placeholder {
     color: #bbb;
+    visibility: hidden;
+  }
+
+  input:is(:-webkit-autofill, :autofill) {
+    background: transparent !important;
+    color: inherit !important;
   }
 
   .inner-form button {
