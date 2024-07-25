@@ -91,7 +91,7 @@ export default function VoiceChatDisclosure() {
 				<m.div
 					layout
 					className={cn(
-						"bg-[#fefefe] border-2 border-neutral-200 shadow-md max-w-96 origin-right w-fit h-fit",
+						"bg-[#fefefe] border-2 border-neutral-200 shadow-md max-w-full lg:max-w-96 origin-right w-fit h-fit",
 						state
 							? "rounded-[24px] overflow-hidden"
 							: "rounded-full overflow-visible",
@@ -211,7 +211,10 @@ export default function VoiceChatDisclosure() {
 											</svg>
 										</m.button>
 									</m.div>
-									<m.div layout className="grid grid-cols-4 gap-4 p-6">
+									<m.div
+										layout
+										className="grid grid-cols-4 gap-2 md:gap-4 p-4 md:p-6"
+									>
 										{peps.map((pep) => (
 											<m.div
 												layout
@@ -220,7 +223,7 @@ export default function VoiceChatDisclosure() {
 												ref={pep.name === "You" ? scope : undefined}
 											>
 												<m.img
-													className="size-16 rounded-full border-2 shadow-md border-white"
+													className="size-16 aspect-square rounded-full border-2 shadow-md border-white"
 													src={pep.image.src}
 													alt={pep.name}
 													key={pep.name + "image"}
@@ -252,7 +255,7 @@ export default function VoiceChatDisclosure() {
 														{ name: "You", image: MiwaImage, speaking: false },
 													]);
 											}}
-											className="bg-gradient-to-b from-[#2d2d2d] to-[#000] text-neutral-100 w-full  rounded-xl shadow-xl overflow-hidden"
+											className="bg-gradient-to-b from-[#2d2d2d] to-[#000] text-neutral-100 w-full rounded-xl shadow-xl overflow-hidden"
 										>
 											<MotionConfig
 												transition={{
@@ -285,7 +288,7 @@ export default function VoiceChatDisclosure() {
 												</AnimatePresence>
 											</MotionConfig>
 										</m.button>
-										<p className="text-center text-neutral-600 font-medium text-sm">
+										<p className="text-center text-neutral-600 font-medium text-xs sm:text-sm">
 											{newJoined
 												? "Mic is muted."
 												: "Mic will be muted initially."}
