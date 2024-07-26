@@ -35,22 +35,6 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
   </div>
 </section>
 
-<script>
-  const inputs = document.querySelectorAll('input')
-
-  inputs.forEach((input) => {
-    input.addEventListener('focus', () => {
-      input.animate(
-        {
-          background: 'transparent',
-          color: 'white',
-        },
-        { duration: 0, fill: 'forwards' },
-      )
-    })
-  })
-</script>
-
 <style>
   :root {
     --primary-color: #a855f7;
@@ -189,19 +173,18 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
     pointer-events: none;
     left: 0;
     top: 0;
+    transform-origin: 0% 0%;
     transform: translateY(0.5rem);
     transition: 0.25s ease;
   }
 
   .input-con input:not(:placeholder-shown) + label,
   .input-con textarea:not(:placeholder-shown) + label {
-    transform: translateY(-100%);
-    font-size: 0.85rem;
+    transform: translateY(-100%) scale(0.9);
   }
 
   .input-con:focus-within label {
-    transform: translateY(-100%);
-    font-size: 0.85rem;
+    transform: translateY(-100%) scale(0.9);
   }
 
   .inner-form input,
@@ -232,15 +215,9 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
     visibility: hidden;
   }
 
-  input:is(:-webkit-autofill, :autofill) {
-    background: transparent !important;
-    color: inherit !important;
-  }
-
   .inner-form button {
     margin-top: 2rem;
     align-self: center;
-    /* font-size: 14px; */
     padding: 0.75rem 1.8rem;
     background: var(--primary-color-dark);
     color: var(--extra-light);
@@ -253,7 +230,8 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
     transition: all 0.2s;
   }
 
-  .inner-form button:hover {
+  .inner-form button:hover,
+  .inner-form button:focus {
     box-shadow:
       0 15px 25px -5px rgba(var(--primary-color-rgb), 0.5),
       0 6px 10px -6px rgba(var(--primary-color-rgb), 0.5);
