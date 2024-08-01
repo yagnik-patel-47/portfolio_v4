@@ -4,22 +4,29 @@ import * as Slider from "@radix-ui/react-slider";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { cn } from "@/lib/utils";
 import { useOnClickOutside } from "usehooks-ts";
+import { flushSync } from "react-dom";
 
 export default function DynamicButton() {
-	const [state, setState] = useState(false);
-	const [activeTab, setActiveTab] = useState(1);
+	const [state, setState] = useState<null | number>(1);
+	const [changesApplied, setChangesApplied] = useState(false);
 	const containerRef = useRef(null);
 
 	const [dimensionValues, setDimensionValues] = useState([50, 50, 50]);
-	const [aspect, setAspect] = useState("");
+	const [aspect, setAspect] = useState("16/9");
 	const [prompt, setPrompt] = useState("");
 
 	function closeBtn() {
-		setState(false);
-		setActiveTab(1);
+		flushSync(() => {
+			setChangesApplied(false);
+		});
+		setState(null);
 		setDimensionValues([50, 50, 50]);
-		setAspect("");
+		setAspect("16/9");
 		setPrompt("");
+	}
+
+	function applyChanges() {
+		setChangesApplied(true);
 	}
 
 	useOnClickOutside(containerRef, closeBtn);
@@ -31,7 +38,7 @@ export default function DynamicButton() {
 			<m.div
 				layout
 				className={cn(
-					"border border-black/40 bg-white shadow-lg rounded-lg p-3 overflow-hidden",
+					"border border-black/40 bg-white shadow-lg rounded-lg p-3 overflow-hidden relative",
 					state && "w-[300px] lg:w-[350px]",
 				)}
 				role="presentation"
@@ -41,93 +48,142 @@ export default function DynamicButton() {
 				ref={containerRef}
 			>
 				<div>
-					<m.div layout className="flex items-center gap-2 justify-between">
-						{!state && (
+					<AnimatePresence>
+						<m.div layout className="flex items-center gap-2 justify-between">
+							{!state && (
+								<m.button
+									key={"add"}
+									layout="position"
+									onClick={() => setState(1)}
+									className="py-1 ml-2"
+								>
+									Add Style
+								</m.button>
+							)}
+							{state && (
+								<m.nav
+									key={"nav"}
+									layout="position"
+									className="flex gap-1 text-[12px] lg:text-sm font-medium"
+								>
+									{tabs.map((tab, i) => (
+										<button
+											className="relative p-1 rounded-md"
+											onClick={() => setState(i + 1)}
+											key={tab}
+										>
+											{tab}
+											{state === i + 1 && (
+												<m.div
+													layoutId="active"
+													className="absolute inset-0 bg-indigo-900/20 rounded-md"
+												></m.div>
+											)}
+										</button>
+									))}
+								</m.nav>
+							)}
 							<m.button
-								layout="position"
-								onClick={() => setState(true)}
-								className="py-1 ml-2"
+								layout
+								onClick={() => setState((prev) => (prev ? null : 1))}
+								className="align-middle size-6"
 							>
-								Add Style
+								<m.svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									className="text-neutral-800 size-6"
+									animate={{
+										rotateZ: state ? 45 : 0,
+									}}
+								>
+									<path d="M5 12h14" />
+									<path d="M12 5v14" />
+								</m.svg>
 							</m.button>
-						)}
+						</m.div>
 						{state && (
-							<m.nav
-								layout="position"
-								className="flex gap-1 text-[12px] lg:text-sm font-medium"
-							>
-								{tabs.map((tab, i) => (
-									<button
-										className="relative p-1 rounded-md"
-										onClick={() => setActiveTab(i + 1)}
-										key={tab}
-									>
-										{tab}
-										{activeTab === i + 1 && (
-											<m.div
-												layoutId="active"
-												className="absolute inset-0 bg-indigo-900/20 rounded-md"
-											></m.div>
-										)}
-									</button>
-								))}
-							</m.nav>
+							<>
+								{state === 1 && (
+									<DimensionsTab
+										key={"dimension"}
+										dimensionValues={dimensionValues}
+										setDimensionValues={setDimensionValues}
+									/>
+								)}
+								{state === 2 && (
+									<TooglesTab
+										key={"toggles"}
+										aspect={aspect}
+										setAspect={setAspect}
+									/>
+								)}
+								{state === 3 && (
+									<PromptTab
+										key={"prompt"}
+										prompt={prompt}
+										setPrompt={setPrompt}
+									/>
+								)}
+								<m.button
+									key={"apply"}
+									layout="position"
+									type="button"
+									onClick={applyChanges}
+									className="text-sm px-3 py-2 bg-indigo-600 text-white rounded-lg mt-4 float-end"
+								>
+									Apply Changes
+								</m.button>
+							</>
 						)}
-						<m.button
-							layout
-							onClick={() => setState(!state)}
-							className="align-middle size-6"
-						>
-							<m.svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="2"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								className="text-neutral-800 size-6"
-								animate={{
-									rotateZ: state ? 45 : 0,
-								}}
+						{changesApplied && (
+							<m.div
+								key={"applied"}
+								layout="preserve-aspect"
+								className="absolute grid place-content-center inset-0 bg-white z-10 text-emerald-700"
+								initial={{ y: "5%", opacity: 0 }}
+								animate={{ y: 0, opacity: 1 }}
 							>
-								<path d="M5 12h14" />
-								<path d="M12 5v14" />
-							</m.svg>
-						</m.button>
-					</m.div>
-					{state && (
-						<AnimatePresence>
-							{activeTab === 1 && (
-								<DimensionsTab
-									setState={closeBtn}
-									dimensionValues={dimensionValues}
-									setDimensionValues={setDimensionValues}
-								/>
-							)}
-							{activeTab === 2 && (
-								<TooglesTab
-									setState={closeBtn}
-									aspect={aspect}
-									setAspect={setAspect}
-								/>
-							)}
-							{activeTab === 3 && (
-								<PromptTab
-									setState={closeBtn}
-									prompt={prompt}
-									setPrompt={setPrompt}
-								/>
-							)}
-						</AnimatePresence>
-					)}
+								<m.svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="3"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									className="size-10"
+								>
+									<m.path
+										initial={{ pathLength: 0 }}
+										animate={{ pathLength: 1 }}
+										transition={{ duration: 0.25 }}
+										d="M22 11.08V12a10 10 0 1 1-5.93-9.14"
+									/>
+									<m.path
+										initial={{ pathLength: 0 }}
+										animate={{ pathLength: 1 }}
+										transition={{ delay: 0.15 }}
+										onAnimationComplete={() => setTimeout(closeBtn, 300)}
+										d="m9 11 3 3L22 4"
+									/>
+								</m.svg>
+							</m.div>
+						)}
+					</AnimatePresence>
 				</div>
 			</m.div>
 		</MotionConfig>
 	);
 }
 
-function PromptTab({ setState, prompt, setPrompt }) {
+function PromptTab({ prompt, setPrompt }) {
 	return (
 		<m.form
 			layout="preserve-aspect"
@@ -139,21 +195,15 @@ function PromptTab({ setState, prompt, setPrompt }) {
 			<textarea
 				autoFocus
 				className="w-full h-32 p-2 bg-transparent rounded-lg text-sm outline-indigo-800"
-				placeholder="Add a new prompt"
+				placeholder="Write your genius prompt..."
 				value={prompt}
 				onChange={(e) => setPrompt(e.target.value)}
 			></textarea>
-			<button
-				onClick={setState}
-				className="text-sm px-3 py-2 bg-indigo-600 text-white rounded-lg float-end"
-			>
-				Apply Changes
-			</button>
 		</m.form>
 	);
 }
 
-function TooglesTab({ setState, aspect, setAspect }) {
+function TooglesTab({ aspect, setAspect }) {
 	const toggleGroupItemClasses =
 		"flex gap-1 items-center hover:bg-indigo-500/10 data-[state=on]:bg-indigo-500/20 data-[state=on]:text-indigo-900 data-[state=on]:font-medium text-neutral-700 justify-center leading-4 focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-indigo-800 focus:outline-none px-2 rounded-md h-9";
 
@@ -252,18 +302,11 @@ function TooglesTab({ setState, aspect, setAspect }) {
 					<span>3:2</span>
 				</ToggleGroup.Item>
 			</ToggleGroup.Root>
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button
-				onClick={setState}
-				className="text-sm px-3 py-2 mt-3 bg-indigo-600 text-white rounded-lg float-end"
-			>
-				Apply Changes
-			</button>
 		</m.form>
 	);
 }
 
-function DimensionsTab({ setState, dimensionValues, setDimensionValues }) {
+function DimensionsTab({ dimensionValues, setDimensionValues }) {
 	const fields = ["Vertical", "Horizontal", "Upscale"];
 
 	return (
@@ -307,12 +350,6 @@ function DimensionsTab({ setState, dimensionValues, setDimensionValues }) {
 					</div>
 				</fieldset>
 			))}
-			<button
-				onClick={setState}
-				className="text-sm px-3 py-2 bg-indigo-600 text-white rounded-lg float-end"
-			>
-				Apply Changes
-			</button>
 		</m.form>
 	);
 }
