@@ -7,7 +7,7 @@ import { useOnClickOutside } from "usehooks-ts";
 import { flushSync } from "react-dom";
 
 export default function DynamicButton() {
-	const [state, setState] = useState<null | number>(1);
+	const [state, setState] = useState<null | number>(null);
 	const [changesApplied, setChangesApplied] = useState(false);
 	const containerRef = useRef(null);
 
@@ -144,7 +144,7 @@ export default function DynamicButton() {
 							<m.div
 								key={"applied"}
 								layout="preserve-aspect"
-								className="absolute grid place-content-center inset-0 bg-white z-10 text-emerald-700"
+								className="absolute grid place-content-center inset-0 bg-white z-10 text-indigo-700"
 								initial={{ y: "5%", opacity: 0 }}
 								animate={{ y: 0, opacity: 1 }}
 							>
@@ -155,10 +155,10 @@ export default function DynamicButton() {
 									viewBox="0 0 24 24"
 									fill="none"
 									stroke="currentColor"
-									strokeWidth="3"
+									strokeWidth="2.5"
 									strokeLinecap="round"
 									strokeLinejoin="round"
-									className="size-10"
+									className="size-9"
 								>
 									<m.path
 										initial={{ pathLength: 0 }}
