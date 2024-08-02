@@ -34,7 +34,9 @@ export default function DynamicButton() {
 	const tabs = ["Dimensions", "Aspect Ratio", "Prompt"];
 
 	return (
-		<MotionConfig transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}>
+		<MotionConfig
+			transition={{ ease: "easeOut", type: "spring", duration: 0.5 }}
+		>
 			<m.div
 				layout
 				className={cn(
@@ -48,7 +50,7 @@ export default function DynamicButton() {
 				ref={containerRef}
 			>
 				<div>
-					<AnimatePresence>
+					<AnimatePresence initial={false}>
 						<m.div layout className="flex items-center gap-2 justify-between">
 							{!state && (
 								<m.button
@@ -186,7 +188,7 @@ export default function DynamicButton() {
 function PromptTab({ prompt, setPrompt }) {
 	return (
 		<m.form
-			layout="preserve-aspect"
+			layout="position"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.3, type: "tween" }}
@@ -209,7 +211,7 @@ function TooglesTab({ aspect, setAspect }) {
 
 	return (
 		<m.form
-			layout="preserve-aspect"
+			layout="position"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.3, type: "tween" }}
@@ -313,7 +315,7 @@ function DimensionsTab({ dimensionValues, setDimensionValues }) {
 		<m.form
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
-			layout="preserve-aspect"
+			layout="position"
 			transition={{ duration: 0.3, type: "tween" }}
 			className="mt-6 space-y-4"
 		>

@@ -5,6 +5,7 @@ import DynamicButton from '@/components/codebits/dynamic-button.tsx'
 import GlassForm from '@/components/codebits/glass-form.astro'
 import AnimatedTabs from '@/components/codebits/animated-tabs.astro'
 import VoiceChatDisclosure from '@/components/codebits/voice-chat-disclosure.tsx'
+import ChipInteraction from '@/components/codebits/chip-interaction.tsx'
 
 import { allImages } from '@/lib/codebits'
 ---
@@ -26,30 +27,55 @@ import { allImages } from '@/lib/codebits'
       <div
         class="min-h-[30rem] p-4 lg:p-10 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-content-center relative"
       >
-        <!-- <span
+        <span
           class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-neutral-200 rounded-es-xl py-2 px-4"
-          >Awesome Stuff!</span
-        > -->
+          >Tool: Framer Motion</span
+        >
         <VoiceChatDisclosure client:load />
       </div>
       <div
-        class="min-h-96 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center"
+        class="min-h-96 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center relative"
       >
+        <span
+          class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-neutral-200 rounded-es-xl py-2 px-4"
+          >Recipe: <a
+            class="underline"
+            href="https://emilkowal.ski/ui/the-magic-of-clip-path"
+            >clip-path hack</a
+          ></span
+        >
         <AnimatedTabs />
+      </div>
+      <div
+        class="min-h-[30rem] md:p-10 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center relative"
+      >
+        <span
+          class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-neutral-200 rounded-es-xl py-2 px-4"
+          >Tool: Framer Motion</span
+        >
+        <DynamicButton client:load />
+      </div>
+      <div
+        class="min-h-[30rem] p-10 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center relative"
+      >
+        <span
+          class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-neutral-200 rounded-es-xl py-2 px-4"
+          >Tool: Framer Motion</span
+        >
+        <ChipInteraction client:load />
       </div>
       <div
         class="min-h-dvh overflow-hidden bg-[#020202] rounded-xl border-2 border-neutral-800 grid place-items-center lg:col-span-2 relative"
       >
-        <!-- <span
-          class="absolute top-0 right-0 text-xs font-semibold text-neutral-200 bg-neutral-800 rounded-es-xl py-2 px-4 z-10"
-          >Work in progress</span
-        > -->
+        <span
+          class="absolute top-0 right-0 text-xs font-medium text-neutral-200 bg-neutral-800 rounded-es-xl py-2 px-4 z-10"
+          >Recipe: Animating linear-gradient with <a
+            class="underline"
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS/@property"
+            >@property</a
+          ></span
+        >
         <GlassForm />
-      </div>
-      <div
-        class="min-h-[30rem] p-10 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center"
-      >
-        <DynamicButton client:load />
       </div>
     </section>
   </main>
