@@ -16,12 +16,24 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
       <p>Contact me regarding any concerns or inquiries.</p>
     </div>
     <div class="input-con">
-      <input name="name" id="name" placeholder="Eg. John Doe" type="text" />
+      <input
+        autocomplete="off"
+        name="name"
+        id="name"
+        placeholder="Eg. John Doe"
+        type="text"
+      />
       <label for="name">Name</label>
     </div>
     <div class="input-con">
-      <input name="mail" id="mail" placeholder="Eg. xyz@abc.com" type="text" />
-      <label for="mail">Email</label>
+      <input
+        autocomplete="off"
+        name="email"
+        id="email"
+        placeholder="Eg. xyz@abc.com"
+        type="text"
+      />
+      <label for="email">Email</label>
     </div>
     <div class="input-con">
       <textarea
@@ -244,6 +256,13 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
   }
 
   @media screen and (max-width: 764px) {
+    .inner-form {
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))
+          padding-box,
+        linear-gradient(var(--angle), var(--color), transparent 25%) border-box;
+    }
+
     #contact img {
       aspect-ratio: 0.7;
     }

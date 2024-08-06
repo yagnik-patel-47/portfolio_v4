@@ -57,7 +57,7 @@ function Chip(props: Props) {
 									onChange={(e) => setText(e.target.value)}
 									layoutId="text"
 									layout="position"
-									className="max-w-20 py-1 rounded-l-full outline-none border-0 pl-2"
+									className="max-w-20 py-1 outline-none border-0 pl-2 bg-transparent"
 									autoFocus
 								/>
 								<m.button
