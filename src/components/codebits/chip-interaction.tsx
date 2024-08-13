@@ -37,6 +37,10 @@ function Chip(props: Props) {
 		setEditMode(false);
 	}
 
+	function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+		if (!e.ctrlKey && e.key === "Enter") setEditMode(false);
+	}
+
 	return (
 		<MotionConfig transition={{ type: "spring", duration: 0.5 }}>
 			<m.div ref={containerRef} layoutRoot>
@@ -55,6 +59,7 @@ function Chip(props: Props) {
 								<m.input
 									value={text}
 									onChange={(e) => setText(e.target.value)}
+									onKeyDown={handleKeyDown}
 									layoutId="text"
 									layout="position"
 									className="max-w-20 py-1 outline-none border-0 pl-2 bg-transparent"

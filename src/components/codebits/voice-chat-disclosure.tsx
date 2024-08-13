@@ -64,7 +64,7 @@ export default function VoiceChatDisclosure() {
 	const [state, setState] = useState(false);
 	const [joined, setJoined] = useState(false);
 	const [mic, setMic] = useState(false);
-	const containerRef = useRef(null);
+	const containerRef = useRef<HTMLDivElement>(null);
 
 	useOnClickOutside(containerRef, closeVoiceDisclosure);
 
@@ -98,19 +98,18 @@ export default function VoiceChatDisclosure() {
 	}
 
 	return (
-		<m.div className={cn("relative")} layoutRoot>
+		<m.div ref={containerRef} className={cn("relative")} layoutRoot>
 			<MotionConfig
 				transition={{ duration: 0.5, ease: "easeOut", type: "spring" }}
 			>
 				<m.div
 					layout
 					className={cn(
-						"bg-[#fefefe] border-2 border-neutral-200 shadow-md max-w-full lg:max-w-96 origin-right w-fit h-fit",
+						"bg-[#fefefe] border-2 border-neutral-200 shadow-md max-w-full lg:max-w-96 origin-right w-fit h-fit z-10",
 						state
 							? "rounded-[24px] overflow-hidden"
 							: "rounded-full overflow-visible",
 					)}
-					ref={containerRef}
 				>
 					<AnimatePresence mode="popLayout">
 						<LayoutGroup>

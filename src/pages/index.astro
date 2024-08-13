@@ -2,19 +2,24 @@
 import RootLayout from '@/layouts/Root.astro'
 import Nav from '@/components/Nav.astro'
 import { featuredProjects } from '@/lib/projects-data'
-import { blogs } from '@/lib/blogs-data'
 import { Picture } from 'astro:assets'
 ---
 
 <RootLayout title="⭕">
   <Nav />
   <main class="bg-white">
-    <section id="hero" class="px-8 md:px-20 lg:px-32 2xl:px-72 py-12 lg:py-20">
-      <p id="intro" class="text-xl md:text-2xl xl:text-3xl lg:font-medium">
+    <section
+      id="hero"
+      class="relative px-8 md:px-20 lg:px-32 2xl:px-72 py-12 lg:py-20 overflow-hidden"
+    >
+      <p
+        id="intro"
+        class="text-xl md:text-2xl xl:text-3xl lg:font-medium z-10 relative w-fit"
+      >
         Hi <span class="animate-wavehand">👋</span>, I'm Yagnik Patel.
       </p>
       <h1
-        class="text-5xl sm:text-6xl md:text-7xl leading-[1.25] md:leading-[1.1] 2xl:text-8xl font-light mt-4 lg:mt-8 tracking-tighter"
+        class="text-5xl sm:text-6xl md:text-7xl leading-[1.25] md:leading-[1.1] 2xl:text-8xl font-light mt-4 lg:mt-8 tracking-tighter z-10 relative w-fit"
       >
         <span class="block headline h-fit overflow-hidden"
           >I <span class="italic">develop</span></span
@@ -30,7 +35,7 @@ import { Picture } from 'astro:assets'
       </h1>
       <a
         id="about-link"
-        class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit"
+        class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit z-10 relative"
         href="/about"
       >
         <span class="group-hover:italic">Wanna know more about me?</span>
@@ -48,10 +53,19 @@ import { Picture } from 'astro:assets'
             d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
         </svg>
       </a>
+      <div
+        class="absolute w-full h-[150%] lg:w-2/3 xl:w-[75rem] xl:h-[50rem] top-0 right-0 overflow-hidden flex flex-wrap z-0 max-md:opacity-40"
+        id="tiles-container"
+      >
+        <div
+          class="tile h-[3rem] w-[3rem] inline-block border transition-colors duration-1000 hover:duration-0"
+        >
+        </div>
+      </div>
     </section>
     <section
       id="projects"
-      class="bg-neutral-950 text-neutral-100 px-8 md:px-20 lg:px-32 2xl:px-72 py-20 lg:py-32 rounded-t-3xl md:rounded-t-[3rem] mt-8"
+      class="bg-neutral-950 text-neutral-100 px-8 md:px-20 lg:px-32 2xl:px-72 py-20 lg:py-32 rounded-t-3xl md:rounded-t-[3rem]"
     >
       <h1
         id="projects-headline"
@@ -126,39 +140,76 @@ import { Picture } from 'astro:assets'
           ))
         }
       </div>
-      <h1
-        id="blogs-healine"
-        class="text-3xl md:text-4xl lg:text-7xl mt-20 overflow-hidden py-1"
-      >
-        <span class="inline-block">Featured</span>
-        <span class="italic font-light inline-block">Blogs</span>
-      </h1>
-      <div class="grid lg:grid-cols-2 gap-10 lg:gap-32 mt-10 lg:mt-20">
-        {
-          blogs.map((blog) => (
-            <a
-              target="_blank"
-              href={blog.link}
-              class="space-y-4 block blog opacity-0"
-            >
-              <Picture
-                class="rounded-lg"
-                width={750}
-                height={500}
-                src={blog.image}
-                alt={blog.title}
-                formats={['avif']}
-                loading="eager"
-              />
-              <h2 class="text-2xl lg:text-3xl font-medium">{blog.title}</h2>
-              <p class="text-neutral-200">{blog.date}</p>
-            </a>
-          ))
-        }
-      </div>
     </section>
   </main>
 </RootLayout>
+
+<style>
+  #tiles-container {
+    mask-image: linear-gradient(to left, black 70%, transparent);
+    transform: rotateX(50deg) rotateY(-10deg) rotateZ(25deg) translateX(10rem)
+      translateY(-10rem) scale(1.5);
+    perspective: 2000px;
+    transform-style: preserve-3d;
+  }
+
+  #tiles-container:before {
+    content: '';
+    position: absolute;
+    inset: 0px;
+    pointer-events: none;
+    z-index: 2;
+    background-image: url(/hero-tiles-plus.svg);
+    background-size: 6rem;
+    background-position: -0.75rem -0.75rem;
+    opacity: 0.25;
+  }
+
+  .tile {
+    --teal-hex: #5eead4;
+    --indigo-hex: #a5b4fc;
+    --rose-hex: #fda4af;
+    --amber-hex: #fcd34d;
+
+    /* --light-v1-hex: #1b1b1b;
+    --light-v2-hex: #525252;
+    --dark-v1-hex: #868686;
+    --dark-v2-hex: #c5c5c5; */
+  }
+
+  .tile:hover:nth-child(4n) {
+    background: var(--teal-hex);
+  }
+  .tile:hover:nth-child(4n + 1) {
+    background: var(--indigo-hex);
+  }
+  .tile:hover:nth-child(4n + 2) {
+    background: var(--rose-hex);
+  }
+  .tile:hover:nth-child(4n + 3) {
+    background: var(--amber-hex);
+  }
+
+  .tile:hover:nth-child(7n) {
+    background: var(--amber-hex);
+  }
+  .tile:hover:nth-child(7n + 3) {
+    background: var(--rose-hex);
+  }
+  .tile:hover:nth-child(7n + 5) {
+    background: var(--indigo-hex);
+  }
+
+  .tile:hover:nth-child(11n) {
+    background: var(--teal-hex);
+  }
+  .tile:hover:nth-child(11n + 4) {
+    background: var(--indigo-hex);
+  }
+  .tile:hover:nth-child(11n + 7) {
+    background: var(--amber-hex);
+  }
+</style>
 
 <script>
   import { animate, inView, stagger } from 'motion'
@@ -168,23 +219,17 @@ import { Picture } from 'astro:assets'
       '(prefers-reduced-motion: reduce)',
     ).matches
 
-    inView(
-      '.featured-project',
-      (info) => {
-        animate(
-          info.target,
-          {
-            y: ['10%', 0],
-            opacity: [0, 1],
-          },
-          { duration: prefersReducedMotion ? 0 : 0.5, delay: stagger(0.1) },
-        )
-      },
-      { margin: '-100px' },
-    )
+    const isSmallDevice = window.matchMedia('(max-width: 768px)').matches
+
+    const tilesContainer = document.getElementById('tiles-container')
+    const tile = document.querySelector('.tile')
+
+    for (let i = 0; isSmallDevice ? i < 99 : i < 499; ++i) {
+      tilesContainer.appendChild(tile.cloneNode())
+    }
 
     inView(
-      '.blog',
+      '.featured-project',
       (info) => {
         animate(
           info.target,
