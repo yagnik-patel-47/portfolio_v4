@@ -9,13 +9,13 @@ import MiwaImage from "@/assets/codebits/voicechat/miwa.webp";
 import GlassFormBackground from "@/assets/codebits/glass_form_bg.webp";
 
 export const allImages = [
-  GetoImage,
-  GojoImage,
-  TojiImage,
-  FushiguroImage,
-  ItadoriImage,
-  SukunaImage,
-  NanamiImage,
-  MiwaImage,
-  GlassFormBackground
-]
+	GetoImage,
+	GojoImage,
+	TojiImage,
+	FushiguroImage,
+	ItadoriImage,
+	SukunaImage,
+	NanamiImage,
+	MiwaImage,
+	GlassFormBackground,
+];
