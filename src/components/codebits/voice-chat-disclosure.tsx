@@ -136,7 +136,7 @@ export default function VoiceChatDisclosure() {
 										layout="position"
 										className="flex items-center !mx-2 text-xl text-neutral-500"
 									>
-										+4
+										+{peps.length - 4}
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											height="24px"
