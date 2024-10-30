@@ -4,11 +4,7 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
 ---
 
 <section id="contact">
-  <Image
-    src={PurpleAbstractThingImage}
-    alt="Purple abstract thing"
-    loading="eager"
-  />
+  <Image src={PurpleAbstractThingImage} alt="Purple abstract thing" />
   <div class="contact-overlay"></div>
   <div class="inner-form">
     <div>
@@ -225,6 +221,7 @@ import PurpleAbstractThingImage from '@/assets/codebits/glass_form_bg.webp'
   .inner-form textarea::placeholder {
     color: #bbb;
     visibility: hidden;
+    opacity: 0;
   }
 
   .inner-form button {

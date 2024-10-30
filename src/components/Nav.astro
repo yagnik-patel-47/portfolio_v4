@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components'
+
 const links = [
   {
     name: 'Projects',
@@ -18,38 +20,83 @@ const socials = [
   {
     label: 'Twitter',
     href: 'https://x.com/yagnik_pt',
+    icon: 'x_dark',
   },
   {
     label: 'Github',
     href: 'https://github.com/yagnik-patel-47',
+    icon: 'github-dark',
   },
   {
     label: 'Hashnode',
     href: 'https://mytakeonweb.hashnode.dev',
+    icon: 'hashnode',
   },
   {
     label: 'Linkedin',
     href: 'https://linkedin.com/in/yagnikpt',
+    icon: 'linkedin',
   },
   {
     label: 'Instagram',
     href: 'https://instagram.com/yagnik._._.patel',
+    icon: 'instagram_dark',
   },
 ]
 ---
 
-<header
+<div
   transition:persist
-  id="header"
-  class="group sticky top-0 overflow-hidden z-20 has-[nav[data-nav-padding=true]]:shadow"
+  id="floatingBarContainer"
+  class="group fixed !inset-x-4 max-md:inset-x-0 md:max-w-2xl border-2 border-neutral-800 md:!left-1/2 md:!-translate-x-1/2 bottom-4 overflow-hidden z-20 rounded-xl bg-zinc-950"
 >
-  <div id="nav-background" class="inset-0 absolute bg-white"></div>
-  <nav
-    class="flex justify-between items-center px-8 md:px-20 lg:px-32 2xl:px-72 py-8 data-[nav-padding=false]:lg:py-14 transition-[padding] motion-reduce:transition-none relative before:absolute before:inset-0 before:bg-neutral-950 before:z-[-1]"
-    data-nav-padding="false"
+  <div id="nav-content" class="overflow-hidden h-0 text-neutral-200">
+    <nav class="grid grid-cols-1 py-4">
+      {
+        links.map((work, index) => (
+          <a
+            href={work.path}
+            class="text-2xl lg:text-3xl block font-semibold px-8 py-4 hover:text-white md:pl-12 hover:bg-neutral-800 transition nav-links"
+          >
+            {work.name}{' '}
+            <span class="text-sm md:text-base lg:text-lg font-medium text-neutral-400">
+              (0{index + 1})
+            </span>
+          </a>
+        ))
+      }
+    </nav>
+    <div
+      class="py-4 2xl:py-6 space-y-4 px-8 md:px-12 border-t-2 border-b-2 border-zinc-800"
+    >
+      <h3 class="text-lg xl:text-2xl text-neutral-400 font-semibold">
+        Socials.
+      </h3>
+      <div class="flex gap-x-6 gap-y-8 responsive-cols">
+        {
+          socials.map((social) => (
+            <a
+              target="_blank"
+              class="flex items-center gap-1 group/link"
+              href={social.href}
+            >
+              <Icon class="size-4 md:size-5" name={social.icon} />
+            </a>
+          ))
+        }
+      </div>
+      <a
+        href="mailto:yagnik47.dev@gmail.com"
+        class="block bg-neutral-100 text-neutral-900 text-center font-medium px-4 py-3 text-sm rounded-full md:hidden"
+        >Contact me</a
+      >
+    </div>
+  </div>
+  <div
+    class="flex justify-between items-center px-8 md:px-12 py-4 motion-reduce:transition-none"
   >
     <a
-      class="text-xl lg:text-2xl flex items-center space-x-2 text-neutral-900 font-semibold group-data-[state=open]:text-neutral-100"
+      class="text-xl flex items-center space-x-2 font-semibold text-neutral-100"
       href="/"
     >
       <svg
@@ -74,14 +121,10 @@ const socials = [
     <div class="flex space-x-8 items-center">
       <a
         href="mailto:yagnik47.dev@gmail.com"
-        class="block bg-neutral-900 text-neutral-100 group-data-[state=open]:bg-neutral-100 group-data-[state=open]:text-neutral-900 hover:bg-neutral-950 hover:text-neutral-50 px-4 py-2 rounded-full max-md:hidden"
+        class="block bg-neutral-800 text-neutral-100 text-sm px-4 py-2 rounded-full max-md:hidden"
         >Contact me</a
       >
-      <button
-        id="ham-btn"
-        class="size-8 group-data-[state=open]:invert"
-        aria-label="Menu"
-      >
+      <button id="ham-btn" class="size-6 text-neutral-100" aria-label="Menu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -96,86 +139,15 @@ const socials = [
         </svg>
       </button>
     </div>
-  </nav>
-  <div
-    id="nav-content"
-    class="overflow-hidden h-0 bg-neutral-950 text-neutral-200"
-  >
-    <div class="grid grid-cols-1 border-t-2 border-neutral-900 py-4">
-      {
-        links.map((work, index) => (
-          <a
-            href={work.path}
-            class="text-3xl lg:text-4xl xl:text-6xl 2xl:text-7xl block font-semibold px-8 py-4 lg:py-6 hover:text-white md:pl-20 lg:pl-32 hover:bg-neutral-900 2xl:pl-72 transition nav-links"
-          >
-            {work.name}{' '}
-            <span class="text-sm md:text-base lg:text-lg font-medium text-neutral-400">
-              (0{index + 1})
-            </span>
-          </a>
-        ))
-      }
-    </div>
-    <div
-      class="py-4 2xl:py-10 space-y-6 px-8 md:px-20 lg:px-32 2xl:px-72 border-t-2 border-neutral-900"
-    >
-      <h3 class="text-xl xl:text-2xl text-neutral-400 font-semibold">
-        Socials.
-      </h3>
-      <div class="grid md:flex gap-x-6 gap-y-8 responsive-cols">
-        {
-          socials.map((social) => (
-            <a
-              target="_blank"
-              class="flex items-center gap-1 group/link"
-              href={social.href}
-            >
-              <span class="uppercase text-xs sm:text-sm lg:text-base group-hover/link:-skew-x-[15deg] transition-transform">
-                {social.label}
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="20px"
-                viewBox="0 -960 960 960"
-                width="20px"
-                fill="currentColor"
-                class="size-4 shrink-0 md:size-5 transition-transform origin-bottom-left group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
-              >
-                <path d="m256-240-56-56 384-384H240v-80h480v480h-80v-344L256-240Z" />
-              </svg>
-            </a>
-          ))
-        }
-      </div>
-      <a
-        href="mailto:yagnik47.dev@gmail.com"
-        class="block bg-neutral-100 text-neutral-900 text-center font-medium px-4 py-3 rounded-full md:hidden"
-        >Contact me</a
-      >
-    </div>
   </div>
-</header>
-
-<style is:inline>
-  nav::before {
-    backdrop-filter: blur(3px) saturate(200%);
-    -webkit-backdrop-filter: blur(3px) saturate(200%);
-    background-color: rgba(255, 255, 255, 0.85);
-  }
-
-  .responsive-cols {
-    grid-template-columns: repeat(auto-fit, minmax(6rem, max-content));
-  }
-</style>
+</div>
 
 <script>
   import { animate } from 'motion'
-  const navElement = document.querySelector('nav')
   const navCollapseSection = document.getElementById('nav-content')!
-  const navBackground = document.getElementById('nav-background')!
   let navContentHeight = navCollapseSection?.scrollHeight ?? 0
   const hamBtn = document.getElementById('ham-btn')!
-  const header = document.getElementById('header')!
+  const floatingBarContainer = document.getElementById('floatingBarContainer')!
   const navLinks = document.querySelectorAll(
     '.nav-links',
   ) as NodeListOf<HTMLAnchorElement>
@@ -189,21 +161,25 @@ const socials = [
   })
 
   window.addEventListener('keydown', (e) => {
-    if (header.dataset.state === 'open' && e.code.startsWith('Digit'))
+    if (
+      floatingBarContainer.dataset.state === 'open' &&
+      e.code.startsWith('Digit')
+    )
       navLinks[parseInt(e.key) - 1]?.click()
-    if (header.dataset.state === 'open' && e.key === 'Escape')
+    if (floatingBarContainer.dataset.state === 'open' && e.key === 'Escape')
       setCloseState(prefersReducedMotion)
   })
 
   hamBtn.addEventListener('click', () => {
-    if (header.dataset.state === 'open') setCloseState(prefersReducedMotion)
+    if (floatingBarContainer.dataset.state === 'open')
+      setCloseState(prefersReducedMotion)
     else setOpenState(prefersReducedMotion)
   })
 
   document.addEventListener('click', (event) => {
     // @ts-ignore
-    const isClickInside = header.contains(event.target)
-    if (!isClickInside && header.dataset.state === 'open')
+    const isClickInside = floatingBarContainer.contains(event.target)
+    if (!isClickInside && floatingBarContainer.dataset.state === 'open')
       setCloseState(prefersReducedMotion)
   })
 
@@ -215,16 +191,14 @@ const socials = [
     })
   })
 
-  document.addEventListener('scroll', () => {
-    if (window.scrollY > 0) navElement.dataset.navPadding = `true`
-    else navElement.dataset.navPadding = `false`
-  })
-
   function setOpenState(reducedMotion: boolean) {
-    if (header.clientHeight + navContentHeight < window.innerHeight)
+    if (
+      floatingBarContainer.clientHeight + navContentHeight <
+      window.innerHeight
+    )
       document.body.style.overflow = 'hidden'
-    else header.style.overflow = 'auto'
-    header.setAttribute('data-state', 'open')
+    else floatingBarContainer.style.overflow = 'auto'
+    floatingBarContainer.setAttribute('data-state', 'open')
     animate(
       navCollapseSection,
       {
@@ -232,28 +206,13 @@ const socials = [
       },
       { duration: reducedMotion ? 0 : 0.3 },
     )
-    animate(
-      navBackground,
-      {
-        y: '100%',
-      },
-      { duration: reducedMotion ? 0 : 0.3 },
-    )
   }
   async function setCloseState(reducedMotion: boolean, animation = true) {
-    header.setAttribute('data-state', 'closed')
+    floatingBarContainer.setAttribute('data-state', 'closed')
     const navClosed = animate(
       navCollapseSection,
       {
         height: 0,
-      },
-      { duration: reducedMotion || !animation ? 0 : 0.3 },
-    )
-
-    animate(
-      navBackground,
-      {
-        y: 0,
       },
       { duration: reducedMotion || !animation ? 0 : 0.3 },
     )

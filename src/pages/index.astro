@@ -1,223 +1,137 @@
 ---
 import RootLayout from '@/layouts/Root.astro'
 import Nav from '@/components/Nav.astro'
-import { featuredProjects } from '@/lib/projects-data'
-import { Picture } from 'astro:assets'
 ---
 
 <RootLayout title="⭕">
   <Nav />
-  <main class="bg-white">
-    <section
-      id="hero"
-      class="relative px-8 md:px-20 lg:px-32 2xl:px-72 py-12 lg:py-20 overflow-hidden"
+  <section
+    id="hero"
+    class="relative px-8 md:px-20 lg:px-32 2xl:px-72 py-12 lg:py-40 overflow-hidden min-h-dvh flex flex-col justify-center items-center"
+  >
+    <p
+      id="intro"
+      class="text-xl md:text-2xl lg:font-medium z-10 relative w-fit mx-auto"
     >
-      <p
-        id="intro"
-        class="text-xl md:text-2xl xl:text-3xl lg:font-medium z-10 relative w-fit"
-      >
-        Hi <span class="animate-wavehand">👋</span>, I'm Yagnik Patel.
-      </p>
-      <h1
-        class="text-5xl sm:text-6xl md:text-7xl leading-[1.25] md:leading-[1.1] 2xl:text-8xl font-light mt-4 lg:mt-8 tracking-tighter z-10 relative w-fit"
-      >
-        <span class="block headline h-fit overflow-hidden"
-          >I <span class="italic">develop</span></span
-        >
-        <span class="font-normal block headline h-fit overflow-hidden">
-          <span class="font-semibold">apps</span> and <span
-            class="font-semibold">websites</span
-          ></span
-        >
-        <span class="font-normal block headline h-fit overflow-hidden"
-          >from scratch</span
-        >
-      </h1>
-      <a
-        id="about-link"
-        class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit z-10 relative"
-        href="/about"
-      >
-        <span class="group-hover:italic">Wanna know more about me?</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-6 origin-left group-hover:scale-x-150 transition"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-        </svg>
-      </a>
-      <div
-        class="absolute w-full h-[150%] lg:w-2/3 2xl:w-[75rem] xl:h-[50rem] top-0 right-0 overflow-hidden flex flex-wrap z-0 max-md:opacity-40"
-        id="tiles-container"
-        data-active-palette="colorful"
-      >
-        <div
-          class="tile h-[3rem] w-[3rem] inline-block border transition-colors duration-1000 hover:duration-0"
-        >
-        </div>
-      </div>
-      <div
-        class="bg-white shadow-lg absolute top-0 right-0 my-3 mx-6 rounded-full overflow-hidden hidden lg:block ring-2 ring-black"
-      >
-        <div class="flex items-center">
-          <button
-            aria-label="Colorful Palette"
-            data-palette="colorful"
-            class="px-4 py-2 tiles-editor rounded-full"
-          >
-            <span class="sr-only">Colorful</span>
-            <div class="flex">
-              <div class="w-1.5 h-4 bg-teal-300"></div>
-              <div class="w-1.5 h-4 bg-indigo-300"></div>
-              <div class="w-1.5 h-4 bg-rose-300"></div>
-              <div class="w-1.5 h-4 bg-amber-300"></div>
-            </div>
-          </button>
-          <button
-            aria-label="Monochrome Palette"
-            data-palette="monochrome"
-            class="px-4 py-2 tiles-editor rounded-full"
-          >
-            <span class="sr-only">Monochrome</span>
-            <div class="flex">
-              <div class="w-1.5 h-4 bg-neutral-300"></div>
-              <div class="w-1.5 h-4 bg-neutral-500"></div>
-              <div class="w-1.5 h-4 bg-neutral-700"></div>
-              <div class="w-1.5 h-4 bg-neutral-900"></div>
-            </div>
-          </button>
-        </div>
-        <div
-          class="flex items-center absolute inset-0 bg-neutral-900 text-neutral-100 transition-all duration-[250ms] ease-[ease] pointer-events-none"
-          id="cliped-tabs"
-        >
-          <button
-            aria-label="Colorful Palette"
-            data-palette="colorful"
-            class="px-4 py-2 tiles-editor rounded-full"
-          >
-            <span class="sr-only">Colorful</span>
-            <div class="flex">
-              <div class="w-1.5 h-4 bg-teal-300"></div>
-              <div class="w-1.5 h-4 bg-indigo-300"></div>
-              <div class="w-1.5 h-4 bg-rose-300"></div>
-              <div class="w-1.5 h-4 bg-amber-300"></div>
-            </div>
-          </button>
-          <button
-            aria-label="Monochrome Palette"
-            data-palette="monochrome"
-            class="px-4 py-2 tiles-editor rounded-full"
-          >
-            <span class="sr-only">Monochrome</span>
-            <div class="flex">
-              <div class="w-1.5 h-4 bg-neutral-400"></div>
-              <div class="w-1.5 h-4 bg-neutral-500"></div>
-              <div class="w-1.5 h-4 bg-neutral-700"></div>
-              <div class="w-1.5 h-4 bg-neutral-800"></div>
-            </div>
-          </button>
-        </div>
-      </div>
-    </section>
-    <section
-      id="projects"
-      class="bg-neutral-950 text-neutral-100 px-8 md:px-20 lg:px-32 2xl:px-72 py-20 lg:py-32 rounded-t-3xl md:rounded-t-[3rem]"
+      Hi <span class="animate-wavehand">👋</span>, I'm Yagnik Patel.
+    </p>
+    <h1
+      class="text-5xl sm:text-6xl md:text-7xl leading-[1.25] md:leading-[1.1] 2xl:text-8xl font-light mt-4 lg:mt-8 tracking-tighter z-10 relative w-fit mx-auto text-center text-balance"
     >
-      <h1
-        id="projects-headline"
-        class="text-3xl md:text-4xl lg:text-7xl overflow-hidden py-1"
+      <span class="block headline h-fit overflow-hidden"
+        >I <span class="italic">develop</span></span
       >
-        <span class="inline-block">Featured</span>
-        <span class="italic font-light inline-block">Projects</span>
-      </h1>
-      <div class="grid lg:grid-cols-2 gap-10 lg:gap-32 mt-10 lg:mt-20">
-        {
-          featuredProjects.map((project) => (
-            <div class="space-y-4 featured-project opacity-0">
-              <Picture
-                class="rounded-lg"
-                width={750}
-                height={500}
-                src={project.image}
-                alt={project.name}
-                formats={['avif']}
-                loading="eager"
-              />
-              <div class="flex justify-between items-center">
-                <h2 class="md:text-3xl text-2xl font-medium">{project.name}</h2>
-                <div class="flex space-x-4">
-                  {project.links.repo && (
-                    <a
-                      aria-label="project repo link"
-                      target="_blank"
-                      href={project.links.repo}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="size-6"
-                      >
-                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                        <path d="M9 18c-4.51 2-5-2-7-2" />
-                      </svg>
-                    </a>
-                  )}
-                  <a
-                    aria-label="site link"
-                    target="_blank"
-                    href={project.links.site}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      class="size-6"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              <p class="text-neutral-200">{project.discription}</p>
-            </div>
-          ))
-        }
+      <span class="font-normal block headline h-fit overflow-hidden">
+        <span class="font-semibold">apps</span> and <span class="font-semibold"
+          >websites</span
+        ></span
+      >
+      <span class="font-normal block headline h-fit overflow-hidden"
+        >from scratch</span
+      >
+    </h1>
+    <a
+      id="about-link"
+      class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit z-10 relative mx-auto"
+      href="/about"
+    >
+      <span class="group-hover:italic">Wanna know more about me?</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6 origin-left group-hover:scale-x-150 transition"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+      </svg>
+    </a>
+    <div
+      class="absolute w-full h-dvh top-0 right-0 overflow-hidden flex flex-wrap z-0 max-md:opacity-40"
+      id="tiles-container"
+      data-active-palette="colorful"
+    >
+      <div
+        class="tile h-[3rem] w-[3rem] inline-block border transition-colors duration-1000 hover:duration-0"
+      >
       </div>
-    </section>
-  </main>
+    </div>
+    <div
+      class="bg-white shadow-lg absolute top-0 right-0 my-3 mx-6 rounded-full overflow-hidden hidden lg:block ring-2 ring-black"
+    >
+      <div class="flex items-center">
+        <button
+          aria-label="Colorful Palette"
+          data-palette="colorful"
+          class="px-4 py-2 tiles-editor rounded-full"
+        >
+          <span class="sr-only">Colorful</span>
+          <div class="flex">
+            <div class="w-1.5 h-4 bg-teal-300"></div>
+            <div class="w-1.5 h-4 bg-indigo-300"></div>
+            <div class="w-1.5 h-4 bg-rose-300"></div>
+            <div class="w-1.5 h-4 bg-amber-300"></div>
+          </div>
+        </button>
+        <button
+          aria-label="Monochrome Palette"
+          data-palette="monochrome"
+          class="px-4 py-2 tiles-editor rounded-full"
+        >
+          <span class="sr-only">Monochrome</span>
+          <div class="flex">
+            <div class="w-1.5 h-4 bg-neutral-300"></div>
+            <div class="w-1.5 h-4 bg-neutral-500"></div>
+            <div class="w-1.5 h-4 bg-neutral-700"></div>
+            <div class="w-1.5 h-4 bg-neutral-900"></div>
+          </div>
+        </button>
+      </div>
+      <div
+        class="flex items-center absolute inset-0 bg-neutral-900 text-neutral-100 transition-all duration-[250ms] ease-[ease] pointer-events-none"
+        id="cliped-tabs"
+      >
+        <button
+          aria-label="Colorful Palette"
+          data-palette="colorful"
+          class="px-4 py-2 tiles-editor rounded-full"
+        >
+          <span class="sr-only">Colorful</span>
+          <div class="flex">
+            <div class="w-1.5 h-4 bg-teal-300"></div>
+            <div class="w-1.5 h-4 bg-indigo-300"></div>
+            <div class="w-1.5 h-4 bg-rose-300"></div>
+            <div class="w-1.5 h-4 bg-amber-300"></div>
+          </div>
+        </button>
+        <button
+          aria-label="Monochrome Palette"
+          data-palette="monochrome"
+          class="px-4 py-2 tiles-editor rounded-full"
+        >
+          <span class="sr-only">Monochrome</span>
+          <div class="flex">
+            <div class="w-1.5 h-4 bg-neutral-400"></div>
+            <div class="w-1.5 h-4 bg-neutral-500"></div>
+            <div class="w-1.5 h-4 bg-neutral-700"></div>
+            <div class="w-1.5 h-4 bg-neutral-800"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
 </RootLayout>
 
 <style>
   #tiles-container {
-    mask-image: linear-gradient(to left, black 70%, transparent);
-    transform: rotateX(50deg) rotateY(-10deg) rotateZ(25deg) translateX(10rem)
-      translateY(-10rem) scale(1.5);
+    mask-image: radial-gradient(black, transparent);
+    transform: rotateX(50deg) rotateY(-10deg) rotateZ(25deg) scale(1.5);
     perspective: 2000px;
     transform-style: preserve-3d;
-  }
-
-  @media screen and (max-widht: ) {
   }
 
   #tiles-container:before {
@@ -285,18 +199,13 @@ import { Picture } from 'astro:assets'
 </style>
 
 <script>
-  import { animate, inView, stagger } from 'motion'
-
   document.addEventListener('astro:page-load', () => {
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches
     const isSmallDevice = window.matchMedia('(max-width: 768px)').matches
 
     const tilesContainer = document.getElementById('tiles-container')
     const tile = document.querySelector('.tile')
 
-    for (let i = 0; isSmallDevice ? i < 149 : i < 499; ++i) {
+    for (let i = 0; isSmallDevice ? i < 149 : i < 899; ++i) {
       tilesContainer.appendChild(tile.cloneNode())
     }
 
@@ -340,21 +249,6 @@ import { Picture } from 'astro:assets'
 
         tilesContainer.dataset.activePalette = btn.dataset.palette
       }),
-    )
-
-    inView(
-      '.featured-project',
-      (info) => {
-        animate(
-          info.target,
-          {
-            y: ['10%', 0],
-            opacity: [0, 1],
-          },
-          { duration: prefersReducedMotion ? 0 : 0.5, delay: stagger(0.1) },
-        )
-      },
-      { margin: '-100px' },
     )
   })
 </script>

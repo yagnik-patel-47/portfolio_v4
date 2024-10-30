@@ -12,7 +12,7 @@ export const projects = [
 	{
 		name: "Keyboard Shop",
 		discription:
-			"A keyboard and accessories store built with SvelteKit. It simulates real-world features such as product ordering and cart management. On the admin level, it offers functionalities like product catalog management integrated with Stripe and order management.",
+			"A typical e-commerce app BUT integrates Stripe into the app admin panel. Built using Svelte 5 and TailwindCSS, resulting in a stunning and minimalistic UI.",
 		image: KeyboardShopImage,
 		tech: ["Sveltekit", "Drizzle", "Stripe"],
 		links: {

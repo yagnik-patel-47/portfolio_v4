@@ -6,9 +6,12 @@ import {
 	motion as m,
 	MotionConfig,
 	useAnimate,
+	useMotionValue,
+	useTransform,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useOnClickOutside } from "usehooks-ts";
+import { flushSync } from "react-dom";
 
 const widgets = [
 	{
@@ -36,19 +39,21 @@ const widgets = [
 const variants = {
 	enter: (direction: number) => {
 		return {
-			x: direction > 0 ? -50 : 50,
+			x: direction > 0 ? "100%" : "-100%",
+			scale: 0.75,
 			opacity: 0,
 		};
 	},
 	center: {
 		zIndex: 1,
 		x: 0,
-		opacity: 1,
+		opacity: [1, 1, 1],
+		scale: [0.75, 0.75, 1],
 	},
 	exit: (direction: number) => {
 		return {
 			zIndex: 0,
-			x: direction > 0 ? 50 : -50,
+			x: direction > 0 ? "-100%" : "100%",
 			opacity: 0,
 			transition: { opacity: { duration: 0.1 } },
 		};
@@ -59,22 +64,25 @@ export default function DynamicSliderWidget() {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [direction, setDirection] = useState(0);
 
+	const x = useMotionValue(0);
+	const scale = useTransform(x, [-150, 0, 150], [0.75, 1, 0.75]);
+
 	function handleNext() {
+		flushSync(() => setDirection(1));
 		if (currentIndex < widgets.length - 1) {
 			setCurrentIndex((prev) => prev + 1);
 		} else {
 			setCurrentIndex(0);
 		}
-		setDirection(1);
 	}
 
 	function handlePrevious() {
+		flushSync(() => setDirection(-1));
 		if (currentIndex > 0) {
 			setCurrentIndex((prev) => prev - 1);
 		} else {
 			setCurrentIndex(widgets.length - 1);
 		}
-		setDirection(-1);
 	}
 
 	return (
@@ -83,23 +91,7 @@ export default function DynamicSliderWidget() {
 		>
 			<m.div layout className="flex items-center gap-6">
 				<LayoutGroup>
-					<m.button className="size-8" layout onClick={handlePrevious}>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							className="size-6"
-						>
-							<path d="m15 18-6-6 6-6" />
-						</svg>
-					</m.button>
-					<m.div className="relative">
+					<m.div className="relative overflow-hidden bg-zinc-200 p-3 rounded-2xl">
 						<AnimatePresence mode="popLayout" initial={false}>
 							{widgets.map(
 								(widget, index) =>
@@ -114,6 +106,16 @@ export default function DynamicSliderWidget() {
 											transition={{
 												x: { type: "spring", stiffness: 300, damping: 30 },
 											}}
+											drag="x"
+											dragConstraints={{ right: 0, left: 0 }}
+											onDragEnd={(_e, { offset }) => {
+												if (offset.x < -80) {
+													handleNext();
+												} else if (offset.x > 80) {
+													handlePrevious();
+												}
+											}}
+											// style={{ x, scale }}
 										>
 											<widget.jsx />
 										</m.div>
@@ -121,27 +123,6 @@ export default function DynamicSliderWidget() {
 							)}
 						</AnimatePresence>
 					</m.div>
-					<m.button
-						aria-label="right"
-						className="size-8"
-						layout
-						onClick={handleNext}
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							className="size-6"
-						>
-							<path d="m9 18 6-6-6-6" />
-						</svg>
-					</m.button>
 				</LayoutGroup>
 			</m.div>
 		</MotionConfig>
@@ -253,159 +234,13 @@ function ClockWidget() {
 }
 
 function MusicWidget() {
-	const [expanded, setExpanded] = useState(false);
-	const [levels, setLevels] = useState([0.2, 0.4, 0.3, 0.5]);
-	const ref = useRef(null);
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setLevels(levels.map(() => Math.random() * 0.8 + 0.2));
-		}, 100);
-
-		return () => clearInterval(interval);
-	}, []);
-
-	useOnClickOutside(ref, handleClickOutside);
-
-	function handleClickOutside() {
-		setExpanded(false);
-	}
-
-	function toggleExpanded() {
-		setExpanded((prev) => !prev);
-	}
 	return (
-		<m.div
-			ref={ref}
-			layout
-			onClick={!expanded ? toggleExpanded : undefined}
-			className={cn(
-				"rounded-2xl overflow-hidden group h-40 w-auto grid place-items-center relative",
-				expanded ? "aspect-video" : "aspect-square hover:cursor-pointer",
-			)}
-		>
-			<m.img
-				key={"cover"}
-				layout
-				style={{
-					gridColumn: "1/-1",
-					gridRow: "1/-1",
-				}}
-				draggable="false"
-				className={cn(
-					"h-40 object-cover object-center aspect-square justify-self-center select-none",
-				)}
-				animate={{
-					scale: expanded ? 16 / 9 : 1,
-				}}
-				src={MusicCoverImage.src}
-				alt={"music cover"}
-			/>
-			<AnimatePresence mode="popLayout">
-				{!expanded && (
-					<m.div key={"icon"} layout className="absolute top-2 right-2">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							x="0"
-							y="0"
-							width="100"
-							height="100"
-							viewBox="0 0 50 50"
-							className="size-6"
-							fill="#fff"
-						>
-							<path d="M25.009,1.982C12.322,1.982,2,12.304,2,24.991S12.322,48,25.009,48s23.009-10.321,23.009-23.009S37.696,1.982,25.009,1.982z M34.748,35.333c-0.289,0.434-0.765,0.668-1.25,0.668c-0.286,0-0.575-0.081-0.831-0.252C30.194,34.1,26,33,22.5,33.001 c-3.714,0.002-6.498,0.914-6.526,0.923c-0.784,0.266-1.635-0.162-1.897-0.948s0.163-1.636,0.949-1.897 c0.132-0.044,3.279-1.075,7.474-1.077C26,30,30.868,30.944,34.332,33.253C35.022,33.713,35.208,34.644,34.748,35.333z M37.74,29.193 c-0.325,0.522-0.886,0.809-1.459,0.809c-0.31,0-0.624-0.083-0.906-0.26c-4.484-2.794-9.092-3.385-13.062-3.35 c-4.482,0.04-8.066,0.895-8.127,0.913c-0.907,0.258-1.861-0.272-2.12-1.183c-0.259-0.913,0.272-1.862,1.184-2.12 c0.277-0.079,3.854-0.959,8.751-1c4.465-0.037,10.029,0.61,15.191,3.826C37.995,27.328,38.242,28.388,37.74,29.193z M40.725,22.013 C40.352,22.647,39.684,23,38.998,23c-0.344,0-0.692-0.089-1.011-0.275c-5.226-3.068-11.58-3.719-15.99-3.725 c-0.021,0-0.042,0-0.063,0c-5.333,0-9.44,0.938-9.481,0.948c-1.078,0.247-2.151-0.419-2.401-1.495 c-0.25-1.075,0.417-2.149,1.492-2.4C11.729,16.01,16.117,15,21.934,15c0.023,0,0.046,0,0.069,0 c4.905,0.007,12.011,0.753,18.01,4.275C40.965,19.835,41.284,21.061,40.725,22.013z"></path>
-						</svg>
-					</m.div>
-				)}
-				{!expanded && (
-					<m.div
-						key={"bars"}
-						layout
-						className={cn(
-							"absolute w-fit h-5 flex justify-between gap-0.5 bottom-3 left-3",
-						)}
-						animate={{
-							rotate: "180deg",
-							transition: { duration: 0 },
-						}}
-					>
-						{levels.map((level, index) => (
-							<m.div
-								key={index}
-								className="w-[3px] bg-white rounded-sm"
-								initial={{ height: "20%" }}
-								animate={{ height: `${level * 100}%` }}
-								transition={{ type: "spring", stiffness: 300, damping: 20 }}
-							/>
-						))}
-					</m.div>
-				)}
-
-				{expanded && (
-					<m.button
-						onClick={toggleExpanded}
-						className="absolute top-2 right-2 p-1 bg-black/40 backdrop-blur text-white rounded-full hover:cursor-pointer z-10"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							className="size-3"
-						>
-							<path d="M18 6 6 18" />
-							<path d="m6 6 12 12" />
-						</svg>
-					</m.button>
-				)}
-
-				{expanded && (
-					<m.div
-						key={"controls"}
-						style={{
-							gridColumn: "1/-1",
-							gridRow: "1/-1",
-							maskImage:
-								"linear-gradient(to bottom, transparent 50%, black 75%)",
-						}}
-						initial={{ y: 40 }}
-						animate={{ y: 0 }}
-						className="flex h-full flex-col justify-self-start place-content-end text-white px-3 py-2 w-full backdrop-blur-2xl backdrop-brightness-90"
-					>
-						<div className="flex justify-between items-center">
-							<div>
-								<p className="text-xs font-semibold">
-									this is what slow dancing feels like
-								</p>
-								<p className="text-[0.6rem] font-semibold text-neutral-300 text-start">
-									JVKE
-								</p>
-							</div>
-							<button
-								aria-label="pause"
-								className="size-7 bg-white text-black grid place-content-center rounded-full"
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 320 512"
-									className="size-3"
-								>
-									<path
-										fill="#222"
-										d="M48 64C21.5 64 0 85.5 0 112L0 400c0 26.5 21.5 48 48 48l32 0c26.5 0 48-21.5 48-48l0-288c0-26.5-21.5-48-48-48L48 64zm192 0c-26.5 0-48 21.5-48 48l0 288c0 26.5 21.5 48 48 48l32 0c26.5 0 48-21.5 48-48l0-288c0-26.5-21.5-48-48-48l-32 0z"
-									/>
-								</svg>
-							</button>
-						</div>
-					</m.div>
-				)}
-			</AnimatePresence>
+		<m.div className="w-40 aspect-square bg-[#1a1d1c] text-white grid justify-center items-end p-4">
+			<div className="flex items-center gap-2">
+				<p>P</p>
+				<p className="text-xs">slow dancing</p>
+				<img className="w-8" src={MusicCoverImage.src} alt={"Music Cover"} />
+			</div>
 		</m.div>
 	);
 }
@@ -414,7 +249,7 @@ function CalendarWidget() {
 	return (
 		<m.div
 			layout
-			className="w-40 aspect-square bg-zinc-200 rounded-xl flex justify-center items-center text-8xl font-serif"
+			className="w-40 aspect-square bg-[#1a1d1c] text-white rounded-xl flex justify-center items-center text-8xl font-serif"
 		>
 			{new Date().getDate()}
 		</m.div>
@@ -444,7 +279,7 @@ function GalleryWidget() {
 			ref={ref}
 			layout
 			className={cn(
-				"h-40 bg-zinc-200 rounded-xl p-2 flex",
+				"h-40 bg-[#1a1d1c] rounded-xl p-2 flex",
 				expanded ? "aspect-video" : "aspect-square",
 			)}
 		>
@@ -453,7 +288,7 @@ function GalleryWidget() {
 					src={images[imageIndex]}
 					className="object-cover w-full h-full rounded-lg"
 					onClick={() => setExpanded(false)}
-					alt="image lel"
+					alt="image"
 					layoutId={imageIndex.toString()}
 				/>
 			) : (
@@ -467,10 +302,12 @@ function GalleryWidget() {
 							key={index}
 						>
 							<m.img
+								style={{ zIndex: imageIndex === index ? 1 : 0 }}
 								layoutId={index.toString()}
-								className="object-cover w-full h-full rounded-lg"
+								className="object-cover w-full h-full rounded-lg relative"
 								src={image}
 								alt="image lel"
+								draggable={false}
 							/>
 						</button>
 					))}
