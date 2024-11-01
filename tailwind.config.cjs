@@ -7,11 +7,8 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
-				serif: [
-					"Bricolage Grotesque Variable",
-					...defaultTheme.fontFamily.serif,
-				],
+				sans: ["Gabarito Variable", ...defaultTheme.fontFamily.sans],
+				header: ["Montserrat Variable", ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},

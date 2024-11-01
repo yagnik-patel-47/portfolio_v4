@@ -109,9 +109,9 @@ export default function DynamicSliderWidget() {
 											drag="x"
 											dragConstraints={{ right: 0, left: 0 }}
 											onDragEnd={(_e, { offset }) => {
-												if (offset.x < -80) {
+												if (offset.x < -50) {
 													handleNext();
-												} else if (offset.x > 80) {
+												} else if (offset.x > 50) {
 													handlePrevious();
 												}
 											}}
@@ -249,9 +249,18 @@ function CalendarWidget() {
 	return (
 		<m.div
 			layout
-			className="w-40 aspect-square bg-[#1a1d1c] text-white rounded-xl flex justify-center items-center text-8xl font-serif"
+			className="w-40 aspect-square text-white rounded-xl overflow-hidden flex flex-col justify-between p-4  bg-no-repeat bg-center bg-cover relative"
+			style={{ backgroundImage: "url(widget_gradient_bg.svg)" }}
 		>
-			{new Date().getDate()}
+			<div className="absolute inset-0 bg-black/15"></div>
+			<p className="text-3xl space-x-2 font-medium z-[1]">
+				<span>{new Date().toLocaleString("default", { month: "short" })}</span>
+				<span>{new Date().getDate()}</span>
+			</p>
+			<div className="z-[1]">
+				<p>{new Date().toLocaleString("default", { weekday: "long" })}</p>
+				<p>4 Events</p>
+			</div>
 		</m.div>
 	);
 }

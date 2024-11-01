@@ -1,254 +1,90 @@
 ---
-import RootLayout from '@/layouts/Root.astro'
 import Nav from '@/components/Nav.astro'
+import RootLayout from '@/layouts/Root.astro'
+import { projects } from '@/lib/projects-data'
+import { Image } from 'astro:assets'
+
+const images = projects.map((project) => {
+  return {
+    data: project.image,
+    title: project.name,
+  }
+})
 ---
 
-<RootLayout title="⭕">
+<RootLayout title="/yagnik">
   <Nav />
-  <section
-    id="hero"
-    class="relative px-8 md:px-20 lg:px-32 2xl:px-72 py-12 lg:py-40 overflow-hidden min-h-dvh flex flex-col justify-center items-center"
-  >
+  <main class="h-dvh py-28 md:py-40 container mx-auto px-4 lg:px-20">
+    <!-- <TextEffect
+      className="text-3xl md:text-4xl font-bold text-zinc-400 font-header"
+      per="word"
+      as="h3"
+      preset="slide"
+      client:load>Yagnik Patel</TextEffect
+    > -->
+    <h3 class="text-3xl md:text-4xl font-bold text-zinc-400 font-header">
+      Yagnik Patel
+    </h3>
+
     <p
-      id="intro"
-      class="text-xl md:text-2xl lg:font-medium z-10 relative w-fit mx-auto"
+      class="mt-6 text-xl md:text-3xl font-bold text-zinc-800 max-w-3xl text-balance overflow-hidden"
+      id="para"
     >
-      Hi <span class="animate-wavehand">👋</span>, I'm Yagnik Patel.
+      Hey there! I’m a second-year computer science student @KPGU with a passion
+      for building awesome, engaging web experiences. My days are filled with
+      coding, exploring new ideas, and a bit of a caffeine-fueled grind. Let’s
+      make something amazing together!
     </p>
-    <h1
-      class="text-5xl sm:text-6xl md:text-7xl leading-[1.25] md:leading-[1.1] 2xl:text-8xl font-light mt-4 lg:mt-8 tracking-tighter z-10 relative w-fit mx-auto text-center text-balance"
-    >
-      <span class="block headline h-fit overflow-hidden"
-        >I <span class="italic">develop</span></span
-      >
-      <span class="font-normal block headline h-fit overflow-hidden">
-        <span class="font-semibold">apps</span> and <span class="font-semibold"
-          >websites</span
-        ></span
-      >
-      <span class="font-normal block headline h-fit overflow-hidden"
-        >from scratch</span
-      >
-    </h1>
-    <a
-      id="about-link"
-      class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit z-10 relative mx-auto"
-      href="/about"
-    >
-      <span class="group-hover:italic">Wanna know more about me?</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="size-6 origin-left group-hover:scale-x-150 transition"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-      </svg>
-    </a>
     <div
-      class="absolute w-full h-dvh top-0 right-0 overflow-hidden flex flex-wrap z-0 max-md:opacity-40"
-      id="tiles-container"
-      data-active-palette="colorful"
+      class="mt-10 w-full overflow-hidden"
+      style={{
+        maskImage:
+          'linear-gradient(to right,transparent,#000 2.5% 97.5%,transparent)',
+      }}
+      id="slider"
     >
-      <div
-        class="tile h-[3rem] w-[3rem] inline-block border transition-colors duration-1000 hover:duration-0"
-      >
+      <div class="flex">
+        {
+          images.map((image) => (
+            <Image
+              class="w-80 slide relative"
+              src={image.data}
+              alt={image.title}
+            />
+          ))
+        }
       </div>
     </div>
-    <div
-      class="bg-white shadow-lg absolute top-0 right-0 my-3 mx-6 rounded-full overflow-hidden hidden lg:block ring-2 ring-black"
-    >
-      <div class="flex items-center">
-        <button
-          aria-label="Colorful Palette"
-          data-palette="colorful"
-          class="px-4 py-2 tiles-editor rounded-full"
-        >
-          <span class="sr-only">Colorful</span>
-          <div class="flex">
-            <div class="w-1.5 h-4 bg-teal-300"></div>
-            <div class="w-1.5 h-4 bg-indigo-300"></div>
-            <div class="w-1.5 h-4 bg-rose-300"></div>
-            <div class="w-1.5 h-4 bg-amber-300"></div>
-          </div>
-        </button>
-        <button
-          aria-label="Monochrome Palette"
-          data-palette="monochrome"
-          class="px-4 py-2 tiles-editor rounded-full"
-        >
-          <span class="sr-only">Monochrome</span>
-          <div class="flex">
-            <div class="w-1.5 h-4 bg-neutral-300"></div>
-            <div class="w-1.5 h-4 bg-neutral-500"></div>
-            <div class="w-1.5 h-4 bg-neutral-700"></div>
-            <div class="w-1.5 h-4 bg-neutral-900"></div>
-          </div>
-        </button>
-      </div>
-      <div
-        class="flex items-center absolute inset-0 bg-neutral-900 text-neutral-100 transition-all duration-[250ms] ease-[ease] pointer-events-none"
-        id="cliped-tabs"
-      >
-        <button
-          aria-label="Colorful Palette"
-          data-palette="colorful"
-          class="px-4 py-2 tiles-editor rounded-full"
-        >
-          <span class="sr-only">Colorful</span>
-          <div class="flex">
-            <div class="w-1.5 h-4 bg-teal-300"></div>
-            <div class="w-1.5 h-4 bg-indigo-300"></div>
-            <div class="w-1.5 h-4 bg-rose-300"></div>
-            <div class="w-1.5 h-4 bg-amber-300"></div>
-          </div>
-        </button>
-        <button
-          aria-label="Monochrome Palette"
-          data-palette="monochrome"
-          class="px-4 py-2 tiles-editor rounded-full"
-        >
-          <span class="sr-only">Monochrome</span>
-          <div class="flex">
-            <div class="w-1.5 h-4 bg-neutral-400"></div>
-            <div class="w-1.5 h-4 bg-neutral-500"></div>
-            <div class="w-1.5 h-4 bg-neutral-700"></div>
-            <div class="w-1.5 h-4 bg-neutral-800"></div>
-          </div>
-        </button>
-      </div>
-    </div>
-  </section>
+  </main>
 </RootLayout>
 
-<style>
-  #tiles-container {
-    mask-image: radial-gradient(black, transparent);
-    transform: rotateX(50deg) rotateY(-10deg) rotateZ(25deg) scale(1.5);
-    perspective: 2000px;
-    transform-style: preserve-3d;
-  }
-
-  #tiles-container:before {
-    content: '';
-    position: absolute;
-    inset: 0px;
-    pointer-events: none;
-    z-index: 2;
-    background-image: url(/hero-tiles-plus.svg);
-    background-size: 6rem;
-    background-position: -0.75rem -0.75rem;
-    opacity: 0.25;
-  }
-
-  #tiles-container[data-active-palette='colorful'] .tile {
-    --first-hex: #5eead4;
-    --second-hex: #a5b4fc;
-    --third-hex: #fda4af;
-    --fourth-hex: #fcd34d;
-  }
-
-  #tiles-container[data-active-palette='monochrome'] .tile {
-    --first-hex: #d4d4d4;
-    --second-hex: #737373;
-    --third-hex: #404040;
-    --fourth-hex: #262626;
-  }
-
-  .tile:nth-child(4n) {
-    --bg-color: var(--first-hex);
-  }
-  .tile:nth-child(4n + 1) {
-    --bg-color: var(--second-hex);
-  }
-  .tile:nth-child(4n + 2) {
-    --bg-color: var(--third-hex);
-  }
-  .tile:nth-child(4n + 3) {
-    --bg-color: var(--fourth-hex);
-  }
-
-  .tile:nth-child(7n) {
-    --bg-color: var(--fourth-hex);
-  }
-  .tile:nth-child(7n + 3) {
-    --bg-color: var(--third-hex);
-  }
-  .tile:nth-child(7n + 5) {
-    --bg-color: var(--second-hex);
-  }
-
-  .tile:nth-child(11n) {
-    --bg-color: var(--first-hex);
-  }
-  .tile:nth-child(11n + 4) {
-    --bg-color: var(--second-hex);
-  }
-  .tile:nth-child(11n + 7) {
-    --bg-color: var(--fourth-hex);
-  }
-
-  .tile:hover {
-    background-color: var(--bg-color);
-  }
-</style>
-
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const isSmallDevice = window.matchMedia('(max-width: 768px)').matches
+  import { animate } from 'motion'
 
-    const tilesContainer = document.getElementById('tiles-container')
-    const tile = document.querySelector('.tile')
+  const slider = document.querySelector('#slider') as HTMLDivElement
+  const slides = document.querySelectorAll(
+    '.slide',
+  ) as NodeListOf<HTMLImageElement>
 
-    for (let i = 0; isSmallDevice ? i < 149 : i < 899; ++i) {
-      tilesContainer.appendChild(tile.cloneNode())
-    }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, i) => {
+        console.log(entry.target.alt, entry.boundingClientRect)
 
-    if (isSmallDevice) previewTiles()
+        if (entry.intersectionRatio > 0 && entry.isIntersecting) {
+        }
+      })
+    },
+    { threshold: 0.9 },
+  )
 
-    function previewTiles() {
-      const tiles = document.querySelectorAll<HTMLDivElement>('.tile')
+  animate(
+    slides,
+    { x: -slider.offsetWidth },
+    { duration: 10, easing: 'linear' },
+  )
 
-      setInterval(() => {
-        Array.from([1, 2, 3, 4, 5]).forEach(() => {
-          const randomTile = tiles[Math.floor(Math.random() * tiles.length)]
-
-          randomTile.animate(
-            [
-              { backgroundColor: 'var(--bg-color)', offset: 0.5 },
-              { backgroundColor: 'var(--bg-color)', offset: 0.5 },
-            ],
-            {
-              easing: 'ease',
-              duration: 2000,
-            },
-          )
-        })
-      }, 500)
-    }
-
-    const tileEditorButtons =
-      document.querySelectorAll<HTMLButtonElement>('.tiles-editor')
-    const cliped = document.getElementById('cliped-tabs')
-
-    const clipLeft = tileEditorButtons[0].offsetLeft
-    const clipRight =
-      tileEditorButtons[0].offsetLeft + tileEditorButtons[0].offsetWidth
-    cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
-
-    tileEditorButtons.forEach((btn) =>
-      btn.addEventListener('click', () => {
-        const clipLeft = btn.offsetLeft
-        const clipRight = btn.offsetLeft + btn.offsetWidth
-        cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
-
-        tilesContainer.dataset.activePalette = btn.dataset.palette
-      }),
-    )
-  })
+  for (const slide of slides) {
+    observer.observe(slide)
+  }
 </script>

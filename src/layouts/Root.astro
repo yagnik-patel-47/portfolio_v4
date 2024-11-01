@@ -3,7 +3,10 @@ interface Props {
   title: string
 }
 const { title } = Astro.props
-import '@fontsource-variable/inter'
+import 'splitting/dist/splitting.css'
+import 'splitting/dist/splitting-cells.css'
+import '@fontsource-variable/gabarito'
+import '@fontsource-variable/montserrat'
 import { ViewTransitions } from 'astro:transitions'
 import SpeedInsights from '@vercel/speed-insights/astro'
 ---
@@ -18,7 +21,7 @@ import SpeedInsights from '@vercel/speed-insights/astro'
       name="description"
       content="A personal portfolio website of Yagnik Patel."
     />
-    <title>{title} - Yagnik Patel</title>
+    <title>{title}</title>
     <ViewTransitions />
     <SpeedInsights />
   </head>

@@ -5,7 +5,7 @@ import profileImage from '@/assets/profile.webp'
 import { Image } from 'astro:assets'
 ---
 
-<RootLayout title="About">
+<RootLayout title="~/about">
   <Nav />
   <main class="px-8 md:px-20 lg:px-32 2xl:px-72 py-12 lg:py-20 !pb-32 mt-10">
     <div class="grid xl:grid-cols-2 items-center gap-8">
@@ -16,7 +16,7 @@ import { Image } from 'astro:assets'
         loading="eager"
       />
       <div>
-        <h1 class="text-2xl lg:text-3xl font-bold">
+        <h1 class="text-2xl lg:text-3xl font-bold font-header">
           A little story about myself
         </h1>
         <p class="mt-4 lg:mt-8 lg:text-lg max-w-[65ch]">
@@ -86,7 +86,9 @@ import { Image } from 'astro:assets'
       <div
         class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md gap-6"
       >
-        <h4 class="text-2xl lg:text-3xl">My services</h4>
+        <h4 class="text-2xl lg:text-3xl font-header font-medium">
+          My services
+        </h4>
         <button
           id="randomColor"
           class="px-8 py-4 text-sm bg-black text-white h-fit w-fit rounded-full font-light tracking-wide"
@@ -99,7 +101,7 @@ import { Image } from 'astro:assets'
         <span class="max-sm:text-sm"
           >Code | UX | Animations | Responsive UI | Modern Pratices & Frameworks</span
         >
-        <h5 class="text-2xl">Web Frontend</h5>
+        <h5 class="text-xl font-header font-semibold">Web Frontend</h5>
       </div>
       <div
         class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card gap-6"
@@ -107,29 +109,31 @@ import { Image } from 'astro:assets'
         <span class="max-sm:text-sm"
           >Code | Architecture | Design Pattern | Rapid MVP Development</span
         >
-        <h5 class="text-2xl">Web Fullstack</h5>
+        <h5 class="text-xl font-header font-semibold">Web Fullstack</h5>
       </div>
       <div
         class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card max-lg:hidden"
       >
         <span class="max-sm:text-sm">To make randomize more lively</span>
-        <h5 class="text-2xl">Placeholder</h5>
+        <h5 class="text-xl font-header font-semibold">Placeholder</h5>
       </div>
       <div
         class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card max-lg:hidden"
       >
         <span class="max-sm:text-sm">To make randomize more lively</span>
-        <h5 class="text-2xl">Placeholder</h5>
+        <h5 class="text-xl font-header font-semibold">Placeholder</h5>
       </div>
       <div
         class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card max-lg:hidden"
       >
         <span class="max-sm:text-sm">To make randomize more lively</span>
-        <h5 class="text-2xl">Placeholder</h5>
+        <h5 class="text-xl font-header font-semibold">Placeholder</h5>
       </div>
     </div>
     <div class="flex gap-2 items-center mt-20 flex-wrap">
-      <h1 class="text-2xl lg:text-3xl font-bold">My prefered stacks</h1>
+      <h1 class="text-2xl lg:text-3xl font-bold font-header">
+        My prefered stacks
+      </h1>
       <p>
         (* I have experience with other technologies too, but I like working
         with these tech stacks. *)

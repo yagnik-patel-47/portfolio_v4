@@ -11,8 +11,8 @@ const links = [
     path: '/about',
   },
   {
-    name: 'Codebits',
-    path: '/codebits',
+    name: 'UI Bits',
+    path: '/uibits',
   },
 ]
 
@@ -48,7 +48,12 @@ const socials = [
 <div
   transition:persist
   id="floatingBarContainer"
-  class="group fixed !inset-x-4 max-md:inset-x-0 md:max-w-2xl border-2 border-neutral-800 md:!left-1/2 md:!-translate-x-1/2 bottom-4 overflow-hidden z-20 rounded-xl bg-zinc-950"
+  class="group fixed !inset-x-4 max-md:inset-x-auto md:max-w-2xl md:w-full md:!left-1/2 md:!-translate-x-1/2 bottom-4 overflow-hidden z-20 bg-zinc-950 text-neutral-200"
+  style={{
+    clipPath: 'inset(0 round 40px)',
+    touchAction: 'none',
+  }}
+  data-state="closed"
 >
   <div id="nav-content" class="overflow-hidden h-0 text-neutral-200">
     <nav class="grid grid-cols-1 py-4">
@@ -56,7 +61,7 @@ const socials = [
         links.map((work, index) => (
           <a
             href={work.path}
-            class="text-2xl lg:text-3xl block font-semibold px-8 py-4 hover:text-white md:pl-12 hover:bg-neutral-800 transition nav-links"
+            class="text-3xl lg:text-4xl block font-semibold px-8 py-4 hover:text-white md:pl-12 hover:bg-neutral-800 transition nav-links"
           >
             {work.name}{' '}
             <span class="text-sm md:text-base lg:text-lg font-medium text-neutral-400">
@@ -80,7 +85,11 @@ const socials = [
               class="flex items-center gap-1 group/link"
               href={social.href}
             >
-              <Icon class="size-4 md:size-5" name={social.icon} />
+              <Icon
+                title={`${social.label} Handle`}
+                class="size-4 md:size-5"
+                name={social.icon}
+              />
             </a>
           ))
         }
@@ -93,35 +102,26 @@ const socials = [
     </div>
   </div>
   <div
-    class="flex justify-between items-center px-8 md:px-12 py-4 motion-reduce:transition-none"
+    class="flex justify-between items-center px-8 md:px-12 py-2 motion-reduce:transition-none gap-8"
   >
+    <a class="text-xl flex items-center space-x-2 py-2 xl:hidden" href="/">
+      <Icon class="size-6" name="terminal" />
+      <span>/yagnik</span>
+    </a>
     <a
-      class="text-xl flex items-center space-x-2 font-semibold text-neutral-100"
+      id="home-link"
+      class="text-xl flex items-center space-x-2 flex-1 py-2 max-xl:hidden"
       href="/"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-terminal"
-        ><polyline points="4 17 10 11 4 5"></polyline><line
-          x1="12"
-          x2="20"
-          y1="19"
-          y2="19"></line></svg
-      >
-      <span>yagnik.dev</span>
+      <Icon class="size-6" name="terminal" />
+      <span class="hidden" id="cd-span">cd</span>
+      <span>~</span>
+      <span class="inline-block" id="route"></span>
     </a>
     <div class="flex space-x-8 items-center">
       <a
         href="mailto:yagnik47.dev@gmail.com"
-        class="block bg-neutral-800 text-neutral-100 text-sm px-4 py-2 rounded-full max-md:hidden"
+        class="block bg-neutral-800 text-neutral-100 text-sm font-light px-4 py-2 rounded-full max-md:hidden"
         >Contact me</a
       >
       <button id="ham-btn" class="size-6 text-neutral-100" aria-label="Menu">
@@ -143,7 +143,7 @@ const socials = [
 </div>
 
 <script>
-  import { animate } from 'motion'
+  import { animate, timeline } from 'motion'
   const navCollapseSection = document.getElementById('nav-content')!
   let navContentHeight = navCollapseSection?.scrollHeight ?? 0
   const hamBtn = document.getElementById('ham-btn')!
@@ -151,6 +151,31 @@ const socials = [
   const navLinks = document.querySelectorAll(
     '.nav-links',
   ) as NodeListOf<HTMLAnchorElement>
+  const routeSpan = document.getElementById('route')!
+  const cdSpan = document.getElementById('cd-span')!
+  const homeLink = document.getElementById('home-link')!
+  let currentRoute = window.location.pathname
+
+  if (window.location.pathname !== '/')
+    routeSpan.textContent = window.location.pathname
+
+  document.addEventListener('astro:after-swap', () => {
+    if (window.location.pathname !== '/')
+      routeSpan.textContent = window.location.pathname
+    else routeSpan.textContent = ''
+    currentRoute = window.location.pathname
+  })
+
+  homeLink.addEventListener('mouseenter', () => {
+    if (currentRoute === '/') return
+    cdSpan.style.display = 'inline-block'
+    routeSpan.style.opacity = '0'
+  })
+
+  homeLink.addEventListener('mouseleave', () => {
+    cdSpan.style.display = 'none'
+    routeSpan.style.opacity = '1'
+  })
 
   const prefersReducedMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)',
@@ -191,6 +216,63 @@ const socials = [
     })
   })
 
+  let touchData = {
+    initialX: null,
+    initialY: null,
+    y: null,
+    x: null,
+  }
+
+  floatingBarContainer.addEventListener('touchstart', (e) => {
+    touchData = {
+      initialX: e.touches[0].clientX,
+      initialY: e.touches[0].clientY,
+      y: null,
+      x: null,
+    }
+  })
+  floatingBarContainer.addEventListener('touchmove', (e) => {
+    e.preventDefault()
+    touchData = {
+      ...touchData,
+      y: e.touches[0].clientY,
+      x: e.touches[0].clientX,
+    }
+  })
+  floatingBarContainer.addEventListener('touchend', (e) => {
+    touchData = {
+      ...touchData,
+      y: e.changedTouches[0].clientY,
+    }
+    if (floatingBarContainer.dataset.state === 'open') {
+      isDiffGt(touchData.y, touchData.initialY, 100, 'positive')
+        ? setCloseState(prefersReducedMotion)
+        : setOpenState(prefersReducedMotion)
+    } else {
+      isDiffGt(touchData.y, touchData.initialY, -50, 'negetive')
+        ? setOpenState(prefersReducedMotion)
+        : setCloseState(prefersReducedMotion)
+    }
+  })
+
+  function isDiffGt(
+    num1: number,
+    num2: number,
+    threshold: number,
+    sign?: 'positive' | 'negetive',
+  ) {
+    if (sign === 'positive') {
+      return num1 - num2 >= threshold
+    }
+
+    if (sign === 'negetive') {
+      return num1 - num2 <= threshold
+    }
+
+    const difference = Math.abs(num1 - num2)
+    return difference >= threshold
+  }
+
   function setOpenState(reducedMotion: boolean) {
     if (
       floatingBarContainer.clientHeight + navContentHeight <
@@ -199,23 +281,41 @@ const socials = [
       document.body.style.overflow = 'hidden'
     else floatingBarContainer.style.overflow = 'auto'
     floatingBarContainer.setAttribute('data-state', 'open')
-    animate(
-      navCollapseSection,
-      {
-        height: `${navContentHeight}px`,
-      },
-      { duration: reducedMotion ? 0 : 0.3 },
-    )
+    timeline([
+      [
+        floatingBarContainer,
+        { clipPath: 'inset(0 round 24px)' },
+        { duration: reducedMotion ? 0 : 0.2 },
+      ],
+      [
+        navCollapseSection,
+        {
+          height: `${navContentHeight}px`,
+        },
+        { duration: reducedMotion ? 0 : 0.2, at: 0.05 },
+      ],
+    ])
   }
   async function setCloseState(reducedMotion: boolean, animation = true) {
     floatingBarContainer.setAttribute('data-state', 'closed')
-    const navClosed = animate(
-      navCollapseSection,
-      {
-        height: 0,
-      },
-      { duration: reducedMotion || !animation ? 0 : 0.3 },
-    )
+    const navClosed = timeline([
+      [
+        floatingBarContainer,
+        { clipPath: 'inset(0 round 40px' },
+        { duration: reducedMotion ? 0 : 0.2 },
+      ],
+      [
+        navCollapseSection,
+        {
+          height: 0,
+        },
+        {
+          duration: reducedMotion || !animation ? 0 : 0.2,
+          at: 0,
+          easing: [0.76, 0, 0.24, 1],
+        },
+      ],
+    ])
 
     await navClosed.finished
     document.body.style.overflow = 'visible'
