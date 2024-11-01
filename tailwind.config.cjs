@@ -7,7 +7,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ["Gabarito Variable", ...defaultTheme.fontFamily.sans],
+				sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
 				header: ["Montserrat Variable", ...defaultTheme.fontFamily.sans],
 			},
 		},

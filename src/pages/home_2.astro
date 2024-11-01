@@ -1,6 +1,7 @@
 ---
 import RootLayout from '@/layouts/Root.astro'
 import Nav from '@/components/Nav.astro'
+import { Icon } from 'astro-icon/components'
 ---
 
 <RootLayout title="⭕">
@@ -36,19 +37,10 @@ import Nav from '@/components/Nav.astro'
       href="/about"
     >
       <span class="group-hover:italic">Wanna know more about me?</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="size-6 origin-left group-hover:scale-x-150 transition"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-      </svg>
+      <Icon
+        class="w-6 h-6 origin-left group-hover:scale-x-150 transition"
+        name="move-right"
+      />
     </a>
     <div
       class="absolute w-full h-dvh top-0 right-0 overflow-hidden flex flex-wrap z-0 max-md:opacity-40"

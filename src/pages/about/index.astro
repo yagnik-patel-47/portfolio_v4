@@ -3,6 +3,7 @@ import RootLayout from '@/layouts/Root.astro'
 import Nav from '@/components/Nav.astro'
 import profileImage from '@/assets/profile.webp'
 import { Image } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
 ---
 
 <RootLayout title="~/about">
@@ -44,38 +45,20 @@ import { Image } from 'astro:assets'
             href="/projects"
           >
             <span class="group-hover:italic">Projects</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
+            <Icon
               class="w-6 h-6 origin-left group-hover:scale-x-150 transition"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-            </svg>
+              name="move-right"
+            />
           </a>
           <a
             class="flex space-x-2 items-center group text-neutral-800 hover:underline underline-offset-4 lg:text-lg font-medium rounded-lg mt-6 w-fit"
             href="/codebits"
           >
             <span class="group-hover:italic">Codebits</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
+            <Icon
               class="w-6 h-6 origin-left group-hover:scale-x-150 transition"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-            </svg>
+              name="move-right"
+            />
           </a>
         </div>
       </div>

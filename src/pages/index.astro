@@ -3,13 +3,7 @@ import Nav from '@/components/Nav.astro'
 import RootLayout from '@/layouts/Root.astro'
 import { projects } from '@/lib/projects-data'
 import { Image } from 'astro:assets'
-
-const images = projects.map((project) => {
-  return {
-    data: project.image,
-    title: project.name,
-  }
-})
+import { skillIcons } from '@/lib/icons-map'
 ---
 
 <RootLayout title="/yagnik">
@@ -27,7 +21,7 @@ const images = projects.map((project) => {
     </h3>
 
     <p
-      class="mt-6 text-xl md:text-3xl font-bold text-zinc-800 max-w-3xl text-balance overflow-hidden"
+      class="mt-6 text-xl md:text-3xl font-bold text-zinc-800 max-w-3xl overflow-hidden"
       id="para"
     >
       Hey there! I’m a second-year computer science student @KPGU with a passion
@@ -36,55 +30,101 @@ const images = projects.map((project) => {
       make something amazing together!
     </p>
     <div
-      class="mt-10 w-full overflow-hidden"
       style={{
         maskImage:
-          'linear-gradient(to right,transparent,#000 2.5% 97.5%,transparent)',
+          'linear-gradient(to right,transparent,#000 5% 95%,transparent)',
       }}
+      class="mt-10 w-full overflow-hidden"
       id="slider"
     >
-      <div class="flex">
+      <div id="slider-list" class="flex">
         {
-          images.map((image) => (
+          projects.map((project) => (
             <Image
-              class="w-80 slide relative"
-              src={image.data}
-              alt={image.title}
+              class="w-60 md:w-80 slide object-cover"
+              src={project.image}
+              alt={project.name}
+              loading="eager"
+              data-tech={project.tech.join('_')}
             />
           ))
         }
       </div>
     </div>
+    <img
+      id="tech_img"
+      class="h-12 w-auto opacity-0 scale-0 hidden fixed p-2 bg-white rounded-xl pointer-events-none transition duration-300"
+      src={skillIcons['React'].src}
+      alt="tech_icon"
+    />
   </main>
 </RootLayout>
 
 <script>
-  import { animate } from 'motion'
+  import { skillIcons } from '@/lib/icons-map'
 
-  const slider = document.querySelector('#slider') as HTMLDivElement
-  const slides = document.querySelectorAll(
-    '.slide',
-  ) as NodeListOf<HTMLImageElement>
+  function setupCode() {
+    const slider = document.querySelector('#slider') as HTMLDivElement
+    const sliderList = document.querySelector('#slider-list') as HTMLDivElement
+    const slides = document.querySelectorAll(
+      '.slide',
+    ) as NodeListOf<HTMLImageElement>
+    const techImg = document.querySelector('#tech_img') as HTMLImageElement
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, i) => {
-        console.log(entry.target.alt, entry.boundingClientRect)
+    slides.forEach((slide) => {
+      const clone = slide.cloneNode(true)
+      sliderList.appendChild(clone)
+    })
 
-        if (entry.intersectionRatio > 0 && entry.isIntersecting) {
-        }
+    const slideWidth = slides[0].offsetWidth
+    const totalSlides = slides.length * 2
+    const totalWidth = slideWidth * totalSlides
+
+    let position = 0
+    let speed = 2
+
+    function animateSlider() {
+      position -= speed
+      if (Math.abs(position) >= totalWidth / 2) {
+        position = 0
+      }
+      sliderList.style.transform = `translateX(${position}px)`
+      requestAnimationFrame(animateSlider)
+    }
+
+    sliderList.style.width = `${totalWidth}px`
+
+    animateSlider()
+
+    let intervalId: NodeJS.Timeout
+
+    for (const slide of slides) {
+      slide.addEventListener('mouseenter', () => {
+        speed = 1
+        techImg.style.display = 'block'
+        techImg.style.opacity = '1'
+        techImg.style.transform = 'scale(1)'
+        let index = 0
+        const tech = slide.dataset.tech.split('_')
+        intervalId = setInterval(() => {
+          techImg.src = skillIcons[tech[index]].src
+          index = (index + 1) % tech.length
+        }, 300)
       })
-    },
-    { threshold: 0.9 },
-  )
-
-  animate(
-    slides,
-    { x: -slider.offsetWidth },
-    { duration: 10, easing: 'linear' },
-  )
-
-  for (const slide of slides) {
-    observer.observe(slide)
+      slide.addEventListener('mousemove', (e) => {
+        techImg.style.left = `${e.clientX}px`
+        techImg.style.top = `${e.clientY - 48}px`
+      })
+      slide.addEventListener('mouseout', () => {
+        speed = 2
+        techImg.style.opacity = '0'
+        techImg.style.transform = 'scale(0)'
+        if (intervalId) clearInterval(intervalId)
+      })
+    }
   }
+  document.addEventListener('astro:after-swap', () => {
+    setupCode()
+  })
+  setupCode()
 </script>

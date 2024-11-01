@@ -20,12 +20,12 @@ const socials = [
   {
     label: 'Twitter',
     href: 'https://x.com/yagnik_pt',
-    icon: 'x_dark',
+    icon: 'x',
   },
   {
     label: 'Github',
     href: 'https://github.com/yagnik-patel-47',
-    icon: 'github-dark',
+    icon: 'github',
   },
   {
     label: 'Hashnode',
@@ -40,7 +40,7 @@ const socials = [
   {
     label: 'Instagram',
     href: 'https://instagram.com/yagnik._._.patel',
-    icon: 'instagram_dark',
+    icon: 'instagram',
   },
 ]
 ---
@@ -88,7 +88,7 @@ const socials = [
               <Icon
                 title={`${social.label} Handle`}
                 class="size-4 md:size-5"
-                name={social.icon}
+                name={`social/${social.icon}`}
               />
             </a>
           ))
@@ -121,7 +121,7 @@ const socials = [
     <div class="flex space-x-8 items-center">
       <a
         href="mailto:yagnik47.dev@gmail.com"
-        class="block bg-neutral-800 text-neutral-100 text-sm font-light px-4 py-2 rounded-full max-md:hidden"
+        class="block bg-neutral-800 text-neutral-100 text-sm px-4 py-2 rounded-full max-md:hidden"
         >Contact me</a
       >
       <button id="ham-btn" class="size-6 text-neutral-100" aria-label="Menu">
@@ -143,7 +143,7 @@ const socials = [
 </div>
 
 <script>
-  import { animate, timeline } from 'motion'
+  import { timeline } from 'motion'
   const navCollapseSection = document.getElementById('nav-content')!
   let navContentHeight = navCollapseSection?.scrollHeight ?? 0
   const hamBtn = document.getElementById('ham-btn')!

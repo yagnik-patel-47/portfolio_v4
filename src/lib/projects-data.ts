@@ -14,7 +14,7 @@ export const projects = [
 		discription:
 			"A typical e-commerce app BUT integrates Stripe into the app admin panel. Built using Svelte 5 and TailwindCSS, resulting in a stunning and minimalistic UI.",
 		image: KeyboardShopImage,
-		tech: ["Sveltekit", "Drizzle", "Stripe"],
+		tech: ["Svelte", "Drizzle", "Stripe"],
 		links: {
 			site: "https://keyboard-ecommerce-one.vercel.app",
 			repo: "https://github.com/yagnik-patel-47/keyboard-ecommerce",
@@ -37,7 +37,7 @@ export const projects = [
 		discription:
 			"A multiplayer online game developed using Deno KV and Socket.IO",
 		image: RPSImage,
-		tech: ["Deno", "Socket.io", "SvelteKit"],
+		tech: ["Deno", "Socket.io", "Svelte"],
 		links: {
 			site: "https://pvp-rps.vercel.app",
 			repo: "https://github.com/yagnik-patel-47/pvp-rps-server",
@@ -70,7 +70,7 @@ export const projects = [
 		name: "Japanese Art",
 		discription: "A static page website with awesome animations.",
 		image: JpDisplayImage,
-		tech: ["Astro", "GSAP", "TailWind CSS"],
+		tech: ["Astro", "GSAP", "TailwindCSS"],
 		links: {
 			site: "https://jp-display.vercel.app",
 			repo: "https://github.com/yagnik-patel-47/jp_display",
@@ -82,7 +82,7 @@ export const projects = [
 		discription:
 			"A landing page for real estate ecommerce website with somewhat good design.",
 		image: LegoImage,
-		tech: ["Nextjs", "TailWind CSS"],
+		tech: ["Nextjs", "TailwindCSS"],
 		links: {
 			site: "https://lego-one.vercel.app",
 			repo: "https://github.com/yagnik-patel-47/lego",
@@ -95,7 +95,7 @@ export const projects = [
 		discription:
 			"A manga reader app where you'll find whatever manga you wanna read.",
 		image: MangaReaderImage,
-		tech: ["SvelteKit", "TailWind CSS"],
+		tech: ["Svelte", "TailwindCSS"],
 		links: {
 			site: "https://mangasss.vercel.app",
 		},
@@ -115,7 +115,6 @@ export const projects = [
 	},
 ];
 
-export const featuredProjects = [projects[0], projects[1]];
 export const realWorldProjects = projects.filter(
 	(project) => project.category === "real-world",
 );
