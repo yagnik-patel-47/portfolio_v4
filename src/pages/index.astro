@@ -9,13 +9,6 @@ import { skillIcons } from '@/lib/icons-map'
 <RootLayout title="/yagnik">
   <Nav />
   <main class="h-dvh py-28 md:py-40 container mx-auto px-4 lg:px-20">
-    <!-- <TextEffect
-      className="text-3xl md:text-4xl font-bold text-zinc-400 font-header"
-      per="word"
-      as="h3"
-      preset="slide"
-      client:load>Yagnik Patel</TextEffect
-    > -->
     <h3 class="text-3xl md:text-4xl font-bold text-zinc-400 font-header">
       Yagnik Patel
     </h3>
@@ -53,7 +46,7 @@ import { skillIcons } from '@/lib/icons-map'
     </div>
     <img
       id="tech_img"
-      class="h-12 w-auto opacity-0 scale-0 hidden fixed p-2 bg-white rounded-xl pointer-events-none transition duration-300"
+      class="size-14 object-contain opacity-0 scale-0 hidden fixed p-2 bg-white rounded-xl pointer-events-none transition duration-300"
       src={skillIcons['React'].src}
       alt="tech_icon"
     />
@@ -64,18 +57,17 @@ import { skillIcons } from '@/lib/icons-map'
   import { skillIcons } from '@/lib/icons-map'
 
   function setupCode() {
-    const slider = document.querySelector('#slider') as HTMLDivElement
     const sliderList = document.querySelector('#slider-list') as HTMLDivElement
-    const slides = document.querySelectorAll(
-      '.slide',
-    ) as NodeListOf<HTMLImageElement>
     const techImg = document.querySelector('#tech_img') as HTMLImageElement
 
-    slides.forEach((slide) => {
+    document.querySelectorAll('.slide').forEach((slide) => {
       const clone = slide.cloneNode(true)
       sliderList.appendChild(clone)
     })
 
+    const slides = document.querySelectorAll(
+      '.slide',
+    ) as NodeListOf<HTMLImageElement>
     const slideWidth = slides[0].offsetWidth
     const totalSlides = slides.length * 2
     const totalWidth = slideWidth * totalSlides
@@ -109,7 +101,7 @@ import { skillIcons } from '@/lib/icons-map'
         intervalId = setInterval(() => {
           techImg.src = skillIcons[tech[index]].src
           index = (index + 1) % tech.length
-        }, 300)
+        }, 500)
       })
       slide.addEventListener('mousemove', (e) => {
         techImg.style.left = `${e.clientX}px`

@@ -13,11 +13,8 @@
     "@astrojs/react": "^3.6.2",
     "@astrojs/tailwind": "^5.1.2",
     "@astrojs/vercel": "^7.8.2",
-    "@fontsource-variable/figtree": "^5.1.1",
-    "@fontsource-variable/gabarito": "^5.1.0",
     "@fontsource-variable/inter": "^5.1.0",
     "@fontsource-variable/montserrat": "^5.1.0",
-    "@fontsource-variable/tilt-warp": "^5.1.0",
     "@radix-ui/react-slider": "^1.2.1",
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@types/react": "^18.3.12",
@@ -26,18 +23,15 @@
     "astro": "^4.16.7",
     "astro-icon": "^1.1.1",
     "clsx": "^2.1.1",
-    "embla-carousel-react": "^8.3.1",
     "framer-motion": "^11.11.10",
     "motion": "^10.18.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "splitting": "^1.1.0",
     "tailwind-merge": "^2.5.4",
     "tailwindcss": "^3.4.14",
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
-    "@types/splitting": "^1.0.6",
     "sharp": "^0.33.5"
   }
 }
