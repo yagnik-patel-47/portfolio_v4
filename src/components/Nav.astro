@@ -114,9 +114,13 @@ const socials = [
       href="/"
     >
       <Icon class="size-6" name="terminal" />
-      <span class="hidden" id="cd-span">cd</span>
+      <span
+        class="inline-block overflow-hidden opacity-0 whitespace-nowrap"
+        id="cd-span">cd</span
+      >
       <span>~</span>
-      <span class="inline-block" id="route"></span>
+      <span class="inline-block whitespace-nowrap overflow-hidden" id="route"
+      ></span>
     </a>
     <div class="flex space-x-8 items-center">
       <a
@@ -143,7 +147,7 @@ const socials = [
 </div>
 
 <script>
-  import { timeline } from 'motion'
+  import { animate, timeline } from 'motion'
   const navCollapseSection = document.getElementById('nav-content')!
   let navContentHeight = navCollapseSection?.scrollHeight ?? 0
   const hamBtn = document.getElementById('ham-btn')!
@@ -155,6 +159,9 @@ const socials = [
   const cdSpan = document.getElementById('cd-span')!
   const homeLink = document.getElementById('home-link')!
   let currentRoute = window.location.pathname
+
+  let cdSpanWidth = cdSpan?.getBoundingClientRect().width ?? 0
+  cdSpan.style.width = '0'
 
   if (window.location.pathname !== '/')
     routeSpan.textContent = window.location.pathname
@@ -168,13 +175,17 @@ const socials = [
 
   homeLink.addEventListener('mouseenter', () => {
     if (currentRoute === '/') return
-    cdSpan.style.display = 'inline-block'
-    routeSpan.style.opacity = '0'
+    animate(
+      cdSpan,
+      { width: cdSpanWidth + 'px', opacity: 1 },
+      { duration: 0.15 },
+    )
+    animate(routeSpan, { opacity: 0 }, { duration: 0.15 })
   })
 
   homeLink.addEventListener('mouseleave', () => {
-    cdSpan.style.display = 'none'
-    routeSpan.style.opacity = '1'
+    animate(cdSpan, { width: 0, opacity: 0 }, { duration: 0.15 })
+    animate(routeSpan, { opacity: 1 }, { duration: 0.15 })
   })
 
   const prefersReducedMotion = window.matchMedia(
@@ -301,7 +312,7 @@ const socials = [
     const navClosed = timeline([
       [
         floatingBarContainer,
-        { clipPath: 'inset(0 round 40px' },
+        { clipPath: 'inset(0 round 40px)' },
         { duration: reducedMotion ? 0 : 0.2 },
       ],
       [

@@ -1,5 +1,4 @@
-import MusicCoverImage from "@/assets/codebits/widget/music.webp";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	AnimatePresence,
 	LayoutGroup,
@@ -9,30 +8,21 @@ import {
 	useMotionValue,
 	useTransform,
 } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { useOnClickOutside } from "usehooks-ts";
 import { flushSync } from "react-dom";
+import StarryKeyboardImage from "@/assets/codebits/widget/starry_keyboard.webp";
 
 const widgets = [
 	{
-		name: "Music",
-		jsx: MusicWidget,
-		expandable: true,
+		name: "Charging",
+		jsx: ChargingWidget,
 	},
 	{
 		name: "Clock",
 		jsx: ClockWidget,
-		expandable: false,
 	},
 	{
-		name: "Calendar",
-		jsx: CalendarWidget,
-		expandable: false,
-	},
-	{
-		name: "Gallery",
-		jsx: GalleryWidget,
-		expandable: true,
+		name: "Image",
+		jsx: ImageWidget,
 	},
 ];
 
@@ -91,7 +81,7 @@ export default function DynamicSliderWidget() {
 		>
 			<m.div layout className="flex items-center gap-6">
 				<LayoutGroup>
-					<m.div className="relative overflow-hidden bg-zinc-200 p-3 rounded-2xl">
+					<m.div className="relative overflow-hidden bg-zinc-200 p-3 rounded-3xl">
 						<AnimatePresence mode="popLayout" initial={false}>
 							{widgets.map(
 								(widget, index) =>
@@ -233,95 +223,55 @@ function ClockWidget() {
 	);
 }
 
-function MusicWidget() {
+function ChargingWidget() {
+	const [battery, setBattery] = useState("0%");
+
+	useEffect(() => {
+		if ("getBattery" in navigator) {
+			navigator.getBattery().then((battery) => {
+				setBattery(Math.floor(battery.level * 100) + "%");
+			});
+		} else {
+			setBattery("75%");
+		}
+	}, []);
 	return (
-		<m.div className="w-40 aspect-square bg-[#1a1d1c] text-white grid justify-center items-end p-4">
-			<div className="flex items-center gap-2">
-				<p>P</p>
-				<p className="text-xs">slow dancing</p>
-				<img className="w-8" src={MusicCoverImage.src} alt={"Music Cover"} />
+		<m.div className="w-40 aspect-square bg-[#000] text-white flex flex-col gap-4 justify-between p-3 rounded-2xl">
+			<div>
+				<p className="text-xs text-zinc-500 font-medium">Charging...</p>
+				<p className="text-sm font-medium text-zinc-200">
+					{battery} &middot; 22mins left
+				</p>
+			</div>
+			<div className="space-y-1">
+				<div className="justify-between flex gap-2 text-zinc-400 font-medium text-[0.6rem]">
+					<span>0</span>
+					<span>50</span>
+					<span>100</span>
+				</div>
+				<div className="w-full bg-zinc-800 rounded-xl">
+					<div
+						className="w-0 bg-zinc-50 h-14 rounded-xl transition-[width] duration-300"
+						style={{
+							filter:
+								"drop-shadow(0 0 0.25em #fff) drop-shadow(0 0 2rem rgba(255, 255, 255, 0.55)",
+							width: battery,
+						}}
+					></div>
+				</div>
 			</div>
 		</m.div>
 	);
 }
 
-function CalendarWidget() {
+function ImageWidget() {
 	return (
-		<m.div
+		<m.img
 			layout
-			className="w-40 aspect-square text-white rounded-xl overflow-hidden flex flex-col justify-between p-4  bg-no-repeat bg-center bg-cover relative"
-			style={{ backgroundImage: "url(widget_gradient_bg.svg)" }}
-		>
-			<div className="absolute inset-0 bg-black/15"></div>
-			<p className="text-3xl space-x-2 font-medium z-[1]">
-				<span>{new Date().toLocaleString("default", { month: "short" })}</span>
-				<span>{new Date().getDate()}</span>
-			</p>
-			<div className="z-[1]">
-				<p>{new Date().toLocaleString("default", { weekday: "long" })}</p>
-				<p>4 Events</p>
-			</div>
-		</m.div>
-	);
-}
-
-function GalleryWidget() {
-	const images = [
-		"https://images.unsplash.com/photo-1726502292828-d96388c6250f?q=80&w=1508&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-		"https://images.unsplash.com/photo-1727163941293-0c3dc5074bf4?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-		"https://images.unsplash.com/photo-1726179655325-6abb713219ee?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-		"https://images.unsplash.com/photo-1720048169707-a32d6dfca0b3?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-	];
-
-	const [imageIndex, setImageIndex] = useState(0);
-	const [expanded, setExpanded] = useState(false);
-	const ref = useRef(null);
-
-	useOnClickOutside(ref, handleClickOutside);
-
-	function handleClickOutside() {
-		setExpanded(false);
-	}
-
-	return (
-		<m.div
-			ref={ref}
-			layout
-			className={cn(
-				"h-40 bg-[#1a1d1c] rounded-xl p-2 flex",
-				expanded ? "aspect-video" : "aspect-square",
-			)}
-		>
-			{expanded ? (
-				<m.img
-					src={images[imageIndex]}
-					className="object-cover w-full h-full rounded-lg"
-					onClick={() => setExpanded(false)}
-					alt="image"
-					layoutId={imageIndex.toString()}
-				/>
-			) : (
-				<m.div className="grid grid-cols-2 grid-rows-2 gap-2">
-					{images.map((image, index) => (
-						<button
-							onClick={() => {
-								setImageIndex(index);
-								setExpanded(true);
-							}}
-							key={index}
-						>
-							<m.img
-								style={{ zIndex: imageIndex === index ? 1 : 0 }}
-								layoutId={index.toString()}
-								className="object-cover w-full h-full rounded-lg relative"
-								src={image}
-								alt="image lel"
-								draggable={false}
-							/>
-						</button>
-					))}
-				</m.div>
-			)}
-		</m.div>
+			className="w-40 aspect-square rounded-2xl"
+			src={StarryKeyboardImage.src}
+			alt="Starry Keyboard"
+			draggable="false"
+		/>
 	);
 }

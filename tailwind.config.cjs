@@ -10,6 +10,22 @@ module.exports = {
 				sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
 				header: ["Montserrat Variable", ...defaultTheme.fontFamily.sans],
 			},
+			animation: {
+				grow: "grow calc(var(--duration)*1s) infinite linear",
+			},
+			keyframes: {
+				grow: {
+					"33%": {
+						transform: "scale(1.2)",
+					},
+					"83%": {
+						transform: "scale(0.9)",
+					},
+					"100%": {
+						transform: "scale(1)",
+					},
+				},
+			},
 		},
 	},
 	plugins: [],
