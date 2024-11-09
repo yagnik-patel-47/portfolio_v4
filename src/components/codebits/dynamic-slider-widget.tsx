@@ -9,7 +9,7 @@ import {
 	useTransform,
 } from "framer-motion";
 import { flushSync } from "react-dom";
-import StarryKeyboardImage from "@/assets/codebits/widget/starry_keyboard.webp";
+import KeyboardImage from "@/assets/codebits/widget/keyboard.webp";
 
 const widgets = [
 	{
@@ -244,10 +244,10 @@ function ChargingWidget() {
 				</p>
 			</div>
 			<div className="space-y-1">
-				<div className="justify-between flex gap-2 text-zinc-400 font-medium text-[0.6rem]">
+				<div className="justify-between grid grid-cols-3 gap-2 text-zinc-400 font-medium text-[0.6rem]">
 					<span>0</span>
-					<span>50</span>
-					<span>100</span>
+					<span className="text-center">50</span>
+					<span className="text-end">100</span>
 				</div>
 				<div className="w-full bg-zinc-800 rounded-xl">
 					<div
@@ -269,7 +269,7 @@ function ImageWidget() {
 		<m.img
 			layout
 			className="w-40 aspect-square rounded-2xl"
-			src={StarryKeyboardImage.src}
+			src={KeyboardImage.src}
 			alt="Starry Keyboard"
 			draggable="false"
 		/>
