@@ -1,122 +1,141 @@
 ---
 import Nav from '@/components/Nav.astro'
 import RootLayout from '@/layouts/Root.astro'
-import { projects } from '@/lib/projects-data'
+import { sliderIcons } from '@/lib/icons-map'
 import { Image } from 'astro:assets'
-import { skillIcons } from '@/lib/icons-map'
 ---
 
 <RootLayout title="/yagnik">
   <Nav />
   <main class="h-dvh py-28 md:py-40 container mx-auto px-4 lg:px-20">
-    <h3 class="text-3xl md:text-4xl font-bold text-zinc-400 font-header">
-      Yagnik Patel
+    <h3
+      class="text-3xl md:text-4xl font-bold text-zinc-400 font-header"
+      id="name"
+    >
+      Hi, its Yagnik 👋
     </h3>
-
     <p
-      class="mt-6 text-xl md:text-3xl font-bold text-zinc-800 max-w-3xl overflow-hidden"
+      class="mt-6 text-xl md:text-3xl font-bold text-zinc-800 max-w-3xl opacity-0"
       id="para"
     >
       Hey there! I’m a second-year computer science student @KPGU with a passion
       for building awesome, engaging web experiences. My days are filled with
-      coding, exploring new ideas, and a bit of a caffeine-fueled grind. Let’s
-      make something amazing together!
+      coding and exploring new ideas. Let’s make something amazing together!
     </p>
     <div
-      style={{
-        maskImage:
-          'linear-gradient(to right,transparent,#000 5% 95%,transparent)',
-      }}
-      class="mt-10 w-full overflow-hidden"
-      id="slider"
+      class="items-center whitespace-nowrap space-x-8 md:space-x-12 overflow-hidden opacity-0 flex pt-10"
+      id="list-container"
     >
-      <div id="slider-list" class="flex">
-        {
-          projects.map((project) => (
-            <Image
-              class="w-60 md:w-80 slide object-cover"
-              src={project.image}
-              alt={project.name}
-              loading="eager"
-              data-tech={project.tech.join('_')}
-            />
-          ))
-        }
-      </div>
+      {
+        Array.from({ length: 2 }).map(() => (
+          <div class="inline-flex gap-x-8 md:gap-x-12 w-max list">
+            {Object.entries(sliderIcons).map(([iconName, icon]) => (
+              <div class="w-max aspect-square p-3 md:p-5 bg-zinc-100 rounded-[19px] relative group">
+                <div class="absolute bottom-[calc(100%+0.5rem)] py-0.5 px-4 rounded-full bg-zinc-100 left-1/2 -translate-x-1/2 text-xs md:text-sm opacity-0 group-hover:opacity-100 group-hover:scale-100 transition scale-50 origin-bottom">
+                  {iconName}
+                </div>
+                <Image
+                  class="object-contain aspect-square rounded-lg"
+                  width={40}
+                  height={40}
+                  src={icon}
+                  alt={iconName}
+                  loading="eager"
+                />
+              </div>
+            ))}
+          </div>
+        ))
+      }
     </div>
-    <img
-      id="tech_img"
-      class="size-14 object-contain opacity-0 scale-0 fixed p-2 bg-white rounded-xl pointer-events-none transition duration-300"
-      src={skillIcons['React'].src}
-      alt="tech_icon"
-    />
   </main>
 </RootLayout>
 
-<script>
-  import { skillIcons } from '@/lib/icons-map'
-
-  function setupCode() {
-    const sliderList = document.querySelector('#slider-list') as HTMLDivElement
-    const techImg = document.querySelector('#tech_img') as HTMLImageElement
-
-    document.querySelectorAll('.slide').forEach((slide) => {
-      const clone = slide.cloneNode(true)
-      sliderList.appendChild(clone)
-    })
-
-    const slides = document.querySelectorAll(
-      '.slide',
-    ) as NodeListOf<HTMLImageElement>
-    const slideWidth = slides[0].offsetWidth
-    const totalSlides = slides.length * 2
-    const totalWidth = slideWidth * totalSlides
-
-    let position = 0
-    let speed = 2
-
-    function animateSlider() {
-      position -= speed
-      if (Math.abs(position) >= totalWidth / 2) {
-        position = 0
-      }
-      sliderList.style.transform = `translateX(${position}px)`
-      requestAnimationFrame(animateSlider)
+<style is:global>
+  @keyframes slider {
+    from {
+      transform: translateX(0);
     }
-
-    sliderList.style.width = `${totalWidth}px`
-
-    animateSlider()
-
-    let intervalId: NodeJS.Timeout
-
-    for (const slide of slides) {
-      slide.addEventListener('mouseenter', () => {
-        speed = 1
-        techImg.style.display = 'block'
-        techImg.style.opacity = '1'
-        techImg.style.transform = 'scale(1)'
-        let index = 0
-        const tech = slide.dataset.tech.split('_')
-        intervalId = setInterval(() => {
-          techImg.src = skillIcons[tech[index]].src
-          index = (index + 1) % tech.length
-        }, 500)
-      })
-      slide.addEventListener('mousemove', (e) => {
-        techImg.style.left = `${e.clientX}px`
-        techImg.style.top = `${e.clientY - 48}px`
-      })
-      slide.addEventListener('mouseout', () => {
-        speed = 2
-        techImg.style.opacity = '0'
-        techImg.style.transform = 'scale(0)'
-        if (intervalId) clearInterval(intervalId)
-      })
+    to {
+      transform: translateX(calc(-100% - 2rem));
     }
   }
-  document.addEventListener('astro:after-swap', () => {
-    setupCode()
+
+  #list-container {
+    mask-image: linear-gradient(90deg, transparent, black 10% 90%, transparent);
+  }
+
+  .list {
+    animation: slider 35s linear infinite;
+  }
+
+  .line,
+  #name {
+    opacity: 0;
+  }
+
+  @media (min-width: 768px) {
+    @keyframes slider {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(calc(-100% - 3rem));
+      }
+    }
+    .list {
+      animation: slider 35s linear infinite;
+    }
+  }
+</style>
+
+<script>
+  import SplitType from 'split-type'
+  import { stagger, animate } from 'motion'
+
+  document.addEventListener('astro:page-load', () => {
+    const para = SplitType.create('#para', { types: 'lines' })
+    document.getElementById('para').style.opacity = '1'
+
+    animate(
+      '#name',
+      {
+        y: [10, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 1.25,
+        type: 'spring',
+      },
+    )
+    animate(
+      para.lines,
+      {
+        y: [10, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 1.25,
+        type: 'spring',
+        delay: stagger(0.025),
+      },
+    )
+    animate(
+      '#list-container',
+      {
+        y: [10, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 1.25,
+        type: 'spring',
+      },
+    )
   })
-  setupCode()
+
+  // animate(
+  //   '#floatingBarContainer',
+  //   { y: [50, 0], opacity: [0, 1] },
+  //   { duration: 1.5, type: 'spring' },
+  // )
 </script>

@@ -1,4 +1,4 @@
-import { AnimatePresence, MotionConfig, motion as m } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion as m } from "motion/react";
 import { useRef, useState } from "react";
 import * as Slider from "@radix-ui/react-slider";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";

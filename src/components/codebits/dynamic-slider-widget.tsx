@@ -7,7 +7,7 @@ import {
 	useAnimate,
 	useMotionValue,
 	useTransform,
-} from "framer-motion";
+} from "motion/react";
 import { flushSync } from "react-dom";
 import KeyboardImage from "@/assets/codebits/widget/keyboard.webp";
 
@@ -228,8 +228,10 @@ function ChargingWidget() {
 
 	useEffect(() => {
 		if ("getBattery" in navigator) {
-			navigator.getBattery().then((battery) => {
-				setBattery(Math.floor(battery.level * 100) + "%");
+			navigator.getBattery().then((batteryInfo) => {
+				batteryInfo.level * 100 === 100
+					? setBattery("75%")
+					: setBattery(Math.floor(batteryInfo.level * 100) + "%");
 			});
 		} else {
 			setBattery("75%");

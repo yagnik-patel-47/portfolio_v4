@@ -4,7 +4,7 @@ import {
 	LayoutGroup,
 	motion as m,
 	MotionConfig,
-} from "framer-motion";
+} from "motion/react";
 import { useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 

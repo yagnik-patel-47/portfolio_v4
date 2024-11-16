@@ -48,7 +48,7 @@ const socials = [
 <div
   transition:persist
   id="floatingBarContainer"
-  class="group fixed !inset-x-4 max-md:inset-x-auto md:max-w-2xl md:w-full md:!left-1/2 md:!-translate-x-1/2 bottom-4 overflow-hidden z-20 bg-zinc-950 text-neutral-200"
+  class="group fixed !inset-x-4 max-md:inset-x-auto md:max-w-2xl md:w-full mx-auto bottom-4 overflow-hidden z-20 bg-zinc-950 text-neutral-200"
   style={{
     clipPath: 'inset(0 round 40px)',
     touchAction: 'none',
@@ -147,7 +147,7 @@ const socials = [
 </div>
 
 <script>
-  import { animate, timeline } from 'motion'
+  import { animate } from 'motion/mini'
   const navCollapseSection = document.getElementById('nav-content')!
   let navContentHeight = navCollapseSection?.scrollHeight ?? 0
   const hamBtn = document.getElementById('ham-btn')!
@@ -284,51 +284,41 @@ const socials = [
     return difference >= threshold
   }
 
+  window.addEventListener('scroll', (e) => {
+    setCloseState(prefersReducedMotion)
+  })
+
   function setOpenState(reducedMotion: boolean) {
-    if (
-      floatingBarContainer.clientHeight + navContentHeight <
-      window.innerHeight
-    )
-      document.body.style.overflow = 'hidden'
-    else floatingBarContainer.style.overflow = 'auto'
     floatingBarContainer.setAttribute('data-state', 'open')
-    timeline([
-      [
-        floatingBarContainer,
-        { clipPath: 'inset(0 round 24px)' },
-        { duration: reducedMotion ? 0 : 0.2 },
-      ],
-      [
-        navCollapseSection,
-        {
-          height: `${navContentHeight}px`,
-        },
-        { duration: reducedMotion ? 0 : 0.2, at: 0.05 },
-      ],
-    ])
+    animate(
+      floatingBarContainer,
+      { clipPath: 'inset(0 round 24px)' },
+      { duration: reducedMotion ? 0 : 0.2 },
+    )
+    animate(
+      navCollapseSection,
+      {
+        height: `${navContentHeight}px`,
+      },
+      { duration: reducedMotion ? 0 : 0.2, delay: 0.05 },
+    )
   }
   async function setCloseState(reducedMotion: boolean, animation = true) {
     floatingBarContainer.setAttribute('data-state', 'closed')
-    const navClosed = timeline([
-      [
-        floatingBarContainer,
-        { clipPath: 'inset(0 round 40px)' },
-        { duration: reducedMotion ? 0 : 0.2 },
-      ],
-      [
-        navCollapseSection,
-        {
-          height: 0,
-        },
-        {
-          duration: reducedMotion || !animation ? 0 : 0.2,
-          at: 0,
-          easing: [0.76, 0, 0.24, 1],
-        },
-      ],
-    ])
-
-    await navClosed.finished
-    document.body.style.overflow = 'visible'
+    animate(
+      floatingBarContainer,
+      { clipPath: 'inset(0 round 40px)' },
+      { duration: reducedMotion ? 0 : 0.2 },
+    )
+    animate(
+      navCollapseSection,
+      {
+        height: 0,
+      },
+      {
+        duration: reducedMotion || !animation ? 0 : 0.2,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    )
   }
 </script>

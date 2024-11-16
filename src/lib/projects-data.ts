@@ -48,7 +48,7 @@ export const projects = [
 		name: "PS5 Home Screen",
 		discription: "A clone of PS5 home screen with same layout animations.",
 		image: PS5Image,
-		tech: ["React", "Framer Motion"],
+		tech: ["React", "Motion"],
 		links: {
 			site: "https://ps5-home-screen.vercel.app",
 			repo: "https://github.com/yagnik-patel-47/ps5-home-screen",
@@ -59,7 +59,7 @@ export const projects = [
 		name: "Animation Galary",
 		discription: "A single page image gallery site with awesome animations.",
 		image: GalaryImage,
-		tech: ["React", "Framer Motion"],
+		tech: ["React", "Motion"],
 		links: {
 			site: "https://animated0casestudy.vercel.app",
 			repo: "https://github.com/yagnik-patel-47/animated_casestudy",
