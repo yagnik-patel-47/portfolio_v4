@@ -8,7 +8,10 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
-				header: ["Montserrat Variable", ...defaultTheme.fontFamily.sans],
+				"inter-tight": [
+					"Inter Tight Variable",
+					...defaultTheme.fontFamily.sans,
+				],
 			},
 			animation: {
 				grow: "grow calc(var(--duration)*1s) infinite linear",

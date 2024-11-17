@@ -20,7 +20,7 @@ importers:
       '@fontsource-variable/inter':
         specifier: ^5.1.0
         version: 5.1.0
-      '@fontsource-variable/montserrat':
+      '@fontsource-variable/inter-tight':
         specifier: ^5.1.0
         version: 5.1.0
       '@radix-ui/react-slider':
@@ -427,11 +427,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@fontsource-variable/inter-tight@5.1.0':
+    resolution: {integrity: sha512-yUSW6LxZmHtbOvyWcQE73q/GbXp19WeVVF3HlKgRXIYjWjOzkR30N73myM/sDWqG4YyflYz/TRVJrzXOMSozag==}
+
   '@fontsource-variable/inter@5.1.0':
     resolution: {integrity: sha512-Wj2dUGP0vUpxRGQTXQTCNJO+aLcFcQm+gUPXfj/aS877bQkEPBPv9JvZJpwdm2vzelt8NTZ+ausKlBCJjh2XIg==}
-
-  '@fontsource-variable/montserrat@5.1.0':
-    resolution: {integrity: sha512-1bloVBKJx/ABBmF+/VzhJZDLzaDNUxw/8Pt5AOgfKL6N3t1fAhwtJBb1gdqU7ABckSNLsKf572A5Inv9YneRug==}
 
   '@iconify/tools@4.0.7':
     resolution: {integrity: sha512-zOJxKIfZn96ZRGGvIWzDRLD9vb2CsxjcLuM+QIdvwWbv6SWhm49gECzUnd4d2P0sq9sfodT7yCNobWK8nvavxQ==}
@@ -3062,9 +3062,9 @@ snapshots:
   '@esbuild/win32-x64@0.21.5':
     optional: true
 
-  '@fontsource-variable/inter@5.1.0': {}
+  '@fontsource-variable/inter-tight@5.1.0': {}
 
-  '@fontsource-variable/montserrat@5.1.0': {}
+  '@fontsource-variable/inter@5.1.0': {}
 
   '@iconify/tools@4.0.7':
     dependencies:

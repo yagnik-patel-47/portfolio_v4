@@ -39,7 +39,7 @@ const allProjects = [
         <>
           <h1
             class={cn(
-              'text-2xl lg:text-3xl font-bold font-header',
+              'text-2xl lg:text-3xl font-bold font-inter-tight',
               index !== 0 && 'mt-20',
             )}
           >
@@ -55,6 +55,7 @@ const allProjects = [
                   alt={project.name}
                   formats={['avif']}
                   loading="eager"
+                  class="rounded-xl"
                 />
                 <div class="flex justify-between items-center pt-1 md:pt-2 px-1 md:px-4">
                   <h2 class="text-lg md:text-xl font-medium">{project.name}</h2>

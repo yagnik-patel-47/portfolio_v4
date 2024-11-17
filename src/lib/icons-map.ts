@@ -5,13 +5,13 @@ import StripeIcon from "@/assets/icons/skill/stripe.webp";
 import SupabaseIcon from "@/assets/icons/skill/supabase.svg";
 import DenoIcon from "@/assets/icons/skill/deno.svg";
 import SocketIOIcon from "@/assets/icons/skill/socketio.svg";
-// import ReactIcon from "@/assets/icons/skill/react.svg";
-// import AstroIcon from "@/assets/icons/skill/astro.svg";
-// import GSAPIcon from "@/assets/icons/skill/gsap.webp";
+import ReactIcon from "@/assets/icons/skill/react.svg";
+import AstroIcon from "@/assets/icons/skill/astro.svg";
+import GSAPIcon from "@/assets/icons/skill/gsap.webp";
 import TailwindCSSIcon from "@/assets/icons/skill/tailwindcss.svg";
-// import FirebaseIcon from "@/assets/icons/skill/firebase.svg";
+import FirebaseIcon from "@/assets/icons/skill/firebase.svg";
 import TypescriptIcon from "@/assets/icons/skill/typescript.svg";
-// import ReduxIcon from "@/assets/icons/skill/redux.svg";
+import ReduxIcon from "@/assets/icons/skill/redux.svg";
 import MotionIcon from "@/assets/icons/skill/motion.webp";
 // import FastAPIIcon from "@/assets/icons/skill/fastapi.svg";
 // import HeadlessUIIcon from "@/assets/icons/skill/headlessui.svg";
@@ -39,35 +39,23 @@ import RedisIcon from "@/assets/icons/skill/redis.svg";
 import VimIcon from "@/assets/icons/skill/vim.svg";
 import PythonIcon from "@/assets/icons/skill/python.svg";
 
-// export const skillIcons = {
-// 	Nextjs: NextjsIcon,
-// 	Svelte: SvelteIcon,
-// 	Drizzle: DrizzleIcon,
-// 	Stripe: StripeIcon,
-// 	Supabase: SupabaseIcon,
-// 	Deno: DenoIcon,
-// 	"Socket.io": SocketIOIcon,
-// 	React: ReactIcon,
-// 	Astro: AstroIcon,
-// 	GSAP: GSAPIcon,
-// 	TailwindCSS: TailwindCSSIcon,
-// 	Firebase: FirebaseIcon,
-// 	Typescript: TypescriptIcon,
-// 	Redux: ReduxIcon,
-// 	Motion: MotionIcon,
-// 	FastAPI: FastAPIIcon,
-// 	HeadlessUI: HeadlessUIIcon,
-// 	MongoDB: MongoDBIcon,
-// 	MySQL: MySQLIcon,
-// 	Radix: RadixUIIcon,
-// 	ReactQuery: ReactQueryIcon,
-// 	Remix: RemixIcon,
-// 	Sanity: SanityIcon,
-// 	Shadcn: ShadcnIcon,
-// 	Strapi: StrapiIcon,
-// 	VZero: VZeroIcon,
-// 	Zod: ZodIcon,
-// };
+export const techIcons = {
+	Nextjs: NextjsIcon,
+	Svelte: SvelteIcon,
+	Drizzle: DrizzleIcon,
+	Stripe: StripeIcon,
+	Supabase: SupabaseIcon,
+	Deno: DenoIcon,
+	"Socket.io": SocketIOIcon,
+	React: ReactIcon,
+	Astro: AstroIcon,
+	GSAP: GSAPIcon,
+	TailwindCSS: TailwindCSSIcon,
+	Firebase: FirebaseIcon,
+	Typescript: TypescriptIcon,
+	Redux: ReduxIcon,
+	Motion: MotionIcon,
+};
 
 export const sliderIcons = {
 	Nextjs: NextjsIcon,

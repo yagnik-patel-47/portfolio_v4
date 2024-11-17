@@ -4,7 +4,7 @@ interface Props {
 }
 const { title } = Astro.props
 import '@fontsource-variable/inter'
-import '@fontsource-variable/montserrat'
+import '@fontsource-variable/inter-tight'
 import { ViewTransitions } from 'astro:transitions'
 import SpeedInsights from '@vercel/speed-insights/astro'
 ---
@@ -22,6 +22,11 @@ import SpeedInsights from '@vercel/speed-insights/astro'
     <title>{title}</title>
     <ViewTransitions />
     <SpeedInsights />
+    <style>
+      ::view-transition-new(root) {
+        animation-duration: 0s;
+      }
+    </style>
   </head>
   <body class="bg-white">
     <slot />

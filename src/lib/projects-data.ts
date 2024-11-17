@@ -115,6 +115,8 @@ export const projects = [
 	},
 ];
 
+export const featuredProjects = [projects[0], projects[1], projects[2]];
+
 export const realWorldProjects = projects.filter(
 	(project) => project.category === "real-world",
 );

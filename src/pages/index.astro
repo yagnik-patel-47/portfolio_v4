@@ -1,30 +1,31 @@
 ---
 import Nav from '@/components/Nav.astro'
 import RootLayout from '@/layouts/Root.astro'
-import { sliderIcons } from '@/lib/icons-map'
+import { sliderIcons, techIcons } from '@/lib/icons-map'
 import { Image } from 'astro:assets'
+import { featuredProjects } from '@/lib/projects-data'
 ---
 
 <RootLayout title="/yagnik">
   <Nav />
-  <main class="h-dvh py-28 md:py-40 container mx-auto px-4 lg:px-20">
+  <main class="min-h-dvh py-28 md:py-40 container mx-auto px-8 lg:px-20">
     <h3
-      class="text-3xl md:text-4xl font-bold text-zinc-400 font-header"
+      class="text-xl md:text-2xl font-inter-tight font-semibold text-zinc-700"
       id="name"
     >
-      Hi, its Yagnik 👋
+      Hello! I'm Yagnik.
     </h3>
     <p
-      class="mt-6 text-xl md:text-3xl font-bold text-zinc-800 max-w-3xl opacity-0"
+      class="mt-4 text-2xl md:text-4xl max-w-3xl font-bold font-inter-tight text-zinc-800 opacity-0"
       id="para"
     >
-      Hey there! I’m a second-year computer science student @KPGU with a passion
-      for building awesome, engaging web experiences. My days are filled with
-      coding and exploring new ideas. Let’s make something amazing together!
+      A second-year computer science student @KPGU with a passion for building
+      awesome, engaging web experiences. My days are filled with coding and
+      exploring new ideas. Let’s make something amazing together!
     </p>
     <div
       class="items-center whitespace-nowrap space-x-8 md:space-x-12 overflow-hidden opacity-0 flex pt-10"
-      id="list-container"
+      id="list-container-1"
     >
       {
         Array.from({ length: 2 }).map(() => (
@@ -48,6 +49,55 @@ import { Image } from 'astro:assets'
         ))
       }
     </div>
+    <section class="rounded-2xl mt-20 space-y-12">
+      <h1
+        class="text-2xl md:text-3xl font-inter-tight text-zinc-800 font-bold mt-4 mb-8 md:mb-12 opacity-0"
+        id="featured-projects-title"
+      >
+        Featured Projects
+      </h1>
+      {
+        featuredProjects.map((project) => (
+          <div class="flex flex-col-reverse md:flex-row gap-2 md:gap-8 project opacity-0">
+            <div class="flex flex-1 flex-col justify-between py-4 md:px-0 px-2">
+              <h2 class="text-2xl font-semibold font-inter-tight mb-2">
+                {project.name}
+              </h2>
+              <div class="space-y-4">
+                <p class="font-medium text-balance">{project.discription}</p>
+                <div class="flex gap-3">
+                  {project.tech.map((tech) => (
+                    <Image
+                      class="size-8 object-contain rounded-md"
+                      src={techIcons[tech]}
+                      alt={tech}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+            <Image
+              class="md:w-1/2 object-cover rounded-2xl"
+              src={project.image}
+              alt={project.name}
+            />
+          </div>
+        ))
+      }
+    </section>
+    <h2
+      class="text-2xl md:text-3xl font-inter-tight text-zinc-800 font-bold mt-20 md:mt-40 mb-4 md:mb-8"
+    >
+      My Niche
+    </h2>
+    <div class="flex flex-col md:flex-row">
+      <p class="basis-1/3 text-lg text-balance">
+        I am dedicated to expanding my knowledge and expertise in my field.
+        Throughout my school and university time, I've acquired various skills,
+        which I continue to perfect.
+      </p>
+      <div class="grid md:grid-cols-2"></div>
+    </div>
   </main>
 </RootLayout>
 
@@ -61,12 +111,12 @@ import { Image } from 'astro:assets'
     }
   }
 
-  #list-container {
+  #list-container-1 {
     mask-image: linear-gradient(90deg, transparent, black 10% 90%, transparent);
   }
 
   .list {
-    animation: slider 35s linear infinite;
+    animation: slider 40s linear infinite;
   }
 
   .line,
@@ -84,14 +134,14 @@ import { Image } from 'astro:assets'
       }
     }
     .list {
-      animation: slider 35s linear infinite;
+      animation: slider 40s linear infinite;
     }
   }
 </style>
 
 <script>
   import SplitType from 'split-type'
-  import { stagger, animate } from 'motion'
+  import { stagger, animate, inView } from 'motion'
 
   document.addEventListener('astro:page-load', () => {
     const para = SplitType.create('#para', { types: 'lines' })
@@ -121,7 +171,7 @@ import { Image } from 'astro:assets'
       },
     )
     animate(
-      '#list-container',
+      '#list-container-1',
       {
         y: [10, 0],
         opacity: [0, 1],
@@ -130,6 +180,35 @@ import { Image } from 'astro:assets'
         duration: 1.25,
         type: 'spring',
       },
+    )
+    animate(
+      '#featured-projects-title',
+      {
+        y: [10, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 1.25,
+        type: 'spring',
+      },
+    )
+
+    inView(
+      '.project',
+      (info) => {
+        animate(
+          info.target,
+          {
+            y: [10, 0],
+            opacity: [0, 1],
+          },
+          {
+            duration: 1.25,
+            type: 'spring',
+          },
+        )
+      },
+      { amount: 0.5 },
     )
   })
 
