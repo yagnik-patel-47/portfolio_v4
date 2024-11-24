@@ -57,7 +57,7 @@ export default function DynamicButton() {
 									key={"add"}
 									layout="position"
 									onClick={() => setState(1)}
-									className="py-1 ml-2"
+									className="py-1 ml-2 cursor-pointer"
 								>
 									Add Style
 								</m.button>
@@ -88,7 +88,7 @@ export default function DynamicButton() {
 							<m.button
 								layout
 								onClick={() => setState((prev) => (prev ? null : 1))}
-								className="align-middle size-6"
+								className="align-middle size-6 cursor-pointer"
 							>
 								<m.svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +136,7 @@ export default function DynamicButton() {
 									layout="position"
 									type="button"
 									onClick={applyChanges}
-									className="text-sm px-3 py-2 bg-indigo-600 text-white rounded-lg mt-4 float-end"
+									className="text-sm block px-3 py-2 bg-indigo-600 text-white ml-auto rounded-lg mt-4 cursor-pointer"
 								>
 									Apply Changes
 								</m.button>
@@ -207,7 +207,7 @@ function PromptTab({ prompt, setPrompt }) {
 
 function TooglesTab({ aspect, setAspect }) {
 	const toggleGroupItemClasses =
-		"flex gap-1 items-center hover:bg-indigo-500/10 data-[state=on]:bg-indigo-500/20 data-[state=on]:text-indigo-900 data-[state=on]:font-medium text-neutral-700 justify-center leading-4 focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-indigo-800 focus:outline-none px-2 rounded-md h-9";
+		"flex gap-1 items-center hover:bg-indigo-500/10 data-[state=on]:bg-indigo-500/20 data-[state=on]:text-indigo-900 data-[state=on]:font-medium text-neutral-700 justify-center leading-4 focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-indigo-800 focus:outline-hidden px-2 rounded-md h-9";
 
 	return (
 		<m.form
@@ -345,7 +345,7 @@ function DimensionsTab({ dimensionValues, setDimensionValues }) {
 								<Slider.Range className="absolute bg-indigo-900/80 h-full" />
 							</Slider.Track>
 							<Slider.Thumb
-								className="block w-[14px] h-6 bg-white rounded focus:outline-none"
+								className="block w-[14px] h-6 bg-white rounded-sm focus:outline-hidden"
 								aria-label="Volume"
 							/>
 						</Slider.Root>

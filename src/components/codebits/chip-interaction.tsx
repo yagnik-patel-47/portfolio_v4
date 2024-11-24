@@ -62,7 +62,7 @@ function Chip(props: Props) {
 									onKeyDown={handleKeyDown}
 									layoutId="text"
 									layout="position"
-									className="max-w-20 py-1 outline-none border-0 pl-2 bg-transparent"
+									className="max-w-20 py-1 outline-hidden border-0 pl-2 bg-transparent"
 									autoFocus
 								/>
 								<m.button

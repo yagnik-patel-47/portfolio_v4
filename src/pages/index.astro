@@ -64,7 +64,7 @@ import { featuredProjects } from '@/lib/projects-data'
                 {project.name}
               </h2>
               <div class="space-y-4">
-                <p class="font-medium text-balance">{project.discription}</p>
+                <p class="text-balance">{project.discription}</p>
                 <div class="flex gap-3">
                   {project.tech.map((tech) => (
                     <Image
@@ -76,11 +76,13 @@ import { featuredProjects } from '@/lib/projects-data'
                 </div>
               </div>
             </div>
-            <Image
-              class="md:w-1/2 object-cover rounded-2xl"
-              src={project.image}
-              alt={project.name}
-            />
+            <div class="relative after:rounded-2xl md:w-1/2 after:absolute after:inset-0 after:inset-ring-black/20 after:inset-ring-5 hover:after:inset-ring-8 after:transition">
+              <Image
+                class="w-full object-cover rounded-2xl"
+                src={project.image}
+                alt={project.name}
+              />
+            </div>
           </div>
         ))
       }
@@ -208,7 +210,7 @@ import { featuredProjects } from '@/lib/projects-data'
           },
         )
       },
-      { amount: 0.5 },
+      { amount: 0.75 },
     )
   })
 

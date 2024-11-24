@@ -199,7 +199,7 @@ function ClockWidget() {
 	}
 
 	return (
-		<m.div className="w-40 aspect-square bg-[#1a1d1c] rounded-full [&>*]:row-span-full [&>*]:column-span-full relative">
+		<m.div className="w-40 aspect-square bg-[#1a1d1c] rounded-full *:row-span-full [&>*]:column-span-full relative">
 			<m.div
 				id="seconds"
 				ref={secondsRef}
@@ -255,9 +255,9 @@ function ChargingWidget() {
 					<div
 						className="w-0 bg-zinc-50 h-14 rounded-xl transition-[width] duration-300"
 						style={{
-							filter:
-								"drop-shadow(0 0 0.25em #fff) drop-shadow(0 0 2rem rgba(255, 255, 255, 0.55)",
 							width: battery,
+							filter:
+								"drop-shadow(0 0 0.25em #fff) drop-shadow(0 0 2rem rgba(255, 255, 255, 0.55))",
 						}}
 					></div>
 				</div>

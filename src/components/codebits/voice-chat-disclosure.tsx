@@ -57,8 +57,6 @@ const constpeps = [
 	},
 ];
 
-const lesspeps = constpeps.filter((_, index) => index < 4);
-
 export default function VoiceChatDisclosure() {
 	const [peps, setPeps] = useState(constpeps);
 	const [state, setState] = useState(false);
@@ -74,20 +72,19 @@ export default function VoiceChatDisclosure() {
 
 	function handleMic() {
 		setMic((prev) => !prev);
-		if (mic) {
-			const temp = peps;
-			peps[peps.length - 1].speaking = false;
-			setPeps(temp);
-		} else {
-			const temp = peps;
-			peps[peps.length - 1].speaking = true;
-			setPeps(temp);
-		}
+		setPeps((prevPeps) => {
+			const newPeps = [...prevPeps];
+			newPeps[newPeps.length - 1] = {
+				...newPeps[newPeps.length - 1],
+				speaking: !mic,
+			};
+			return newPeps;
+		});
 	}
 
 	function handleJoinLeave() {
 		if (joined) {
-			setPeps((prev) => prev.filter((_, index) => index !== prev.length - 1));
+			peps.pop();
 			setMic(false);
 		} else
 			setPeps((prev) => [
@@ -106,10 +103,10 @@ export default function VoiceChatDisclosure() {
 					layout
 					className={cn(
 						"bg-[#fefefe] border-2 border-neutral-200 shadow-md max-w-full lg:max-w-96 origin-right w-fit h-fit z-10",
-						state
-							? "rounded-[24px] overflow-hidden"
-							: "rounded-full overflow-visible",
+						state ? "overflow-hidden" : "overflow-visible",
 					)}
+					aria-label="Toggle state"
+					style={{ borderRadius: state ? "24px" : "calc(infinity * 1px)" }}
 				>
 					<AnimatePresence mode="popLayout">
 						<LayoutGroup>
@@ -117,24 +114,26 @@ export default function VoiceChatDisclosure() {
 								<m.button
 									layout
 									key={`button`}
-									onClick={() => setState(true)}
-									className="flex items-center p-2 -space-x-4"
+									onClick={() => !state && setState(true)}
+									className="flex items-center p-2"
 								>
-									{lesspeps.map((pep, index) => (
-										<m.img
-											key={pep.name}
-											layoutId={pep.name}
-											className="size-16 rounded-full border-2 shadow-md border-white"
-											src={pep.image.src}
-											alt={pep.name}
-											style={{
-												zIndex: peps.length - index,
-											}}
-										/>
-									))}
+									<div className="flex items-center -space-x-4">
+										{peps.slice(0, 4).map((pep, index) => (
+											<m.img
+												key={pep.name}
+												layoutId={pep.name}
+												className="size-16 rounded-full border-2 shadow-md border-white"
+												src={pep.image.src}
+												alt={pep.name}
+												style={{
+													zIndex: peps.length - index,
+												}}
+											/>
+										))}
+									</div>
 									<m.span
 										layout="position"
-										className="flex items-center !mx-2 text-xl text-neutral-500"
+										className="flex items-center mx-2 text-xl text-neutral-500"
 									>
 										+{peps.length - 4}
 										<svg
@@ -149,7 +148,7 @@ export default function VoiceChatDisclosure() {
 									</m.span>
 									<m.div
 										layout
-										className="size-9 rounded-full bg-gradient-to-br from-[#5f5e5e] to-[#000] -top-1 left-4 absolute z-10 flex justify-center gap-0.5 items-center p-1"
+										className="size-9 rounded-full bg-linear-to-br from-[#5f5e5e] to-[#000] -top-1 left-0 absolute z-10 flex justify-center gap-0.5 items-center p-1"
 									>
 										<m.div
 											layout
@@ -234,7 +233,7 @@ export default function VoiceChatDisclosure() {
 											</svg>
 										</m.button>
 									</m.div>
-									<m.div layout className="h-0.5 bg-neutral-200 w-full"></m.div>
+									<m.div layout className="h-0.5 bg-neutral-200 w-full" />
 									<m.div
 										layout
 										className="grid grid-cols-4 gap-2 md:gap-4 p-4 md:p-6"
@@ -250,7 +249,7 @@ export default function VoiceChatDisclosure() {
 											<m.button
 												layout
 												onClick={handleJoinLeave}
-												className="bg-gradient-to-b from-[#2d2d2d] to-[#000] text-neutral-100 w-full rounded-xl shadow-xl overflow-hidden"
+												className="bg-linear-to-b from-[#2d2d2d] to-[#000] text-neutral-100 w-full rounded-xl shadow-xl overflow-hidden cursor-pointer"
 											>
 												<span className="py-3 block">
 													{joined ? "Leave" : "Join"}
@@ -258,7 +257,7 @@ export default function VoiceChatDisclosure() {
 											</m.button>
 											{joined && (
 												<m.button
-													className="size-12 p-2 shrink-0 border-2 border-neutral-200 hover:bg-neutral-200 rounded-lg transition grid place-content-center"
+													className="size-12 p-2 shrink-0 border-2 border-neutral-200 hover:bg-neutral-200 rounded-lg transition grid place-content-center cursor-pointer"
 													layout
 													onClick={handleMic}
 												>
@@ -365,18 +364,15 @@ function Person({ pep }: { pep: PersonData }) {
 
 	useEffect(() => {
 		if (isPresent) {
-			const enterAnimation = async () => {
-				await animate(scope.current, {
-					opacity: [0, 1],
-					y: ["25%", 0],
-				});
-			};
-			enterAnimation();
+			animate(scope.current, {
+				opacity: [0, 1],
+				y: [25, 0],
+			});
 		} else {
 			const exitAnimation = async () => {
 				await animate(scope.current, {
 					opacity: [1, 0],
-					y: [0, "25%"],
+					y: [0, 25],
 				});
 				safeToRemove();
 			};
@@ -389,7 +385,7 @@ function Person({ pep }: { pep: PersonData }) {
 			{pep.speaking && (
 				<m.div
 					layout
-					className="size-7 rounded-full bg-gradient-to-br bg-white -top-1 -right-1 absolute z-10 flex gap-[1px] justify-center items-center p-1 border-2"
+					className="size-7 rounded-full bg-linear-to-br bg-white -top-1 -right-1 absolute z-10 flex gap-[1px] justify-center items-center p-1 border-2"
 				>
 					<m.div
 						layout

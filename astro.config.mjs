@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel/static";
 import react from "@astrojs/react";
 import icon from "astro-icon";
@@ -7,12 +7,20 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
-		tailwind(),
 		react(),
 		icon({
 			iconDir: "src/assets/icons",
 		}),
 	],
+	vite: {
+		plugins: [tailwindcss()],
+		css: {
+			transformer: "lightningcss",
+		},
+		build: {
+			cssMinify: "lightningcss",
+		},
+	},
 	output: "static",
 	adapter: vercel({
 		webAnalytics: {

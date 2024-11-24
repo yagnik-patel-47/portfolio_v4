@@ -1,6 +1,6 @@
 import NextjsIcon from "@/assets/icons/skill/nextjs.svg";
 import SvelteIcon from "@/assets/icons/skill/svelte.svg";
-import DrizzleIcon from "@/assets/icons/skill/drizzle.webp";
+import DrizzleIcon from "@/assets/icons/skill/drizzle-orm.svg";
 import StripeIcon from "@/assets/icons/skill/stripe.webp";
 import SupabaseIcon from "@/assets/icons/skill/supabase.svg";
 import DenoIcon from "@/assets/icons/skill/deno.svg";

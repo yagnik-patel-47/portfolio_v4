@@ -48,7 +48,7 @@ const socials = [
 <div
   transition:persist
   id="floatingBarContainer"
-  class="group fixed !inset-x-4 max-md:inset-x-auto md:max-w-2xl md:w-full mx-auto bottom-4 overflow-hidden z-20 bg-zinc-950 text-neutral-200"
+  class="group fixed inset-x-4! max-md:inset-x-auto md:max-w-2xl md:w-full mx-auto bottom-4 overflow-hidden z-20 bg-zinc-950 text-neutral-200"
   style={{
     clipPath: 'inset(0 round 40px)',
     touchAction: 'none',
@@ -77,12 +77,13 @@ const socials = [
       <h3 class="text-lg xl:text-2xl text-neutral-400 font-semibold">
         Socials.
       </h3>
-      <div class="flex gap-x-6 gap-y-8 responsive-cols">
+      <div class="flex gap-x-6 responsive-cols md:!my-0">
         {
           socials.map((social) => (
             <a
               target="_blank"
               class="flex items-center gap-1 group/link"
+              aria-label={social.label}
               href={social.href}
             >
               <Icon
