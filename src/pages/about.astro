@@ -2,7 +2,7 @@
 import RootLayout from '@/layouts/Root.astro'
 import Nav from '@/components/Nav.astro'
 import profileImage from '@/assets/croped_pic.webp'
-import { Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import { Icon } from 'astro-icon/components'
 ---
 
@@ -10,11 +10,14 @@ import { Icon } from 'astro-icon/components'
   <Nav />
   <main class="px-8 md:px-20 lg:px-32 2xl:px-72 py-6 lg:py-20 pb-32! mt-10">
     <div class="grid xl:grid-cols-2 items-center gap-8">
-      <Image
+      <Picture
         class="rounded-full w-40 md:w-48 lg:w-96 aspect-square"
         src={profileImage}
         alt="oh it's me"
         loading="eager"
+        formats={['avif']}
+        width={384}
+        height={384}
       />
       <div>
         <h1 class="text-2xl lg:text-3xl font-bold font-inter-tight">

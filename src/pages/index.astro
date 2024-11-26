@@ -2,7 +2,7 @@
 import Nav from '@/components/Nav.astro'
 import RootLayout from '@/layouts/Root.astro'
 import { sliderIcons, techIcons } from '@/lib/icons-map'
-import { Image } from 'astro:assets'
+import { Image, Picture } from 'astro:assets'
 import { featuredProjects } from '@/lib/projects-data'
 ---
 
@@ -67,20 +67,26 @@ import { featuredProjects } from '@/lib/projects-data'
                 <p class="text-balance">{project.discription}</p>
                 <div class="flex gap-3">
                   {project.tech.map((tech) => (
-                    <Image
-                      class="size-8 object-contain rounded-md"
+                    <Picture
+                      width={32}
+                      height={32}
                       src={techIcons[tech]}
                       alt={tech}
+                      formats={['avif']}
+                      class="size-8 object-contain rounded-md"
                     />
                   ))}
                 </div>
               </div>
             </div>
             <div class="relative after:rounded-2xl md:w-1/2 after:absolute after:inset-0 after:inset-ring-black/20 after:inset-ring-5 hover:after:inset-ring-8 after:transition">
-              <Image
-                class="w-full object-cover rounded-2xl"
+              <Picture
+                width={750}
+                height={500}
                 src={project.image}
                 alt={project.name}
+                formats={['avif']}
+                class="rounded-2xl w-full object-cover"
               />
             </div>
           </div>
@@ -213,10 +219,4 @@ import { featuredProjects } from '@/lib/projects-data'
       { amount: 0.75 },
     )
   })
-
-  // animate(
-  //   '#floatingBarContainer',
-  //   { y: [50, 0], opacity: [0, 1] },
-  //   { duration: 1.5, type: 'spring' },
-  // )
 </script>

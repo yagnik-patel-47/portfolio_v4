@@ -48,17 +48,22 @@ const allProjects = [
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-6 mt-10">
             {projectCategory.projects.map((project) => (
               <div class="space-y-2 project">
-                <Picture
-                  width={750}
-                  height={500}
-                  src={project.image}
-                  alt={project.name}
-                  formats={['avif']}
-                  loading="eager"
-                  class="rounded-xl"
-                />
+                <div class="relative after:rounded-2xl after:absolute after:inset-0 after:inset-ring-black/20 after:inset-ring-5 hover:after:inset-ring-8 after:transition">
+                  <Picture
+                    width={750}
+                    height={500}
+                    src={project.image}
+                    alt={project.name}
+                    formats={['avif']}
+                    loading="eager"
+                    class="rounded-xl w-full object-cover"
+                  />
+                </div>
+
                 <div class="flex justify-between items-center pt-1 md:pt-2 px-1 md:px-4">
-                  <h2 class="text-lg md:text-xl font-medium">{project.name}</h2>
+                  <h2 class="text-xl md:text-2xl font-medium font-inter-tight">
+                    {project.name}
+                  </h2>
                   <div class="flex space-x-4">
                     {project.links.repo && (
                       <a
@@ -78,9 +83,7 @@ const allProjects = [
                     </a>
                   </div>
                 </div>
-                <p class="text-sm md:text-base px-1 md:px-4">
-                  {project.discription}
-                </p>
+                <p class="text-balance px-1 md:px-4">{project.discription}</p>
               </div>
             ))}
           </div>
