@@ -7,6 +7,7 @@ import AnimatedTabs from '@/components/codebits/animated-tabs.astro'
 import VoiceChatDisclosure from '@/components/codebits/voice-chat-disclosure.tsx'
 import ChipInteraction from '@/components/codebits/chip-interaction.tsx'
 import Widgets from '@/components/codebits/widget-slider.tsx'
+import DynamicActionBar from '@/components/codebits/dynamic-action-bar.tsx'
 
 import { allImages } from '@/lib/codebits'
 ---
@@ -37,6 +38,19 @@ import { allImages } from '@/lib/codebits'
           ></span
         >
         <VoiceChatDisclosure client:load />
+      </div>
+      <div
+        class="min-h-[30rem] overflow-hidden bg-[#faf4ed] rounded-xl border-2 border-[#ebbcba]/30 grid justify-center items-end py-16 relative"
+      >
+        <span
+          class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-[#ebbcba]/30 rounded-es-xl py-2 px-4"
+          >Tool: <a
+            class="underline inline-block"
+            href="https://motion.dev"
+            target="_blank">Motion</a
+          ></span
+        >
+        <DynamicActionBar client:load />
       </div>
       <div
         class="min-h-[30rem] overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center relative"

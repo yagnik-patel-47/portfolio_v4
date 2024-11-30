@@ -1,10 +1,10 @@
 ---
-import DynamicSliderWidget from '@/components/codebits/widget-slider'
 import RootLayout from '@/layouts/Root.astro'
+import DynamicActionBar from '@/components/codebits/dynamic-action-bar.tsx'
 ---
 
 <RootLayout title="Prototype">
-  <main class="h-dvh grid place-content-center">
-    <DynamicSliderWidget client:load />
+  <main class="h-dvh grid justify-center items-end p-20 bg-[#ffefd8]">
+    <DynamicActionBar client:only="react" />
   </main>
 </RootLayout>
