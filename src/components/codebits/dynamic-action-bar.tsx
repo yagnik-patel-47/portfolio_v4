@@ -217,7 +217,7 @@ function ComponentsTab() {
 						<h3 className="font-semibold text-[#25150a]">{component.name}</h3>
 					</div>
 					<div className="flex items-center gap-4">
-						<p className="text-[#6d543e] font-semibold rounded-lg ring-[#c9af9a] ring-2 text-xs md:text-sm px-2 py-0.5">
+						<p className="text-[#6d543e] font-semibold rounded-lg ring-[#c9af9a]/40 ring-2 text-xs md:text-sm px-2 py-0.5">
 							{component.type}
 						</p>
 						<p className="text-[#6d543e] text-sm md:text-base font-medium">
