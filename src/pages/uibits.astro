@@ -27,7 +27,7 @@ import { allImages } from '@/lib/codebits'
     </h1>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-12">
       <div
-        class="min-h-[30rem] p-4 lg:p-10 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-content-center relative"
+        class="min-h-[30rem] p-4 lg:p-10 overflow-hidden bg-neutral-100 rounded-xl border-2 border-neutral-200 grid place-content-center relative"
       >
         <span
           class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-neutral-200 rounded-es-xl py-2 px-4"
@@ -67,13 +67,13 @@ import { allImages } from '@/lib/codebits'
           class="absolute top-0 left-0 text-xs font-semibold text-neutral-800 bg-neutral-200 rounded-ee-xl py-2 px-4"
           >Swipe or Drag</span
         >
-        <Widgets client:only="react" />
+        <Widgets client:load />
       </div>
       <div
-        class="min-h-96 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center relative"
+        class="min-h-96 overflow-hidden bg-teal-50 rounded-xl border-2 border-teal-200 grid place-items-center relative"
       >
         <span
-          class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-neutral-200 rounded-es-xl py-2 px-4"
+          class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-teal-200 rounded-es-xl py-2 px-4"
           >Recipe: <a
             class="underline"
             href="https://emilkowal.ski/ui/the-magic-of-clip-path"
@@ -83,10 +83,10 @@ import { allImages } from '@/lib/codebits'
         <AnimatedTabs />
       </div>
       <div
-        class="min-h-[30rem] md:p-10 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center relative"
+        class="min-h-[30rem] md:p-10 overflow-hidden bg-indigo-50 rounded-xl border-2 border-indigo-200 grid place-items-center relative"
       >
         <span
-          class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-neutral-200 rounded-es-xl py-2 px-4"
+          class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-indigo-200 rounded-es-xl py-2 px-4"
           >Tool: <a
             class="underline inline-block"
             href="https://motion.dev"
@@ -96,10 +96,10 @@ import { allImages } from '@/lib/codebits'
         <DynamicButton client:load />
       </div>
       <div
-        class="min-h-[30rem] p-10 overflow-hidden bg-neutral-50 rounded-xl border-2 border-neutral-200 grid place-items-center relative"
+        class="min-h-[30rem] p-10 overflow-hidden bg-purple-50 rounded-xl border-2 border-purple-200 grid place-items-center relative"
       >
         <span
-          class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-neutral-200 rounded-es-xl py-2 px-4"
+          class="absolute top-0 right-0 text-xs font-semibold text-neutral-800 bg-purple-200 rounded-es-xl py-2 px-4"
           >Tool: <a
             class="underline inline-block"
             href="https://motion.dev"

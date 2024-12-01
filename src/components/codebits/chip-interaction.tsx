@@ -46,10 +46,8 @@ function Chip(props: Props) {
 			<m.div ref={containerRef} layoutRoot>
 				<m.div
 					className={cn(
-						"flex items-center justify-between rounded-full px-1 transition-shadow duration-300 overflow-hidden",
-						editMode
-							? "gap-8 shadow-[0_0_0_2.5px_#111]"
-							: "gap-3 shadow-[0_0_0_1.5px_#e5e5e5]",
+						"flex items-center justify-between rounded-full px-1 ring-[2.5px] transition-shadow duration-300 overflow-hidden",
+						editMode ? "gap-8 ring-purple-950" : "gap-3 ring-purple-500/15",
 					)}
 					layout
 				>
@@ -70,7 +68,7 @@ function Chip(props: Props) {
 									initial={{ x: "100%" }}
 									animate={{ x: 0 }}
 									onClick={() => setEditMode(false)}
-									className="bg-neutral-900 rounded-full text-neutral-200 origin-right size-7 grid place-content-center"
+									className="bg-purple-950 rounded-full text-neutral-200 origin-right size-7 grid place-content-center"
 								>
 									<m.svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +101,7 @@ function Chip(props: Props) {
 									initial={{ x: "100%" }}
 									animate={{ x: 0 }}
 									onClick={() => setEditMode(true)}
-									className="bg-neutral-200 rounded-full text-neutral-600 size-7 grid place-content-center origin-right"
+									className="bg-purple-100 rounded-full text-neutral-600 size-7 grid place-content-center origin-right"
 								>
 									<m.svg
 										xmlns="http://www.w3.org/2000/svg"

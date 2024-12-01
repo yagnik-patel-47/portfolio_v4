@@ -79,6 +79,7 @@ const variants: { [key: string]: TargetAndTransition } = {
 		filter: "blur(0px)",
 		transition: {
 			delay: 0.05,
+			duration: 0.25,
 		},
 	},
 };
@@ -99,7 +100,12 @@ export default function DynamicActionBar() {
 	});
 
 	return (
-		<MotionConfig transition={{ type: "spring", duration: 0.4 }}>
+		<MotionConfig
+			transition={{
+				type: "spring",
+				duration: 0.4,
+			}}
+		>
 			<motion.div ref={ref} layoutRoot>
 				<motion.div
 					layout

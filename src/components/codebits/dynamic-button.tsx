@@ -40,7 +40,7 @@ export default function DynamicButton() {
 			<m.div
 				layout
 				className={cn(
-					"border border-black/40 bg-white shadow-lg rounded-lg p-3 overflow-hidden relative",
+					"border-2 bg-neutral-50 border-indigo-200/75 shadow-lg shadow-indigo-500/15 rounded-lg p-3 overflow-hidden relative",
 					state && "w-[300px] lg:w-[350px]",
 				)}
 				role="presentation"
@@ -57,7 +57,7 @@ export default function DynamicButton() {
 									key={"add"}
 									layout="position"
 									onClick={() => setState(1)}
-									className="py-1 ml-2 cursor-pointer"
+									className="py-1 ml-2 cursor-pointer font-medium"
 								>
 									Add Style
 								</m.button>
@@ -78,7 +78,7 @@ export default function DynamicButton() {
 											{state === i + 1 && (
 												<m.div
 													layoutId="active"
-													className="absolute inset-0 bg-indigo-900/20 rounded-md"
+													className="absolute inset-0 bg-indigo-500/15 rounded-md"
 												></m.div>
 											)}
 										</button>
@@ -98,7 +98,7 @@ export default function DynamicButton() {
 									strokeWidth="2"
 									strokeLinecap="round"
 									strokeLinejoin="round"
-									className="text-neutral-800 size-6"
+									className="text-neutral-700 size-6"
 									animate={{
 										rotateZ: state ? 45 : 0,
 									}}
@@ -136,7 +136,7 @@ export default function DynamicButton() {
 									layout="position"
 									type="button"
 									onClick={applyChanges}
-									className="text-sm block px-3 py-2 bg-indigo-600 text-white ml-auto rounded-lg mt-4 cursor-pointer"
+									className="text-sm block px-3 py-2 bg-indigo-900 text-white ml-auto rounded-lg mt-4 cursor-pointer"
 								>
 									Apply Changes
 								</m.button>
@@ -196,7 +196,7 @@ function PromptTab({ prompt, setPrompt }) {
 		>
 			<textarea
 				autoFocus
-				className="w-full h-32 p-2 bg-transparent rounded-lg text-sm outline-indigo-800"
+				className="w-full h-32 p-2 bg-transparent rounded-lg text-sm outline-indigo-600"
 				placeholder="Write your genius prompt..."
 				value={prompt}
 				onChange={(e) => setPrompt(e.target.value)}
@@ -207,7 +207,7 @@ function PromptTab({ prompt, setPrompt }) {
 
 function TooglesTab({ aspect, setAspect }) {
 	const toggleGroupItemClasses =
-		"flex gap-1 items-center hover:bg-indigo-500/10 data-[state=on]:bg-indigo-500/20 data-[state=on]:text-indigo-900 data-[state=on]:font-medium text-neutral-700 justify-center leading-4 focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-indigo-800 focus:outline-hidden px-2 rounded-md h-9";
+		"flex gap-1 items-center hover:bg-indigo-500/10 data-[state=on]:bg-indigo-500/20 data-[state=on]:text-indigo-900 data-[state=on]:font-medium text-neutral-800 text-sm md:text-base justify-center leading-4 focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-indigo-600 focus:outline-hidden px-2 rounded-md h-9";
 
 	return (
 		<m.form
@@ -325,7 +325,7 @@ function DimensionsTab({ dimensionValues, setDimensionValues }) {
 						{field}
 					</label>
 					<div className="flex gap-3 items-center">
-						<div className="bg-indigo-800/20 py-1 px-2 text-[12px] md:text-sm rounded-lg">
+						<div className="bg-indigo-500/15 py-1 px-2 text-[12px] md:text-sm rounded-lg">
 							{dimensionValues[index]}
 						</div>
 						<Slider.Root
@@ -341,8 +341,8 @@ function DimensionsTab({ dimensionValues, setDimensionValues }) {
 							step={1}
 							name={field}
 						>
-							<Slider.Track className="bg-black/30 relative grow rounded-md h-full overflow-hidden">
-								<Slider.Range className="absolute bg-indigo-900/80 h-full" />
+							<Slider.Track className="bg-black/15 relative grow rounded-md h-full overflow-hidden">
+								<Slider.Range className="absolute bg-indigo-900 h-full" />
 							</Slider.Track>
 							<Slider.Thumb
 								className="block w-[14px] h-6 bg-white rounded-sm focus:outline-hidden"

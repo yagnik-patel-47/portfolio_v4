@@ -81,7 +81,7 @@ export default function DynamicSliderWidget() {
 		>
 			<m.div layout className="flex items-center gap-6">
 				<LayoutGroup>
-					<m.div className="relative overflow-hidden bg-zinc-200 p-3 rounded-3xl">
+					<m.div className="relative overflow-hidden bg-neutral-200 p-3 rounded-3xl">
 						<AnimatePresence mode="popLayout" initial={false}>
 							{widgets.map(
 								(widget, index) =>
@@ -238,7 +238,7 @@ function ChargingWidget() {
 		}
 	}, []);
 	return (
-		<m.div className="w-40 aspect-square bg-[#000] text-white flex flex-col gap-4 justify-between p-3 rounded-2xl">
+		<m.div className="w-40 aspect-square bg-[#000] text-white flex flex-col gap-4 justify-between p-3 rounded-2xl overflow-hidden">
 			<div>
 				<p className="text-xs text-zinc-500 font-medium">Charging...</p>
 				<p className="text-sm font-medium text-zinc-200">
