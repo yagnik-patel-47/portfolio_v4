@@ -13,10 +13,16 @@ export default defineConfig({
 		}),
 	],
 	alias: {
-		"@": "src",
+		"@": "	src",
 	},
 	vite: {
 		plugins: [tailwindcss()],
+
+		resolve: {
+			alias: {
+				"@": "/src",
+			},
+		},
 		css: {
 			transformer: "lightningcss",
 		},
