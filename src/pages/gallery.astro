@@ -1,20 +1,20 @@
 ---
 import RootLayout from '@/layouts/Root.astro'
-import Nav from '@/components/nav.astro'
+import MobileNav from '@/components/MobileNav.astro'
 import ClearSkyImage from '@/assets/gallery/clear_sky.webp'
 import DayTreeImage from '@/assets/gallery/day_tree.webp'
-import BlueEveningImage from '@/assets/gallery/blue_evening.webp'
 import CoconutTreesImage from '@/assets/gallery/coconut_trees.webp'
 import FlowersImage from '@/assets/gallery/flowers.webp'
 import LakeImage from '@/assets/gallery/lake.webp'
 import MountainLakeImage from '@/assets/gallery/lake_mountain.webp'
-import GloomyDayImage from '@/assets/gallery/gloomy_day.webp'
 import EveningCloudImage from '@/assets/gallery/evening_cloud.webp'
 import { Image } from 'astro:assets'
+import DesktopNav from '@/components/DesktopNav.astro'
 ---
 
 <RootLayout title="Galary">
-  <Nav />
+  <DesktopNav />
+  <MobileNav />
   <section class="px-8 md:px-20 lg:px-32 2xl:px-72 py-12 lg:py-20">
     <div class="flex max-lg:flex-col gap-8">
       <div class="basis-1/2 space-y-10">

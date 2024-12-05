@@ -7,7 +7,6 @@ import path from "path";
 
 // https://astro.build/config
 export default defineConfig({
-	base: "/",
 	integrations: [
 		react(),
 		icon({
@@ -16,11 +15,6 @@ export default defineConfig({
 	],
 	vite: {
 		plugins: [tailwindcss()],
-		resolve: {
-			alias: {
-				"@": path.resolve("./src"),
-			},
-		},
 		css: {
 			transformer: "lightningcss",
 		},

@@ -1,6 +1,6 @@
 ---
 import RootLayout from '@/layouts/Root.astro'
-import Nav from '@/components/nav.astro'
+import MobileNav from '@/components/MobileNav.astro'
 import DynamicButton from '@/components/codebits/dynamic-button.tsx'
 import GlassForm from '@/components/codebits/glass-form.astro'
 import AnimatedTabs from '@/components/codebits/animated-tabs.astro'
@@ -10,7 +10,7 @@ import Widgets from '@/components/codebits/widget-slider.tsx'
 import DynamicActionBar from '@/components/codebits/dynamic-action-bar.tsx'
 
 import { allImages } from '@/lib/codebits'
-import DesktopNav from '@/components/desktop-nav.astro'
+import DesktopNav from '@/components/DesktopNav.astro'
 ---
 
 <RootLayout title="~/ui bits">
@@ -22,7 +22,7 @@ import DesktopNav from '@/components/desktop-nav.astro'
     }
   </head>
   <DesktopNav />
-  <Nav />
+  <MobileNav />
   <main class="container mx-auto px-4 lg:px-20 py-6 lg:py-10 mt-10 pb-32!">
     <h1 class="text-2xl lg:text-3xl font-semibold font-inter-tight">
       Here are some little pieces of UI I like to show off.

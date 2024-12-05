@@ -1,6 +1,6 @@
 ---
 import RootLayout from '@/layouts/Root.astro'
-import Nav from '@/components/nav.astro'
+import MobileNav from '@/components/MobileNav.astro'
 import {
   appProjects,
   fullstackProjects,
@@ -10,7 +10,7 @@ import {
 import { Picture } from 'astro:assets'
 import { cn } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
-import DesktopNav from '@/components/desktop-nav.astro'
+import DesktopNav from '@/components/DesktopNav.astro'
 
 const allProjects = [
   {
@@ -34,7 +34,7 @@ const allProjects = [
 
 <RootLayout title="~/projects">
   <DesktopNav />
-  <Nav />
+  <MobileNav />
   <main class="container mx-auto px-8 lg:px-20 py-6 lg:py-10 mt-10 pb-32!">
     {
       allProjects.map((projectCategory, index) => (

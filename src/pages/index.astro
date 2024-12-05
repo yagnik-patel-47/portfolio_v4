@@ -1,16 +1,16 @@
 ---
-import Nav from '@/components/nav.astro'
+import MobileNav from '@/components/MobileNav.astro'
 import RootLayout from '@/layouts/Root.astro'
 import { sliderIcons, techIcons } from '@/lib/icons-map'
 import { Image, Picture } from 'astro:assets'
 import { featuredProjects } from '@/lib/projects-data'
 import { Icon } from 'astro-icon/components'
-import DesktopNav from '@/components/desktop-nav.astro'
+import DesktopNav from '@/components/DesktopNav.astro'
 ---
 
 <RootLayout title="/yagnik">
   <DesktopNav />
-  <Nav />
+  <MobileNav />
   <main class="min-h-dvh py-28 md:py-30 container mx-auto px-8 lg:px-20">
     <h3
       class="text-xl md:text-2xl font-inter-tight font-semibold text-zinc-700"
