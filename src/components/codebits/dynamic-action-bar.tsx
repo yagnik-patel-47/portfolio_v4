@@ -78,7 +78,6 @@ const variants: { [key: string]: TargetAndTransition } = {
 		opacity: 1,
 		filter: "blur(0px)",
 		transition: {
-			delay: 0.05,
 			duration: 0.25,
 		},
 	},

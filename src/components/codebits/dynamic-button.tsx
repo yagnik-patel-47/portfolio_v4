@@ -136,7 +136,7 @@ export default function DynamicButton() {
 									layout="position"
 									type="button"
 									onClick={applyChanges}
-									className="text-sm block px-3 py-2 bg-indigo-900 text-white ml-auto rounded-lg mt-4 cursor-pointer"
+									className="text-xs md:text-sm block font-semibold md:font-normal px-3 py-2 bg-indigo-900 text-white ml-auto rounded-lg mt-4 cursor-pointer"
 								>
 									Apply Changes
 								</m.button>
@@ -196,7 +196,7 @@ function PromptTab({ prompt, setPrompt }) {
 		>
 			<textarea
 				autoFocus
-				className="w-full h-32 p-2 bg-transparent rounded-lg text-sm outline-indigo-600"
+				className="w-full h-32 p-3 bg-neutral-100 rounded-lg text-sm focus:outline-indigo-600"
 				placeholder="Write your genius prompt..."
 				value={prompt}
 				onChange={(e) => setPrompt(e.target.value)}

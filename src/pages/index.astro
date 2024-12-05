@@ -1,12 +1,15 @@
 ---
-import Nav from '@/components/Nav.astro'
+import Nav from '@/components/nav.astro'
 import RootLayout from '@/layouts/Root.astro'
 import { sliderIcons, techIcons } from '@/lib/icons-map'
 import { Image, Picture } from 'astro:assets'
 import { featuredProjects } from '@/lib/projects-data'
+import { Icon } from 'astro-icon/components'
+import DesktopNav from '@/components/desktop-nav.astro'
 ---
 
 <RootLayout title="/yagnik">
+  <DesktopNav />
   <Nav />
   <main class="min-h-dvh py-28 md:py-40 container mx-auto px-8 lg:px-20">
     <h3
@@ -19,9 +22,9 @@ import { featuredProjects } from '@/lib/projects-data'
       class="mt-4 text-2xl md:text-4xl max-w-3xl font-bold font-inter-tight text-zinc-800 opacity-0"
       id="para"
     >
-      A second-year computer science student @KPGU with a passion for building
-      awesome, engaging web experiences. My days are filled with coding and
-      exploring new ideas. Let’s make something amazing together!
+      I'm a second-year computer science student at KPGU with a passion for
+      creating awesome and engaging web experiences. My days are filled with
+      coding and exploring new ideas. Let’s create something amazing together!
     </p>
     <div
       class="items-center whitespace-nowrap space-x-8 md:space-x-12 overflow-hidden opacity-0 flex pt-10"
@@ -96,15 +99,24 @@ import { featuredProjects } from '@/lib/projects-data'
     <h2
       class="text-2xl md:text-3xl font-inter-tight text-zinc-800 font-bold mt-20 md:mt-40 mb-4 md:mb-8"
     >
-      My Niche
+      My Expertise
     </h2>
-    <div class="flex flex-col md:flex-row">
-      <p class="basis-1/3 text-lg text-balance">
+    <div class="flex flex-col md:flex-row gap-20">
+      <p class="basis-1/3 shrink-0 text-lg text-balance">
         I am dedicated to expanding my knowledge and expertise in my field.
-        Throughout my school and university time, I've acquired various skills,
-        which I continue to perfect.
+        Throughout my time in school and university, I've acquired various
+        skills that I continue to perfect.
       </p>
-      <div class="grid md:grid-cols-2"></div>
+      <div class="grid md:grid-cols-2">
+        <div class="grid gap-4 h-fit">
+          <Icon class="size-10" name="social/github-light" />
+          <h3 class="text-lg font-medium">Crafting UI into Web Experiences</h3>
+          <p>
+            I love creating UI interactions that feel good. I really enjoy the
+            process of making something that is fun and accessible to use.
+          </p>
+        </div>
+      </div>
     </div>
   </main>
 </RootLayout>

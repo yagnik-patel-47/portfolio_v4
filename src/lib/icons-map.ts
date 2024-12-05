@@ -30,7 +30,7 @@ import CPlusPlusIcon from "@/assets/icons/skill/c-plusplus.svg";
 import CloudflareWorkersIcon from "@/assets/icons/skill/cloudflare-workers.svg";
 import ExpressIcon from "@/assets/icons/skill/expressjs.svg";
 import FigmaIcon from "@/assets/icons/skill/figma.svg";
-import FlyIcon from "@/assets/icons/skill/fly.svg";
+// import FlyIcon from "@/assets/icons/skill/fly.svg";
 import GitIcon from "@/assets/icons/skill/git.svg";
 import GoIcon from "@/assets/icons/skill/golang.svg";
 import HuggingFaceIcon from "@/assets/icons/skill/hugging_face.svg";
@@ -80,7 +80,6 @@ export const sliderIcons = {
 	MongoDB: MongoDBIcon,
 	V0: VZeroIcon,
 	"Hugging Face": HuggingFaceIcon,
-	"Fly.io": FlyIcon,
 	Git: GitIcon,
 	Vim: VimIcon,
 	Figma: FigmaIcon,

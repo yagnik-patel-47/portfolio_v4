@@ -1,0 +1,28 @@
+---
+import CopyMailButton from './copy-mail'
+---
+
+<header
+  class="top-0 sticky py-4 container mx-auto flex justify-between items-center px-20 translate-y-10"
+>
+  <h2 class="text-2xl text-neutral-800 font-inter-tight font-bold">Yagnik.</h2>
+  <nav class="flex gap-6 font-medium text-lg text-neutral-800">
+    <a
+      class="relative after:absolute after:inset-x-0 after:bottom-0.5 after:h-0.5 after:bg-neutral-800 after:scale-x-0 hover:after:scale-x-100 after:transition"
+      href="/projects">projects</a
+    >
+    <a
+      class="relative after:absolute after:inset-x-0 after:bottom-0.5 after:h-0.5 after:bg-neutral-800 after:scale-x-0 hover:after:scale-x-100 after:transition"
+      href="/about">about</a
+    >
+    <a
+      class="relative after:absolute after:inset-x-0 after:bottom-0.5 after:h-0.5 after:bg-neutral-800 after:scale-x-0 hover:after:scale-x-100 after:transition"
+      href="/uibits">ui_bits</a
+    >
+  </nav>
+</header>
+<div
+  class="h-12 w-full px-20 bg-neutral-300 translate-y-10 container mx-auto flex items-center justify-end gap-10"
+>
+  <CopyMailButton client:load />
+</div>
