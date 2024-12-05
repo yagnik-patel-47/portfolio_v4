@@ -3,6 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
 import react from "@astrojs/react";
 import icon from "astro-icon";
+import path from "path";
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,15 +13,11 @@ export default defineConfig({
 			iconDir: "src/assets/icons",
 		}),
 	],
-	alias: {
-		"@": "src",
-	},
 	vite: {
 		plugins: [tailwindcss()],
-
 		resolve: {
 			alias: {
-				"@": "/src",
+				"@": path.resolve("./src"),
 			},
 		},
 		css: {
