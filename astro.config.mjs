@@ -12,13 +12,11 @@ export default defineConfig({
 			iconDir: "src/assets/icons",
 		}),
 	],
+	alias: {
+		"@": "src",
+	},
 	vite: {
 		plugins: [tailwindcss()],
-		resolve: {
-			alias: {
-				"@": "/src",
-			},
-		},
 		css: {
 			transformer: "lightningcss",
 		},
