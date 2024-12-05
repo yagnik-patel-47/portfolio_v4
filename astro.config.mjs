@@ -13,7 +13,7 @@ export default defineConfig({
 		}),
 	],
 	alias: {
-		"@": "	src",
+		"@": "src",
 	},
 	vite: {
 		plugins: [tailwindcss()],
