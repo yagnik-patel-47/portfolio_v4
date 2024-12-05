@@ -10,6 +10,7 @@ import {
 import { Picture } from 'astro:assets'
 import { cn } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
+import DesktopNav from '@/components/desktop-nav.astro'
 
 const allProjects = [
   {
@@ -32,8 +33,9 @@ const allProjects = [
 ---
 
 <RootLayout title="~/projects">
+  <DesktopNav />
   <Nav />
-  <main class="px-8 md:px-20 lg:px-32 2xl:px-72 py-6 lg:py-20 mt-10 pb-32!">
+  <main class="container mx-auto px-8 lg:px-20 py-6 lg:py-10 mt-10 pb-32!">
     {
       allProjects.map((projectCategory, index) => (
         <>
@@ -71,7 +73,7 @@ const allProjects = [
                         target="_blank"
                         href={project.links.repo}
                       >
-                        <Icon class="size-5" name="social/github-light" />
+                        <Icon class="size-5" name="social/github" />
                       </a>
                     )}
                     <a

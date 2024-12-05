@@ -1,5 +1,5 @@
 import { AnimatePresence, motion as m, MotionConfig } from "motion/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Mail } from "lucide-react";
 
 export default function CopyMailButton() {
@@ -20,14 +20,11 @@ export default function CopyMailButton() {
 		setState("initial");
 	}
 
-	useEffect(() => {
-		console.log(state);
-	}, [state]);
-
 	return (
 		<MotionConfig transition={{ duration: 0.3, type: "spring" }}>
 			<m.button
 				whileHover={{ scale: 1.1 }}
+				whileTap={{ scale: 0.95 }}
 				className="cursor-pointer overflow-hidden flex justify-center items-center bg-neutral-800 text-neutral-100 w-30 h-9 rounded-full"
 				onClick={handleClick}
 				onHoverStart={handleHoverStart}
@@ -39,7 +36,7 @@ export default function CopyMailButton() {
 							initial={{ y: "100%" }}
 							animate={{ y: 0 }}
 							key="contact"
-							className="block"
+							className="block text-neutral-100 text-sm"
 						>
 							contact
 						</m.span>
@@ -61,7 +58,7 @@ export default function CopyMailButton() {
 											duration: 0.3,
 											repeatType: "mirror",
 										}}
-										className="h-0.5 w-4 transform-[scaleX(0)] bg-neutral-300 rounded-full"
+										className="h-0.5 w-4 transform-[scaleX(0)] bg-amber-500 rounded-full"
 									></m.div>
 									<m.div
 										animate={{ scaleX: [0, 1], transformOrigin: "right" }}
@@ -70,7 +67,7 @@ export default function CopyMailButton() {
 											duration: 0.4,
 											repeatType: "mirror",
 										}}
-										className="h-0.5 w-4 transform-[scaleX(0)] bg-neutral-300 rounded-full"
+										className="h-0.5 w-4 transform-[scaleX(0)] bg-teal-500 rounded-full"
 									></m.div>
 									<m.div
 										animate={{ scaleX: [0, 1], transformOrigin: "right" }}
@@ -79,10 +76,10 @@ export default function CopyMailButton() {
 											duration: 0.5,
 											repeatType: "mirror",
 										}}
-										className="h-0.5 w-4 transform-[scaleX(0)] bg-neutral-300 rounded-full"
+										className="h-0.5 w-4 transform-[scaleX(0)] bg-rose-500 rounded-full"
 									></m.div>
 								</div>
-								<Mail className="size-5" />
+								<Mail className="size-5 text-neutral-100" />
 							</div>
 						</m.div>
 					)}
@@ -91,7 +88,7 @@ export default function CopyMailButton() {
 							initial={{ y: "100%" }}
 							animate={{ y: 0 }}
 							key="copied"
-							className="block"
+							className="block text-neutral-100 text-sm"
 						>
 							mail copied
 						</m.span>
