@@ -135,7 +135,7 @@ const socials = [
 <script>
   import { animate } from 'motion/mini'
 
-  const isMobile = window.matchMedia('(max-width: 1023px)').matches
+  const isMobile = window.matchMedia('(width < 1024px)').matches
 
   if (isMobile) {
     const navCollapseSection = document.getElementById('nav-content')!
@@ -147,16 +147,6 @@ const socials = [
     const navLinks = document.querySelectorAll(
       '.nav-links',
     ) as NodeListOf<HTMLAnchorElement>
-    const routeSpan = document.getElementById('route')!
-    const cdSpan = document.getElementById('cd-span')!
-    const homeLink = document.getElementById('home-link')!
-    let currentRoute = window.location.pathname
-
-    let cdSpanWidth = cdSpan?.getBoundingClientRect().width ?? 0
-    cdSpan.style.width = '0'
-
-    if (window.location.pathname !== '/')
-      routeSpan.textContent = window.location.pathname
 
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',

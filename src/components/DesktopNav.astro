@@ -86,12 +86,23 @@ const socials = [
         </div>
       </div>
       <CopyMailButton client:load />
+      <a
+        href="https://buymeacoffee.com/yagnik"
+        target="_blank"
+        aria-label="Buy me a Coffee"
+      >
+        <Icon
+          title="Buy me a Coffee"
+          class="size-10 text-neutral-800"
+          name="social/buymeacoffee_coloured"
+        />
+      </a>
     </nav>
   </header>
 </div>
 
 <script>
-  const isDesktop = window.matchMedia('(min-width: 1024px)').matches
+  const isDesktop = window.matchMedia('(width >= 1024px)').matches
 
   if (isDesktop) {
     const wrapper = document.getElementById('wrapper')

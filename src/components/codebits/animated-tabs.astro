@@ -40,22 +40,20 @@ const TABS = ['Fortnite', 'Asphalt 9', 'FC 25']
 </style>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const cliped = document.getElementById('cliped')
-    const buttons = document.querySelectorAll(
-      '.tab-btn',
-    ) as NodeListOf<HTMLButtonElement>
+  const cliped = document.getElementById('cliped')
+  const buttons = document.querySelectorAll(
+    '.tab-btn',
+  ) as NodeListOf<HTMLButtonElement>
 
-    const clipLeft = buttons[0].offsetLeft
-    const clipRight = buttons[0].offsetLeft + buttons[0].offsetWidth
-    cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
+  const clipLeft = buttons[0].offsetLeft
+  const clipRight = buttons[0].offsetLeft + buttons[0].offsetWidth
+  cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
 
-    buttons.forEach((btn) =>
-      btn.addEventListener('click', () => {
-        const clipLeft = btn.offsetLeft
-        const clipRight = btn.offsetLeft + btn.offsetWidth
-        cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
-      }),
-    )
-  })
+  buttons.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const clipLeft = btn.offsetLeft
+      const clipRight = btn.offsetLeft + btn.offsetWidth
+      cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
+    }),
+  )
 </script>
