@@ -90,6 +90,7 @@ import DesktopNav from '@/components/DesktopNav.astro'
                 alt={project.name}
                 formats={['avif']}
                 class="rounded-2xl w-full object-cover"
+                layout="responsive"
               />
             </div>
           </div>
@@ -163,72 +164,70 @@ import DesktopNav from '@/components/DesktopNav.astro'
   import SplitType from 'split-type'
   import { stagger, animate, inView } from 'motion'
 
-  document.addEventListener('astro:page-load', () => {
-    const para = SplitType.create('#para', { types: 'lines' })
-    document.getElementById('para').style.opacity = '1'
+  const para = SplitType.create('#para', { types: 'lines' })
+  document.getElementById('para').style.opacity = '1'
 
-    animate(
-      '#name',
-      {
-        y: [10, 0],
-        opacity: [0, 1],
-      },
-      {
-        duration: 1.25,
-        type: 'spring',
-      },
-    )
-    animate(
-      para.lines,
-      {
-        y: [10, 0],
-        opacity: [0, 1],
-      },
-      {
-        duration: 1.25,
-        type: 'spring',
-        delay: stagger(0.025),
-      },
-    )
-    animate(
-      '#list-container-1',
-      {
-        y: [10, 0],
-        opacity: [0, 1],
-      },
-      {
-        duration: 1.25,
-        type: 'spring',
-      },
-    )
-    animate(
-      '#featured-projects-title',
-      {
-        y: [10, 0],
-        opacity: [0, 1],
-      },
-      {
-        duration: 1.25,
-        type: 'spring',
-      },
-    )
+  animate(
+    '#name',
+    {
+      y: [10, 0],
+      opacity: [0, 1],
+    },
+    {
+      duration: 1.25,
+      type: 'spring',
+    },
+  )
+  animate(
+    para.lines,
+    {
+      y: [10, 0],
+      opacity: [0, 1],
+    },
+    {
+      duration: 1.25,
+      type: 'spring',
+      delay: stagger(0.025),
+    },
+  )
+  animate(
+    '#list-container-1',
+    {
+      y: [10, 0],
+      opacity: [0, 1],
+    },
+    {
+      duration: 1.25,
+      type: 'spring',
+    },
+  )
+  animate(
+    '#featured-projects-title',
+    {
+      y: [10, 0],
+      opacity: [0, 1],
+    },
+    {
+      duration: 1.25,
+      type: 'spring',
+    },
+  )
 
-    inView(
-      '.project',
-      (info) => {
-        animate(
-          info.target,
-          {
-            y: [10, 0],
-            opacity: [0, 1],
-          },
-          {
-            duration: 1.25,
-            type: 'spring',
-          },
-        )
-      },
-      { amount: 0.75 },
-    )
-  })
+  inView(
+    '.project',
+    (info) => {
+      animate(
+        info.target,
+        {
+          y: [10, 0],
+          opacity: [0, 1],
+        },
+        {
+          duration: 1.25,
+          type: 'spring',
+        },
+      )
+    },
+    { amount: 0.75 },
+  )
 </script>

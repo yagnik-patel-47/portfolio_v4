@@ -46,7 +46,6 @@ const socials = [
 ---
 
 <div
-  transition:persist
   id="floatingBarContainer"
   class="block lg:hidden fixed inset-x-4! max-md:inset-x-auto md:max-w-2xl md:w-full mx-auto bottom-4 overflow-hidden z-20 bg-zinc-950 text-neutral-200"
   style={{
@@ -105,23 +104,9 @@ const socials = [
   <div
     class="flex justify-between items-center px-8 md:px-12 py-2 motion-reduce:transition-none gap-8"
   >
-    <a class="text-xl flex items-center space-x-2 py-2 xl:hidden" href="/">
+    <a class="text-xl flex items-center space-x-2 py-2" href="/">
       <Icon class="size-6" name="terminal" />
       <span>/yagnik</span>
-    </a>
-    <a
-      id="home-link"
-      class="text-xl flex items-center space-x-2 flex-1 py-2 max-xl:hidden"
-      href="/"
-    >
-      <Icon class="size-6" name="terminal" />
-      <span
-        class="inline-block overflow-hidden opacity-0 whitespace-nowrap"
-        id="cd-span">cd</span
-      >
-      <span>~</span>
-      <span class="inline-block whitespace-nowrap overflow-hidden" id="route"
-      ></span>
     </a>
     <div class="flex space-x-8 items-center">
       <a
@@ -149,181 +134,148 @@ const socials = [
 
 <script>
   import { animate } from 'motion/mini'
-  const navCollapseSection = document.getElementById('nav-content')!
-  let navContentHeight = navCollapseSection?.scrollHeight ?? 0
-  const hamBtn = document.getElementById('ham-btn')!
-  const floatingBarContainer = document.getElementById('floatingBarContainer')!
-  const navLinks = document.querySelectorAll(
-    '.nav-links',
-  ) as NodeListOf<HTMLAnchorElement>
-  const routeSpan = document.getElementById('route')!
-  const cdSpan = document.getElementById('cd-span')!
-  const homeLink = document.getElementById('home-link')!
-  let currentRoute = window.location.pathname
 
-  let cdSpanWidth = cdSpan?.getBoundingClientRect().width ?? 0
-  cdSpan.style.width = '0'
+  const isMobile = window.matchMedia('(max-width: 1023px)').matches
 
-  if (window.location.pathname !== '/')
-    routeSpan.textContent = window.location.pathname
+  if (isMobile) {
+    const navCollapseSection = document.getElementById('nav-content')!
+    let navContentHeight = navCollapseSection?.scrollHeight ?? 0
+    const hamBtn = document.getElementById('ham-btn')!
+    const floatingBarContainer = document.getElementById(
+      'floatingBarContainer',
+    )!
+    const navLinks = document.querySelectorAll(
+      '.nav-links',
+    ) as NodeListOf<HTMLAnchorElement>
+    const routeSpan = document.getElementById('route')!
+    const cdSpan = document.getElementById('cd-span')!
+    const homeLink = document.getElementById('home-link')!
+    let currentRoute = window.location.pathname
 
-  document.addEventListener('astro:after-swap', () => {
+    let cdSpanWidth = cdSpan?.getBoundingClientRect().width ?? 0
+    cdSpan.style.width = '0'
+
     if (window.location.pathname !== '/')
       routeSpan.textContent = window.location.pathname
-    else routeSpan.textContent = ''
-    currentRoute = window.location.pathname
-  })
 
-  homeLink.addEventListener('mouseenter', () => {
-    if (currentRoute === '/') return
-    animate(
-      cdSpan,
-      { width: cdSpanWidth + 'px', opacity: 1 },
-      { duration: 0.15 },
-    )
-    animate(routeSpan, { opacity: 0 }, { duration: 0.15 })
-  })
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches
 
-  homeLink.addEventListener('mouseleave', () => {
-    animate(cdSpan, { width: 0, opacity: 0 }, { duration: 0.15 })
-    animate(routeSpan, { opacity: 1 }, { duration: 0.15 })
-  })
-
-  const prefersReducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)',
-  ).matches
-
-  window.addEventListener('resize', () => {
-    navContentHeight = navCollapseSection?.scrollHeight ?? 0
-  })
-
-  window.addEventListener('keydown', (e) => {
-    if (
-      floatingBarContainer.dataset.state === 'open' &&
-      e.code.startsWith('Digit')
-    )
-      navLinks[parseInt(e.key) - 1]?.click()
-    if (floatingBarContainer.dataset.state === 'open' && e.key === 'Escape')
-      setCloseState(prefersReducedMotion)
-  })
-
-  hamBtn.addEventListener('click', () => {
-    if (floatingBarContainer.dataset.state === 'open')
-      setCloseState(prefersReducedMotion)
-    else setOpenState(prefersReducedMotion)
-  })
-
-  document.addEventListener('click', (event) => {
-    // @ts-ignore
-    const isClickInside = floatingBarContainer.contains(event.target)
-    if (!isClickInside && floatingBarContainer.dataset.state === 'open')
-      setCloseState(prefersReducedMotion)
-  })
-
-  navLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      document.addEventListener('astro:after-swap', () => {
-        setCloseState(prefersReducedMotion, false)
-      })
+    window.addEventListener('resize', () => {
+      navContentHeight = navCollapseSection?.scrollHeight ?? 0
     })
-  })
 
-  let touchData = {
-    initialX: null,
-    initialY: null,
-    y: null,
-    x: null,
-  }
+    hamBtn.addEventListener('click', () => {
+      if (floatingBarContainer.dataset.state === 'open')
+        setCloseState(prefersReducedMotion)
+      else setOpenState(prefersReducedMotion)
+    })
 
-  floatingBarContainer.addEventListener('touchstart', (e) => {
-    touchData = {
-      initialX: e.touches[0].clientX,
-      initialY: e.touches[0].clientY,
+    document.addEventListener('click', (event) => {
+      // @ts-ignore
+      const isClickInside = floatingBarContainer.contains(event.target)
+      if (!isClickInside && floatingBarContainer.dataset.state === 'open')
+        setCloseState(prefersReducedMotion)
+    })
+
+    let touchData = {
+      initialX: null,
+      initialY: null,
       y: null,
       x: null,
     }
-  })
-  floatingBarContainer.addEventListener('touchmove', (e) => {
-    e.preventDefault()
-    touchData = {
-      ...touchData,
-      y: e.touches[0].clientY,
-      x: e.touches[0].clientX,
-    }
-  })
-  floatingBarContainer.addEventListener('touchend', (e) => {
-    touchData = {
-      ...touchData,
-      y: e.changedTouches[0].clientY,
-    }
-    if (floatingBarContainer.dataset.state === 'open') {
-      isDiffGt(touchData.y, touchData.initialY, 100, 'positive')
-        ? setCloseState(prefersReducedMotion)
-        : setOpenState(prefersReducedMotion)
-    } else {
-      isDiffGt(touchData.y, touchData.initialY, -50, 'negetive')
-        ? setOpenState(prefersReducedMotion)
-        : setCloseState(prefersReducedMotion)
-    }
-  })
 
-  function isDiffGt(
-    num1: number,
-    num2: number,
-    threshold: number,
-    sign?: 'positive' | 'negetive',
-  ) {
-    if (sign === 'positive') {
-      return num1 - num2 >= threshold
+    floatingBarContainer.addEventListener('touchstart', (e) => {
+      touchData = {
+        initialX: e.touches[0].clientX,
+        initialY: e.touches[0].clientY,
+        y: null,
+        x: null,
+      }
+    })
+    floatingBarContainer.addEventListener('touchmove', (e) => {
+      e.preventDefault()
+      touchData = {
+        ...touchData,
+        y: e.touches[0].clientY,
+        x: e.touches[0].clientX,
+      }
+    })
+    floatingBarContainer.addEventListener('touchend', (e) => {
+      touchData = {
+        ...touchData,
+        y: e.changedTouches[0].clientY,
+      }
+      if (floatingBarContainer.dataset.state === 'open') {
+        isDiffGt(touchData.y, touchData.initialY, 100, 'positive')
+          ? setCloseState(prefersReducedMotion)
+          : setOpenState(prefersReducedMotion)
+      } else {
+        isDiffGt(touchData.y, touchData.initialY, -50, 'negetive')
+          ? setOpenState(prefersReducedMotion)
+          : setCloseState(prefersReducedMotion)
+      }
+    })
+
+    function isDiffGt(
+      num1: number,
+      num2: number,
+      threshold: number,
+      sign?: 'positive' | 'negetive',
+    ) {
+      if (sign === 'positive') {
+        return num1 - num2 >= threshold
+      }
+
+      if (sign === 'negetive') {
+        return num1 - num2 <= threshold
+      }
+
+      const difference = Math.abs(num1 - num2)
+      return difference >= threshold
     }
 
-    if (sign === 'negetive') {
-      return num1 - num2 <= threshold
+    window.addEventListener('scroll', (e) => {
+      setCloseState(prefersReducedMotion)
+    })
+
+    function setOpenState(reducedMotion: boolean) {
+      floatingBarContainer.setAttribute('data-state', 'open')
+      animate(
+        floatingBarContainer,
+        { clipPath: 'inset(0 round 24px)' },
+        { duration: reducedMotion ? 0 : 0.2 },
+      )
+      animate(
+        navCollapseSection,
+        {
+          height: `${navContentHeight}px`,
+        },
+        {
+          duration: reducedMotion ? 0 : 0.2,
+          delay: 0.05,
+          ease: [0.33, 1, 0.68, 1],
+        },
+      )
     }
-
-    const difference = Math.abs(num1 - num2)
-    return difference >= threshold
-  }
-
-  window.addEventListener('scroll', (e) => {
-    setCloseState(prefersReducedMotion)
-  })
-
-  function setOpenState(reducedMotion: boolean) {
-    floatingBarContainer.setAttribute('data-state', 'open')
-    animate(
-      floatingBarContainer,
-      { clipPath: 'inset(0 round 24px)' },
-      { duration: reducedMotion ? 0 : 0.2 },
-    )
-    animate(
-      navCollapseSection,
-      {
-        height: `${navContentHeight}px`,
-      },
-      {
-        duration: reducedMotion ? 0 : 0.2,
-        delay: 0.05,
-        ease: [0.33, 1, 0.68, 1],
-      },
-    )
-  }
-  async function setCloseState(reducedMotion: boolean, animation = true) {
-    floatingBarContainer.setAttribute('data-state', 'closed')
-    animate(
-      floatingBarContainer,
-      { clipPath: 'inset(0 round 40px)' },
-      { duration: reducedMotion ? 0 : 0.2 },
-    )
-    animate(
-      navCollapseSection,
-      {
-        height: 0,
-      },
-      {
-        duration: reducedMotion || !animation ? 0 : 0.2,
-        ease: [0.76, 0, 0.24, 1],
-      },
-    )
+    async function setCloseState(reducedMotion: boolean, animation = true) {
+      floatingBarContainer.setAttribute('data-state', 'closed')
+      animate(
+        floatingBarContainer,
+        { clipPath: 'inset(0 round 40px)' },
+        { duration: reducedMotion ? 0 : 0.2 },
+      )
+      animate(
+        navCollapseSection,
+        {
+          height: 0,
+        },
+        {
+          duration: reducedMotion || !animation ? 0 : 0.2,
+          ease: [0.76, 0, 0.24, 1],
+        },
+      )
+    }
   }
 </script>

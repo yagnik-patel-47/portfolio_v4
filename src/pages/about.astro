@@ -13,6 +13,7 @@ import MobileNav from '@/components/MobileNav.astro'
   <main class="container mx-auto px-8 lg:px-20 py-6 lg:py-20 pb-32! mt-10">
     <div class="grid xl:grid-cols-2 items-center gap-8">
       <Picture
+        layout="responsive"
         class="rounded-full w-40 md:w-48 lg:w-96 aspect-square"
         src={profileImage}
         alt="oh it's me"
@@ -151,29 +152,27 @@ import MobileNav from '@/components/MobileNav.astro'
 </RootLayout>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const randomColorBtn = document.getElementById('randomColor')
+  const randomColorBtn = document.getElementById('randomColor')
 
-    randomColorBtn?.addEventListener('click', () => {
-      changeColor()
-    })
-
-    function changeColor() {
-      document.querySelectorAll('.card').forEach((card: HTMLDivElement) => {
-        card.style.transition = 'all 0.3s ease-in-out'
-        card.style.backgroundColor = getRandomLightColor()
-      })
-    }
-
-    function getRandomLightColor() {
-      let r, g, b
-      do {
-        r = Math.floor(Math.random() * 46) + 210
-        g = Math.floor(Math.random() * 46) + 210
-        b = Math.floor(Math.random() * 46) + 210
-      } while ((r > g && r > b) || (r === g && r > b)) // Avoid red, yellow, and orange shades
-
-      return `rgb(${r}, ${g}, ${b})`
-    }
+  randomColorBtn?.addEventListener('click', () => {
+    changeColor()
   })
+
+  function changeColor() {
+    document.querySelectorAll('.card').forEach((card: HTMLDivElement) => {
+      card.style.transition = 'all 0.3s ease-in-out'
+      card.style.backgroundColor = getRandomLightColor()
+    })
+  }
+
+  function getRandomLightColor() {
+    let r: number, g: number, b: number
+    do {
+      r = Math.floor(Math.random() * 46) + 210
+      g = Math.floor(Math.random() * 46) + 210
+      b = Math.floor(Math.random() * 46) + 210
+    } while ((r > g && r > b) || (r === g && r > b)) // Avoid red, yellow, and orange shades
+
+    return `rgb(${r}, ${g}, ${b})`
+  }
 </script>

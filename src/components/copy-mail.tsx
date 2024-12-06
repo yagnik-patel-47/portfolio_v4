@@ -1,23 +1,52 @@
 import { AnimatePresence, motion as m, MotionConfig } from "motion/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Mail } from "lucide-react";
 
 export default function CopyMailButton() {
 	const [state, setState] = useState("initial");
+	const timeoutRef = useRef<NodeJS.Timeout>();
+	const isHovering = useRef(false);
 
 	function handleClick() {
 		navigator.clipboard.writeText("yagnik47.dev@gmail.com");
 		setState("clicked");
+
+		if (timeoutRef.current) {
+			clearTimeout(timeoutRef.current);
+		}
+
+		if (!isHovering.current) {
+			timeoutRef.current = setTimeout(() => {
+				setState("initial");
+				timeoutRef.current = undefined;
+			}, 2000);
+		}
 	}
 
 	function handleHoverStart() {
+		isHovering.current = true;
 		if (state !== "clicked") {
 			setState("hover");
+		} else {
+			// Clear timeout if hovering while clicked
+			if (timeoutRef.current) {
+				clearTimeout(timeoutRef.current);
+				timeoutRef.current = undefined;
+			}
 		}
 	}
 
 	function handleHoverEnd() {
-		setState("initial");
+		isHovering.current = false;
+		if (state === "clicked") {
+			// Start timeout when hover ends in clicked state
+			timeoutRef.current = setTimeout(() => {
+				setState("initial");
+				timeoutRef.current = undefined;
+			}, 2000);
+		} else {
+			setState("initial");
+		}
 	}
 
 	return (

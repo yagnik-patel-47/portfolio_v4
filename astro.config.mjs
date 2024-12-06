@@ -8,7 +8,11 @@ import path from "path";
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
-		react(),
+		react({
+			babel: {
+				plugins: [["babel-plugin-react-compiler"]],
+			},
+		}),
 		icon({
 			iconDir: "src/assets/icons",
 		}),
@@ -28,4 +32,7 @@ export default defineConfig({
 			enabled: true,
 		},
 	}),
+	experimental: {
+		responsiveImages: true,
+	},
 });
