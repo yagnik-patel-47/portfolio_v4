@@ -191,56 +191,54 @@ import { Icon } from 'astro-icon/components'
 </style>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const isSmallDevice = window.matchMedia('(max-width: 768px)').matches
+  const isSmallDevice = window.matchMedia('(max-width: 768px)').matches
 
-    const tilesContainer = document.getElementById('tiles-container')
-    const tile = document.querySelector('.tile')
+  const tilesContainer = document.getElementById('tiles-container')
+  const tile = document.querySelector('.tile')
 
-    for (let i = 0; isSmallDevice ? i < 149 : i < 899; ++i) {
-      tilesContainer.appendChild(tile.cloneNode())
-    }
+  for (let i = 0; isSmallDevice ? i < 149 : i < 899; ++i) {
+    tilesContainer.appendChild(tile.cloneNode())
+  }
 
-    if (isSmallDevice) previewTiles()
+  if (isSmallDevice) previewTiles()
 
-    function previewTiles() {
-      const tiles = document.querySelectorAll<HTMLDivElement>('.tile')
+  function previewTiles() {
+    const tiles = document.querySelectorAll<HTMLDivElement>('.tile')
 
-      setInterval(() => {
-        Array.from([1, 2, 3, 4, 5]).forEach(() => {
-          const randomTile = tiles[Math.floor(Math.random() * tiles.length)]
+    setInterval(() => {
+      Array.from([1, 2, 3, 4, 5]).forEach(() => {
+        const randomTile = tiles[Math.floor(Math.random() * tiles.length)]
 
-          randomTile.animate(
-            [
-              { backgroundColor: 'var(--bg-color)', offset: 0.5 },
-              { backgroundColor: 'var(--bg-color)', offset: 0.5 },
-            ],
-            {
-              easing: 'ease',
-              duration: 2000,
-            },
-          )
-        })
-      }, 500)
-    }
+        randomTile.animate(
+          [
+            { backgroundColor: 'var(--bg-color)', offset: 0.5 },
+            { backgroundColor: 'var(--bg-color)', offset: 0.5 },
+          ],
+          {
+            easing: 'ease',
+            duration: 2000,
+          },
+        )
+      })
+    }, 500)
+  }
 
-    const tileEditorButtons =
-      document.querySelectorAll<HTMLButtonElement>('.tiles-editor')
-    const cliped = document.getElementById('cliped-tabs')
+  const tileEditorButtons =
+    document.querySelectorAll<HTMLButtonElement>('.tiles-editor')
+  const cliped = document.getElementById('cliped-tabs')
 
-    const clipLeft = tileEditorButtons[0].offsetLeft
-    const clipRight =
-      tileEditorButtons[0].offsetLeft + tileEditorButtons[0].offsetWidth
-    cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
+  const clipLeft = tileEditorButtons[0].offsetLeft
+  const clipRight =
+    tileEditorButtons[0].offsetLeft + tileEditorButtons[0].offsetWidth
+  cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
 
-    tileEditorButtons.forEach((btn) =>
-      btn.addEventListener('click', () => {
-        const clipLeft = btn.offsetLeft
-        const clipRight = btn.offsetLeft + btn.offsetWidth
-        cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
+  tileEditorButtons.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const clipLeft = btn.offsetLeft
+      const clipRight = btn.offsetLeft + btn.offsetWidth
+      cliped.style.clipPath = `inset(0 ${Number(100 - (clipRight / cliped.offsetWidth) * 100).toFixed()}% 0 ${Number((clipLeft / cliped.offsetWidth) * 100).toFixed()}% round 69px)`
 
-        tilesContainer.dataset.activePalette = btn.dataset.palette
-      }),
-    )
-  })
+      tilesContainer.dataset.activePalette = btn.dataset.palette
+    }),
+  )
 </script>

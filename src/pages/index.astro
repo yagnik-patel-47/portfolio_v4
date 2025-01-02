@@ -1,60 +1,88 @@
 ---
 import MobileNav from '@/components/MobileNav.astro'
 import RootLayout from '@/layouts/Root.astro'
-import { sliderIcons, techIcons } from '@/lib/icons-map'
+import { techIcons } from '@/lib/icons-map'
 import { Image, Picture } from 'astro:assets'
 import { featuredProjects } from '@/lib/projects-data'
 import { Icon } from 'astro-icon/components'
 import DesktopNav from '@/components/DesktopNav.astro'
+
+const learning = ['Software', 'Computer Networking', 'Design Patterns', 'DSA']
+const expertise = ['Frontend', 'UI Interactions', 'SASS']
 ---
 
 <RootLayout title="/yagnik">
   <DesktopNav />
   <MobileNav />
-  <main class="min-h-dvh py-28 md:py-30 container mx-auto px-8 lg:px-20">
-    <h3
-      class="text-xl md:text-2xl font-inter-tight font-semibold text-zinc-700"
-      id="name"
-    >
-      Hello! I'm Yagnik.
-    </h3>
-    <p
-      class="mt-4 text-2xl md:text-4xl max-w-3xl font-bold font-inter-tight text-zinc-800 opacity-0"
-      id="para"
-    >
-      I'm a second-year computer science student at KPGU with a passion for
-      creating awesome and engaging web experiences. My days are filled with
-      coding and exploring new ideas. Let’s create something amazing together!
-    </p>
+  <main class="container mx-auto lg:px-20 pb-30 px-8 lg:p-10 mt-6">
     <div
-      class="items-center whitespace-nowrap space-x-8 md:space-x-12 overflow-hidden opacity-0 flex pt-10"
-      id="list-container-1"
+      id="grid"
+      class="min-h-dvh lg:min-h-[calc(100svh-4.5rem)] grid grid-cols-2 justify-center gap-5 p-5 rounded-3xl"
     >
-      {
-        Array.from({ length: 2 }).map(() => (
-          <div class="inline-flex gap-x-8 md:gap-x-12 w-max list">
-            {Object.entries(sliderIcons).map(([iconName, icon]) => (
-              <div class="w-max aspect-square p-3 md:p-5 bg-zinc-100 rounded-[19px] relative group">
-                <div class="absolute bottom-[calc(100%+0.5rem)] py-0.5 px-4 rounded-full bg-zinc-100 left-1/2 -translate-x-1/2 text-xs md:text-sm opacity-0 group-hover:opacity-100 group-hover:scale-100 transition scale-50 origin-bottom">
-                  {iconName}
-                </div>
-                <Image
-                  class="object-contain aspect-square rounded-lg"
-                  width={40}
-                  height={40}
-                  src={icon}
-                  alt={iconName}
-                  loading="eager"
+      <div
+        class="col-span-2 py-10 bg-white lg:p-10 rounded-3xl grid items-center"
+      >
+        <p
+          class="text-3xl text-balance md:text-5xl 2xl:text-6xl md:leading-14 2xl:leading-17 tracking-tight max-w-3xl 2xl:max-w-4xl md:text-pretty font-serif text-zinc-800 opacity-0"
+          id="para"
+        >
+          Hi, I'm a second-year <span class="font-semibold">Computer</span>
+          <span class="font-semibold">Science</span> student with a passion for creating
+          <span class="font-semibold">awesome</span> and <span
+            class="font-semibold">engaging</span
+          >
+          <span class="font-semibold">software</span>
+          <span class="font-semibold">experiences</span>.
+        </p>
+      </div>
+      <div class="bg-white rounded-2xl overflow-hidden relative pt-8 group">
+        <h3
+          class="font-black text-zinc-100 text-7xl 2xl:text-8xl uppercase absolute bottom-2 right-2 scale-[3] origin-bottom-right group-hover:scale-100 group-hover:text-zinc-200 blur-xs group-hover:blur-none transition duration-300 card-title pointer-events-none"
+        >
+          Learning
+        </h3>
+        <div class="lg:px-10 py-2">
+          {
+            learning.map((item) => (
+              <div class="flex items-center gap-2 group/item overflow-x-clip learning-item">
+                <Icon
+                  class="size-7 -translate-x-full group-hover/item:translate-x-0 transition duration-300"
+                  name="arrow-right"
                 />
+                <p class="text-2xl text-neutral-800 font-medium 2xl:text-3xl -translate-x-7 group-hover/item:translate-x-0 transition duration-300 cursor-default">
+                  {item}
+                </p>
               </div>
-            ))}
-          </div>
-        ))
-      }
+            ))
+          }
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl overflow-hidden relative pt-8 group">
+        <h3
+          class="font-black text-zinc-100 text-7xl 2xl:text-8xl uppercase absolute bottom-2 right-2 scale-[3] origin-bottom-right group-hover:scale-100 group-hover:text-zinc-200 blur-xs group-hover:blur-none transition duration-300 card-title pointer-events-none"
+        >
+          Expertise
+        </h3>
+        <div class="lg:px-10 py-2">
+          {
+            expertise.map((item) => (
+              <div class="flex items-center gap-2 group/item overflow-x-clip expertise-item">
+                <Icon
+                  class="size-7 -translate-x-full group-hover/item:translate-x-0 transition duration-300"
+                  name="arrow-right"
+                />
+                <p class="text-2xl text-neutral-800 font-medium 2xl:text-3xl -translate-x-7 group-hover/item:translate-x-0 transition duration-300 cursor-default">
+                  {item}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </div>
-    <section class="rounded-2xl mt-20 space-y-12">
+    <section class="rounded-2xl mt-20 space-y-12 px-10">
       <h1
-        class="text-2xl md:text-3xl font-inter-tight text-zinc-800 font-bold mt-4 mb-8 md:mb-12 opacity-0"
+        class="text-2xl md:text-3xl font-serif text-zinc-800 font-bold mt-4 mb-8 md:mb-12 opacity-0"
         id="featured-projects-title"
       >
         Featured Projects
@@ -63,19 +91,18 @@ import DesktopNav from '@/components/DesktopNav.astro'
         featuredProjects.map((project) => (
           <div class="flex flex-col-reverse md:flex-row gap-2 md:gap-8 project opacity-0">
             <div class="flex flex-1 flex-col justify-between py-4 md:px-0 px-2">
-              <h2 class="text-2xl font-semibold font-inter-tight mb-2">
+              <h2 class="text-2xl font-semibold tracking-tight mb-2">
                 {project.name}
               </h2>
               <div class="space-y-4">
                 <p class="text-balance">{project.discription}</p>
                 <div class="flex gap-3">
                   {project.tech.map((tech) => (
-                    <Picture
+                    <Image
                       width={32}
                       height={32}
                       src={techIcons[tech]}
                       alt={tech}
-                      formats={['avif']}
                       class="size-8 object-contain rounded-md"
                     />
                   ))}
@@ -97,65 +124,24 @@ import DesktopNav from '@/components/DesktopNav.astro'
         ))
       }
     </section>
-    <h2
-      class="text-2xl md:text-3xl font-inter-tight text-zinc-800 font-bold mt-20 md:mt-40 mb-4 md:mb-8"
-    >
-      My Expertise
-    </h2>
-    <div class="flex flex-col md:flex-row gap-20">
-      <p class="basis-1/3 shrink-0 text-lg text-balance">
-        I am dedicated to expanding my knowledge and expertise in my field.
-        Throughout my time in school and university, I've acquired various
-        skills that I continue to perfect.
-      </p>
-      <div class="grid md:grid-cols-2">
-        <div class="grid gap-4 h-fit">
-          <Icon class="size-10" name="social/github" />
-          <h3 class="text-lg font-medium">Crafting UI into Web Experiences</h3>
-          <p>
-            I love creating UI interactions that feel good. I really enjoy the
-            process of making something that is fun and accessible to use.
-          </p>
-        </div>
-      </div>
-    </div>
   </main>
 </RootLayout>
 
 <style is:global>
-  @keyframes slider {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(-100% - 2rem));
-    }
-  }
-
-  #list-container-1 {
-    mask-image: linear-gradient(90deg, transparent, black 10% 90%, transparent);
-  }
-
-  .list {
-    animation: slider 40s linear infinite;
-  }
-
   .line,
-  #name {
+  #name,
+  .card-title,
+  .learning-item,
+  .expertise-item {
     opacity: 0;
   }
 
-  @media (min-width: 768px) {
-    @keyframes slider {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(calc(-100% - 3rem));
-      }
+  @keyframes fade-to-white {
+    from {
+      background-color: #f4f4f5;
     }
-    .list {
-      animation: slider 40s linear infinite;
+    to {
+      background-color: #ffffff;
     }
   }
 </style>
@@ -167,17 +153,6 @@ import DesktopNav from '@/components/DesktopNav.astro'
   const para = SplitType.create('#para', { types: 'lines' })
   document.getElementById('para').style.opacity = '1'
 
-  animate(
-    '#name',
-    {
-      y: [10, 0],
-      opacity: [0, 1],
-    },
-    {
-      duration: 1.25,
-      type: 'spring',
-    },
-  )
   animate(
     para.lines,
     {
@@ -191,16 +166,58 @@ import DesktopNav from '@/components/DesktopNav.astro'
     },
   )
   animate(
-    '#list-container-1',
+    '.card-title',
     {
-      y: [10, 0],
       opacity: [0, 1],
     },
     {
+      duration: 0.5,
+    },
+  )
+
+  animate(
+    '#grid',
+    {
+      backgroundColor: ['#fff', '#f4f4f5'],
+    },
+    {
+      duration: 0.5,
+    },
+  ).then(() => {
+    document.getElementById('grid').style.animation =
+      'fade-to-white linear both'
+    // @ts-ignore
+    document.getElementById('grid').style.animationTimeline = 'scroll()'
+    // @ts-ignore
+    document.getElementById('grid').style.animationRange = '30vh 110vh'
+  })
+
+  animate(
+    document.querySelectorAll('.learning-item'),
+    {
+      x: [-30, 0],
+      opacity: [0, 1],
+    },
+    {
+      delay: stagger(0.025),
       duration: 1.25,
       type: 'spring',
     },
   )
+
+  animate(
+    document.querySelectorAll('.expertise-item'),
+    {
+      x: [-30, 0],
+      opacity: [0, 1],
+    },
+    {
+      delay: stagger(0.025),
+      duration: 1.25,
+      type: 'spring',
+    },
+  )
+
   animate(
     '#featured-projects-title',
     {

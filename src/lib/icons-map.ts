@@ -12,7 +12,7 @@ import TailwindCSSIcon from "@/assets/icons/skill/tailwindcss.svg";
 import FirebaseIcon from "@/assets/icons/skill/firebase.svg";
 import TypescriptIcon from "@/assets/icons/skill/typescript.svg";
 import ReduxIcon from "@/assets/icons/skill/redux.svg";
-import MotionIcon from "@/assets/icons/skill/motion.webp";
+import MotionIcon from "@/assets/icons/skill/motion.svg";
 // import FastAPIIcon from "@/assets/icons/skill/fastapi.svg";
 // import HeadlessUIIcon from "@/assets/icons/skill/headlessui.svg";
 import MongoDBIcon from "@/assets/icons/skill/mongodb.svg";

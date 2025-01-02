@@ -14,7 +14,7 @@ const socials = [
     icon: 'bluesky',
   },
   {
-    label: 'Twitter',
+    label: 'X',
     href: 'https://x.com/yagnik_pt',
     icon: 'x',
   },
@@ -33,31 +33,28 @@ const socials = [
 
 <div
   id="wrapper"
-  class="hidden lg:grid top-0 sticky w-full z-20 bg-white group"
+  class="hidden lg:grid top-0 sticky w-full z-20 group bg-white"
   data-expanded="false"
 >
   <header
-    class="w-full py-4 container mx-auto flex justify-between items-center px-20 group-data-[expanded=false]:translate-y-6 transition"
+    class="w-full py-4 container mx-auto flex justify-between items-center px-20 group-data-[expanded=false]:translate-y-6 transition bg-white"
     id="header"
   >
-    <a href="/" class="text-2xl text-neutral-800 font-inter-tight font-bold">
-      Yagnik.
-    </a>
-    <nav class="flex items-center gap-6 font-medium text-lg text-neutral-800">
-      <a
-        class="relative after:absolute after:inset-x-0 after:bottom-0.5 after:h-0.5 after:bg-neutral-800 after:scale-x-0 hover:after:scale-x-100 after:transition"
-        href="/projects">projects</a
+    <a href="/" class="text-2xl text-neutral-800 font-serif font-semibold"
+      >yagnik.</a
+    >
+    <nav class="flex items-center gap-6 text-lg text-neutral-800">
+      <a class="link transition-[font-variation-settings]" href="/projects"
+        >projects</a
       >
-      <a
-        class="relative after:absolute after:inset-x-0 after:bottom-0.5 after:h-0.5 after:bg-neutral-800 after:scale-x-0 hover:after:scale-x-100 after:transition"
-        href="/about">about</a
+      <a class="link transition-[font-variation-settings]" href="/about"
+        >about</a
       >
-      <a
-        class="relative after:absolute after:inset-x-0 after:bottom-0.5 after:h-0.5 after:bg-neutral-800 after:scale-x-0 hover:after:scale-x-100 after:transition"
-        href="/uibits">ui_bits</a
+      <a class="link transition-[font-variation-settings]" href="/uibits"
+        >ui_bits</a
       >
       <div
-        class="flex group/socials -space-x-5 hover:space-x-3 overflow-hidden rounded-full hover:bg-neutral-200 hover:pl-5 hover:pr-2 transition-all"
+        class="flex group/socials -space-x-5 hover:space-x-3 overflow-hidden rounded-full hover:bg-zinc-100 hover:pl-5 hover:pr-2 transition-all"
       >
         {
           socials.map((social) => (
@@ -68,7 +65,7 @@ const socials = [
               href={social.href}
             >
               <Icon
-                title={`${social.label} Handle`}
+                title={social.label}
                 class="size-5 text-neutral-900"
                 name={`social/${social.icon}`}
               />
@@ -100,6 +97,15 @@ const socials = [
     </nav>
   </header>
 </div>
+
+<style>
+  .link {
+    font-variation-settings: 'wght' 500;
+  }
+  .link:hover {
+    font-variation-settings: 'wght' 900;
+  }
+</style>
 
 <script>
   const isDesktop = window.matchMedia('(width >= 1024px)').matches

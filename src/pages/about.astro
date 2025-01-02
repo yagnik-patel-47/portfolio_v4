@@ -13,7 +13,6 @@ import MobileNav from '@/components/MobileNav.astro'
   <main class="container mx-auto px-8 lg:px-20 py-6 lg:py-20 pb-32! mt-10">
     <div class="grid xl:grid-cols-2 items-center gap-8">
       <Picture
-        layout="responsive"
         class="rounded-full w-40 md:w-48 lg:w-96 aspect-square"
         src={profileImage}
         alt="oh it's me"
@@ -23,7 +22,7 @@ import MobileNav from '@/components/MobileNav.astro'
         height={384}
       />
       <div>
-        <h1 class="text-2xl lg:text-3xl font-bold font-inter-tight">
+        <h1 class="text-2xl lg:text-3xl font-bold font-serif">
           A little story about myself
         </h1>
         <p class="mt-4 lg:mt-8 lg:text-lg max-w-[65ch]">
@@ -75,9 +74,7 @@ import MobileNav from '@/components/MobileNav.astro'
       <div
         class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md gap-6"
       >
-        <h4 class="text-2xl lg:text-3xl font-inter-tight font-medium">
-          My services
-        </h4>
+        <h4 class="text-2xl lg:text-3xl font-serif font-medium">My services</h4>
         <button
           id="randomColor"
           class="px-8 py-4 text-sm bg-black text-white h-fit w-fit rounded-full font-light tracking-wide"
@@ -90,7 +87,7 @@ import MobileNav from '@/components/MobileNav.astro'
         <span class="max-sm:text-sm"
           >Code | UX | Animations | Responsive UI | Modern Pratices & Frameworks</span
         >
-        <h5 class="text-xl font-inter-tight font-semibold">Web Frontend</h5>
+        <h5 class="text-xl font-semibold">Web Frontend</h5>
       </div>
       <div
         class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card gap-6"
@@ -98,29 +95,29 @@ import MobileNav from '@/components/MobileNav.astro'
         <span class="max-sm:text-sm"
           >Code | Architecture | Design Pattern | Rapid MVP Development</span
         >
-        <h5 class="text-xl font-inter-tight font-semibold">Web Fullstack</h5>
+        <h5 class="text-xl font-semibold">Web Fullstack</h5>
       </div>
       <div
         class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card max-lg:hidden"
       >
         <span class="max-sm:text-sm">To make randomize more lively</span>
-        <h5 class="text-xl font-inter-tight font-semibold">Placeholder</h5>
+        <h5 class="text-xl font-semibold">Placeholder</h5>
       </div>
       <div
         class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card max-lg:hidden"
       >
         <span class="max-sm:text-sm">To make randomize more lively</span>
-        <h5 class="text-xl font-inter-tight font-semibold">Placeholder</h5>
+        <h5 class="text-xl font-semibold">Placeholder</h5>
       </div>
       <div
         class="flex flex-col justify-between w-full lg:aspect-square bg-slate-200 p-6 rounded-md card max-lg:hidden"
       >
         <span class="max-sm:text-sm">To make randomize more lively</span>
-        <h5 class="text-xl font-inter-tight font-semibold">Placeholder</h5>
+        <h5 class="text-xl font-semibold">Placeholder</h5>
       </div>
     </div>
-    <div class="flex gap-2 items-center mt-20 flex-wrap">
-      <h1 class="text-2xl lg:text-3xl font-bold font-inter-tight">
+    <div class="space-y-2 mt-20">
+      <h1 class="text-2xl lg:text-3xl font-bold font-serif">
         My prefered stacks
       </h1>
       <p>

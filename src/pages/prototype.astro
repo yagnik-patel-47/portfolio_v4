@@ -1,10 +1,11 @@
 ---
 import RootLayout from '@/layouts/Root.astro'
-import DynamicActionBar from '@/components/codebits/dynamic-action-bar.tsx'
+// import SlickDropwdown from '@/components/codebits/slick-dropdown.tsx'
+import NicheGrid from '@/components/niche-grid'
 ---
 
 <RootLayout title="Prototype">
-  <main class="h-dvh grid justify-center items-end p-20 bg-[#ffefd8]">
-    <DynamicActionBar client:only="react" />
+  <main class="h-dvh flex flex-col gap-20 justify-center items-center p-10">
+    <NicheGrid client:load />
   </main>
 </RootLayout>

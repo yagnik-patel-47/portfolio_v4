@@ -5,8 +5,8 @@
 @theme {
 	--font-sans: Inter Variable, ui-sans-serif, system-ui, sans-serif,
 		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-	--font-inter-tight: Inter Tight Variable, ui-sans-serif, system-ui, sans-serif,
-		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-serif: "Source Serif 4 Variable", ui-serif, Georgia, Cambria,
+		"Times New Roman", Times, serif;
 
 	--animate-grow: grow calc(var(--duration) * 1s) infinite linear;
 	--animate-float: float 3s ease-in-out infinite;

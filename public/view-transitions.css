@@ -1,0 +1,21 @@
+@view-transition {
+	navigation: auto;
+}
+
+:root {
+	--speed: 0.5s;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: fade-in var(--speed) both;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
