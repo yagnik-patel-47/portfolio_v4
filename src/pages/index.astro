@@ -14,19 +14,24 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
 <RootLayout title="/yagnik">
   <DesktopNav />
   <MobileNav />
-  <main class="container mx-auto lg:px-20 pb-30 px-8 lg:p-10 mt-6">
+  <main class="container mx-auto lg:px-20 pb-30 px-4 lg:p-10 mt-2 max-lg:py-24">
     <div
       id="grid"
-      class="min-h-dvh lg:min-h-[calc(100svh-4.5rem)] grid grid-cols-2 justify-center gap-5 p-5 rounded-3xl"
+      class="lg:min-h-[calc(100svh-4.5rem)] grid-cols-1 grid lg:grid-cols-2 justify-center p-0 gap-3 lg:gap-5 lg:p-5 rounded-3xl"
     >
       <div
-        class="col-span-2 py-10 bg-white lg:p-10 rounded-3xl grid items-center"
+        class="lg:col-span-2 bg-white p-4 lg:p-10 rounded-3xl grid items-center"
       >
+        <p id="name" class="text-xl text-zinc-800 font-semibold lg:hidden mb-4">
+          Hello! I'm Yagnik.
+        </p>
         <p
           class="text-3xl text-balance md:text-5xl 2xl:text-6xl md:leading-14 2xl:leading-17 tracking-tight max-w-3xl 2xl:max-w-4xl md:text-pretty font-serif text-zinc-800 opacity-0"
           id="para"
         >
-          Hi, I'm a second-year <span class="font-semibold">Computer</span>
+          <span class="max-lg:hidden">Hi, </span>I'm a second-year <span
+            class="font-semibold">Computer</span
+          >
           <span class="font-semibold">Science</span> student with a passion for creating
           <span class="font-semibold">awesome</span> and <span
             class="font-semibold">engaging</span
@@ -35,21 +40,23 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
           <span class="font-semibold">experiences</span>.
         </p>
       </div>
-      <div class="bg-white rounded-2xl overflow-hidden relative pt-8 group">
+      <div
+        class="bg-zinc-100 max-lg:mx-4 lg:bg-white rounded-2xl overflow-hidden relative pt-3 lg:pt-6 pb-10 group"
+      >
         <h3
-          class="font-black text-zinc-100 text-7xl 2xl:text-8xl uppercase absolute bottom-2 right-2 scale-[3] origin-bottom-right group-hover:scale-100 group-hover:text-zinc-200 blur-xs group-hover:blur-none transition duration-300 card-title pointer-events-none"
+          class="font-black text-zinc-100 text-6xl mg:text-7xl 2xl:text-8xl uppercase absolute bottom-2 right-2 scale-[3] origin-bottom-right group-hover:scale-100 group-hover:text-zinc-200 blur-xs group-hover:blur-none transition duration-300 card-title pointer-events-none max-lg:animate-blur-shrink-in"
         >
           Learning
         </h3>
-        <div class="lg:px-10 py-2">
+        <div class="px-4 lg:px-10 py-2">
           {
             learning.map((item) => (
               <div class="flex items-center gap-2 group/item overflow-x-clip learning-item">
                 <Icon
-                  class="size-7 -translate-x-full group-hover/item:translate-x-0 transition duration-300"
+                  class="size-5 lg:size-7 lg:-translate-x-full group-hover/item:translate-x-0 transition duration-300"
                   name="arrow-right"
                 />
-                <p class="text-2xl text-neutral-800 font-medium 2xl:text-3xl -translate-x-7 group-hover/item:translate-x-0 transition duration-300 cursor-default">
+                <p class="text-xl lg:text-2xl text-neutral-800 font-medium 2xl:text-3xl lg:-translate-x-7 group-hover/item:translate-x-0 transition duration-300 cursor-default">
                   {item}
                 </p>
               </div>
@@ -57,21 +64,23 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
           }
         </div>
       </div>
-      <div class="bg-white rounded-2xl overflow-hidden relative pt-8 group">
+      <div
+        class="bg-zinc-100 max-lg:mx-4 lg:bg-white rounded-2xl overflow-hidden relative pt-3 lg:pt-6 pb-10 group"
+      >
         <h3
-          class="font-black text-zinc-100 text-7xl 2xl:text-8xl uppercase absolute bottom-2 right-2 scale-[3] origin-bottom-right group-hover:scale-100 group-hover:text-zinc-200 blur-xs group-hover:blur-none transition duration-300 card-title pointer-events-none"
+          class="font-black text-zinc-100 text-6xl mg:text-7xl 2xl:text-8xl uppercase absolute bottom-2 right-2 scale-[3] origin-bottom-right group-hover:scale-100 group-hover:text-zinc-200 blur-xs group-hover:blur-none transition duration-300 card-title pointer-events-none max-lg:animate-blur-shrink-in"
         >
           Expertise
         </h3>
-        <div class="lg:px-10 py-2">
+        <div class="px-4 lg:px-10 py-2">
           {
             expertise.map((item) => (
               <div class="flex items-center gap-2 group/item overflow-x-clip expertise-item">
                 <Icon
-                  class="size-7 -translate-x-full group-hover/item:translate-x-0 transition duration-300"
+                  class="size-5 lg:size-7 lg:-translate-x-full group-hover/item:translate-x-0 transition duration-300"
                   name="arrow-right"
                 />
-                <p class="text-2xl text-neutral-800 font-medium 2xl:text-3xl -translate-x-7 group-hover/item:translate-x-0 transition duration-300 cursor-default">
+                <p class="text-xl lg:text-2xl text-neutral-800 font-medium 2xl:text-3xl lg:-translate-x-7 group-hover/item:translate-x-0 transition duration-300 cursor-default">
                   {item}
                 </p>
               </div>
@@ -80,9 +89,9 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
         </div>
       </div>
     </div>
-    <section class="rounded-2xl mt-20 space-y-12 px-10">
+    <section class="rounded-2xl mt-20 space-y-12 px-4 lg:px-10">
       <h1
-        class="text-2xl md:text-3xl font-serif text-zinc-800 font-bold mt-4 mb-8 md:mb-12 opacity-0"
+        class="text-3xl font-serif text-zinc-800 font-bold mt-4 mb-8 md:mb-12 opacity-0"
         id="featured-projects-title"
       >
         Featured Projects
@@ -150,6 +159,8 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
   import SplitType from 'split-type'
   import { stagger, animate, inView } from 'motion'
 
+  const isLargeScreen = window.matchMedia('(min-width: 1024px)').matches
+
   const para = SplitType.create('#para', { types: 'lines' })
   document.getElementById('para').style.opacity = '1'
 
@@ -175,22 +186,36 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
     },
   )
 
-  animate(
-    '#grid',
-    {
-      backgroundColor: ['#fff', '#f4f4f5'],
-    },
-    {
-      duration: 0.5,
-    },
-  ).then(() => {
-    document.getElementById('grid').style.animation =
-      'fade-to-white linear both'
-    // @ts-ignore
-    document.getElementById('grid').style.animationTimeline = 'scroll()'
-    // @ts-ignore
-    document.getElementById('grid').style.animationRange = '30vh 110vh'
-  })
+  if (isLargeScreen) {
+    animate(
+      '#grid',
+      {
+        backgroundColor: ['#fff', '#f4f4f5'],
+      },
+      {
+        duration: 0.5,
+      },
+    ).then(() => {
+      document.getElementById('grid').style.animation =
+        'fade-to-white linear both'
+      // @ts-ignore
+      document.getElementById('grid').style.animationTimeline = 'scroll()'
+      // @ts-ignore
+      document.getElementById('grid').style.animationRange = '30vh 110vh'
+    })
+  } else {
+    animate(
+      '#name',
+      {
+        y: [10, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 1.25,
+        type: 'spring',
+      },
+    )
+  }
 
   animate(
     document.querySelectorAll('.learning-item'),

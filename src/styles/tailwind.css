@@ -11,6 +11,7 @@
 	--animate-grow: grow calc(var(--duration) * 1s) infinite linear;
 	--animate-float: float 3s ease-in-out infinite;
 	--animate-pulse-grow: pulse-grow 1s ease-in-out infinite;
+	--animate-blur-shrink-in: blur-shrink-in 0s ease-out 0s forwards;
 
 	@keyframes grow {
 		33% {
@@ -21,6 +22,14 @@
 		}
 		100% {
 			transform: scale(1);
+		}
+	}
+
+	@keyframes blur-shrink-in {
+		to {
+			filter: blur(0);
+			scale: 50% 50%;
+			color: oklch(0.92 0.004 286.32);
 		}
 	}
 
