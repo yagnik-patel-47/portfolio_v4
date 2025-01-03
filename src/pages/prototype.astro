@@ -1,11 +1,12 @@
 ---
 import RootLayout from '@/layouts/Root.astro'
 // import SlickDropwdown from '@/components/codebits/slick-dropdown.tsx'
-import NicheGrid from '@/components/niche-grid'
+import ProjectCard from '@/components/project-card'
+import { featuredProjects } from '@/lib/projects-data'
 ---
 
 <RootLayout title="Prototype">
-  <main class="h-dvh flex flex-col gap-20 justify-center items-center p-10">
-    <NicheGrid client:load />
+  <main class="h-dvh flex justify-center items-center p-10 bg-zinc-200">
+    <ProjectCard project={featuredProjects[0]} client:load />
   </main>
 </RootLayout>

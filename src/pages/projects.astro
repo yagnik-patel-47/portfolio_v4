@@ -11,6 +11,7 @@ import { Picture } from 'astro:assets'
 import { cn } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 import DesktopNav from '@/components/DesktopNav.astro'
+import ProjectCard from '@/components/project-card'
 
 const allProjects = [
   {
@@ -47,47 +48,9 @@ const allProjects = [
           >
             {projectCategory.label}
           </h1>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-6 mt-10">
+          <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 mt-10">
             {projectCategory.projects.map((project) => (
-              <div class="space-y-2 project">
-                <div class="relative after:rounded-2xl after:absolute after:inset-0 after:inset-ring-black/20 after:inset-ring-5 hover:after:inset-ring-8 after:transition">
-                  <Picture
-                    width={750}
-                    height={500}
-                    src={project.image}
-                    alt={project.name}
-                    formats={['avif']}
-                    loading="eager"
-                    class="rounded-xl w-full object-cover"
-                    layout="responsive"
-                  />
-                </div>
-
-                <div class="flex justify-between items-center pt-4 md:pt-3 px-1 md:px-4">
-                  <h2 class="text-2xl font-semibold tracking-tight">
-                    {project.name}
-                  </h2>
-                  <div class="flex space-x-4">
-                    {project.links.repo && (
-                      <a
-                        aria-label="project repo link"
-                        target="_blank"
-                        href={project.links.repo}
-                      >
-                        <Icon class="size-5" name="social/github" />
-                      </a>
-                    )}
-                    <a
-                      aria-label="site link"
-                      target="_blank"
-                      href={project.links.site}
-                    >
-                      <Icon class="size-5" name="external-link" />
-                    </a>
-                  </div>
-                </div>
-                <p class="text-balance px-1 md:px-4">{project.discription}</p>
-              </div>
+              <ProjectCard project={project} client:load />
             ))}
           </div>
         </>

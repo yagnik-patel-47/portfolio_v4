@@ -1,11 +1,9 @@
 ---
 import MobileNav from '@/components/MobileNav.astro'
 import RootLayout from '@/layouts/Root.astro'
-import { techIcons } from '@/lib/icons-map'
-import { Image, Picture } from 'astro:assets'
 import { featuredProjects } from '@/lib/projects-data'
-import { Icon } from 'astro-icon/components'
 import DesktopNav from '@/components/DesktopNav.astro'
+import ProjectCard from '@/components/project-card'
 
 const learning = ['Software', 'Computer Networking', 'Design Patterns', 'DSA']
 const expertise = ['Frontend', 'UI Interactions', 'SASS']
@@ -14,7 +12,7 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
 <RootLayout title="/yagnik">
   <DesktopNav />
   <MobileNav />
-  <main class="container mx-auto lg:px-20 pb-30 px-4 lg:p-10 mt-2 max-lg:py-24">
+  <main class="container mx-auto lg:px-20 pb-30 px-4 lg:p-10 mt-2 max-lg:py-20">
     <div
       id="grid"
       class="lg:min-h-[calc(100svh-4.5rem)] grid-cols-1 grid lg:grid-cols-2 justify-center p-0 gap-3 lg:gap-5 lg:p-5 rounded-3xl"
@@ -48,15 +46,12 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
         >
           Learning
         </h3>
-        <div class="px-4 lg:px-10 py-2">
+        <div class="px-4 lg:px-10 py-2 relative">
           {
             learning.map((item) => (
               <div class="flex items-center gap-2 group/item overflow-x-clip learning-item">
-                <Icon
-                  class="size-5 lg:size-7 lg:-translate-x-full group-hover/item:translate-x-0 transition duration-300"
-                  name="arrow-right"
-                />
-                <p class="text-xl lg:text-2xl text-neutral-800 font-medium 2xl:text-3xl lg:-translate-x-7 group-hover/item:translate-x-0 transition duration-300 cursor-default">
+                <span>&mdash;</span>
+                <p class="text-xl lg:text-2xl text-neutral-800 font-medium 2xl:text-3xl cursor-default">
                   {item}
                 </p>
               </div>
@@ -72,15 +67,12 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
         >
           Expertise
         </h3>
-        <div class="px-4 lg:px-10 py-2">
+        <div class="px-4 lg:px-10 py-2 relative">
           {
             expertise.map((item) => (
-              <div class="flex items-center gap-2 group/item overflow-x-clip expertise-item">
-                <Icon
-                  class="size-5 lg:size-7 lg:-translate-x-full group-hover/item:translate-x-0 transition duration-300"
-                  name="arrow-right"
-                />
-                <p class="text-xl lg:text-2xl text-neutral-800 font-medium 2xl:text-3xl lg:-translate-x-7 group-hover/item:translate-x-0 transition duration-300 cursor-default">
+              <div class="flex items-center gap-2 overflow-x-clip expertise-item">
+                <span>&mdash;</span>
+                <p class="text-xl lg:text-2xl text-neutral-800 font-medium 2xl:text-3xl cursor-default">
                   {item}
                 </p>
               </div>
@@ -89,49 +81,20 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
         </div>
       </div>
     </div>
-    <section class="rounded-2xl mt-20 space-y-12 px-4 lg:px-10">
+    <section class="rounded-2xl mt-20 space-y-12 max-lg:px-4">
       <h1
-        class="text-3xl font-serif text-zinc-800 font-bold mt-4 mb-8 md:mb-12 opacity-0"
+        class="text-3xl font-serif text-zinc-800 font-bold mt-4 mb-8 md:mb-12"
         id="featured-projects-title"
       >
         Featured Projects
       </h1>
-      {
-        featuredProjects.map((project) => (
-          <div class="flex flex-col-reverse md:flex-row gap-2 md:gap-8 project opacity-0">
-            <div class="flex flex-1 flex-col justify-between py-4 md:px-0 px-2">
-              <h2 class="text-2xl font-semibold tracking-tight mb-2">
-                {project.name}
-              </h2>
-              <div class="space-y-4">
-                <p class="text-balance">{project.discription}</p>
-                <div class="flex gap-3">
-                  {project.tech.map((tech) => (
-                    <Image
-                      width={32}
-                      height={32}
-                      src={techIcons[tech]}
-                      alt={tech}
-                      class="size-8 object-contain rounded-md"
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div class="relative after:rounded-2xl md:w-1/2 after:absolute after:inset-0 after:inset-ring-black/20 after:inset-ring-5 hover:after:inset-ring-8 after:transition">
-              <Picture
-                width={750}
-                height={500}
-                src={project.image}
-                alt={project.name}
-                formats={['avif']}
-                class="rounded-2xl w-full object-cover"
-                layout="responsive"
-              />
-            </div>
-          </div>
-        ))
-      }
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
+        {
+          featuredProjects.map((project) => (
+            <ProjectCard client:load project={project} />
+          ))
+        }
+      </div>
     </section>
   </main>
 </RootLayout>
@@ -241,35 +204,5 @@ const expertise = ['Frontend', 'UI Interactions', 'SASS']
       duration: 1.25,
       type: 'spring',
     },
-  )
-
-  animate(
-    '#featured-projects-title',
-    {
-      y: [10, 0],
-      opacity: [0, 1],
-    },
-    {
-      duration: 1.25,
-      type: 'spring',
-    },
-  )
-
-  inView(
-    '.project',
-    (info) => {
-      animate(
-        info.target,
-        {
-          y: [10, 0],
-          opacity: [0, 1],
-        },
-        {
-          duration: 1.25,
-          type: 'spring',
-        },
-      )
-    },
-    { amount: 0.75 },
   )
 </script>
